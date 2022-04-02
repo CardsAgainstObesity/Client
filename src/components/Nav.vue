@@ -2,6 +2,8 @@
 import { RouterLink } from 'vue-router';
 import { game } from '@/services/cards.mjs';
 import Room from '../services/Room.mjs';
+import { ackree } from '@/services/ackree.mjs'
+// ackree(); // https://ackee.electerious.com/
 defineProps({
     hidelogo: {
         type: Boolean,
