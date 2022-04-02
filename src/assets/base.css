@@ -135,16 +135,33 @@ button:hover {
     cursor: pointer;
 }
 
-div.logo {
-    /* object-fit: cover; */
-    background-image: url("/logo/wide.png");
+header > div > div.logo {
+    background-image: url("/logo/icon/192x.png");
     background-size: auto 2rem;
     background-repeat: no-repeat;
-    background-position: 99%, center;
+    background-position: left
 }
 
 @media only screen and (max-width: 500px) {
-    .logo {
+    header > div > .logo {
         background-image: none !important;
     }
+    header > div > .logo > span {
+        display: none;
+    }
+}
+
+.noselect {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }

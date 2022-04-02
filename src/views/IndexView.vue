@@ -14,7 +14,10 @@ import ToastTransition from '@/components/transitions/ToastTransition.vue'
     </ToastTransition>
     <div class="centered">
       <main>
-        <img class="logo" src="/logo/wide.png" />
+        <div class="logo noselect">
+          <img src="/logo/icon/192x.png" />
+          <span>Cartas Contra la Obesidad</span>
+        </div>
         <input type="text" id="name" placeholder="Tu nombre" maxlength="25" />
         <input type="text" id="code" placeholder="Codigo de sala" />
         <br />
@@ -78,9 +81,23 @@ export default {
 </script>
 
 <style scoped>
-img.logo {
-  width: 100%;
+main > div.logo {
+  flex-wrap: wrap;
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main > div.logo > img {
+  width: 20%;
+}
+
+main > div.logo > span {
+  font-size: 150%;
+  white-space: nowrap;
+  color: #5E81AC;
+  font-weight: bold;
 }
 
 .centered {
@@ -98,7 +115,7 @@ img.logo {
 }
 
 @media only screen and (max-height: 600px) {
-  img.logo {
+  main > div.logo {
     display: none;
   }
 
