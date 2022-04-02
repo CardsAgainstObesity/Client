@@ -3,17 +3,18 @@ import Nav from "@/components/Nav.vue";
 import Toast from "@/components/Toast.vue";
 import WSConnection from "@/services/ws.mjs";
 import Room from "../services/Room.mjs";
+import ToastTransition from '@/components/transitions/ToastTransition.vue'
 </script>
 
 <template>
   <div>
     <Nav :hidelogo="true" />
-    <Transition name="slide-fade">
+    <ToastTransition>
       <Toast v-if="showToast" :text="toastText" type="error" />
-    </Transition>
+    </ToastTransition>
     <div class="centered">
       <main>
-        <img class="logo" src="@/assets/logo.png" />
+        <img class="logo" src="/logo/wide.png" />
         <input type="text" id="name" placeholder="Tu nombre" maxlength="25" />
         <input type="text" id="code" placeholder="Codigo de sala" />
         <br />

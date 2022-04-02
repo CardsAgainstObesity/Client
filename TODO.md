@@ -1,10 +1,4 @@
 # Cosas pendientes por hacer
-- Hacer que la aplicación sea instalable como PWA.
-    - [x] service-worker.js
-    - [x] manifest.json
-    - [x] HTTPs
-    - [ ] Poner un botón custom para instalar la PWA.
-    - [ ] Guardar en cache todo el frontend de Vue, de forma que el cliente solo haga peticiones al servidor para cosas que cambian constantemente (Como WS).
 - Añadir una pagina "/about" con la lista de tecnologías usadas
 - Añadir un panel de debug (evidentemente esto debe ser ocultado en producción)
     - [ ] Mostrar las cartas de todos los jugadores a la vez
@@ -14,11 +8,6 @@
     - [ ] Tema (Claro/Oscuro/...)
 - Comentar los tipos de dato de las funciones del frontend
 - Permitir el cambio de nombre no solo en index sino tambien en el lobby.
-- Arreglar destruir partidas
-- Meter telemetría básica (sin poder identificar a los jugadores individualmente)
-    - [ ] Saber la duración de las partidas
-    - [ ] Cuantos jugadores suelen jugar de media
-    - [ ] Errores encontrados en una partida
 - Comprobar que la aplicación se sienta rapida aun con una velocidad de internet muy mala (DevTools -> Networking)
 - Guardar el historial de partidas jugadas localmente en IndexedDB/WebStorage
     - [ ] Pantalla para ver el historial de partidas. (Se envia el log de la partida una vez se termina la misma, y este log se almacena localmente).

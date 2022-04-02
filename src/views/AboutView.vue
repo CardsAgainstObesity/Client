@@ -8,22 +8,22 @@ import Nav from "@/components/Nav.vue";
         <h1 class="left_padding">Web</h1>
         <div class="container">
             <div class="flex-item">
-                <img class="image" src="/logos/vuejs.svg" />
+                <img class="image" src="/icons/vuejs.svg" />
                 <h3>VueJS</h3>
             </div>
             <div class="flex-item">
-                <img class="image" src="/logos/expressjs.svg" />
+                <img class="image" src="/icons/expressjs.svg" />
                 <h3>ExpressJS</h3>
             </div>
             <div class="flex-item">
-                <img class="image" src="/logos/socketio.svg" />
+                <img class="image" src="/icons/socketio.svg" />
                 <h3>Socket.io</h3>
             </div>
         </div>
         <h1 class="left_padding">Tools</h1>
         <div class="container">
             <div class="flex-item">
-                <img class="image" src="/logos/gimp.svg" />
+                <img class="image" src="/icons/gimp.svg" />
                 <h3>GIMP</h3>
             </div>
             <div class="flex-item">
