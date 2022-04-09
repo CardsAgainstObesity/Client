@@ -6,29 +6,31 @@ import Nav from "@/components/Nav.vue";
     <div>
         <Nav />
         <h1 class="left_padding">Web</h1>
-        <div class="container">
-            <div class="flex-item">
-                <img class="image" src="/icons/vuejs.svg" />
-                <h3>VueJS</h3>
+        <div id="root">
+            <div class="container">
+                <div class="flex-item">
+                    <img class="image" src="/icons/vuejs.svg" />
+                    <h3>VueJS</h3>
+                </div>
+                <div class="flex-item">
+                    <img class="image" src="/icons/expressjs.svg" />
+                    <h3>ExpressJS</h3>
+                </div>
+                <div class="flex-item">
+                    <img class="image" src="/icons/socketio.svg" />
+                    <h3>Socket.io</h3>
+                </div>
             </div>
-            <div class="flex-item">
-                <img class="image" src="/icons/expressjs.svg" />
-                <h3>ExpressJS</h3>
-            </div>
-            <div class="flex-item">
-                <img class="image" src="/icons/socketio.svg" />
-                <h3>Socket.io</h3>
-            </div>
-        </div>
-        <h1 class="left_padding">Tools</h1>
-        <div class="container">
-            <div class="flex-item">
-                <img class="image" src="/icons/gimp.svg" />
-                <h3>GIMP</h3>
-            </div>
-            <div class="flex-item">
-                <img class="image" src="/icons/cube-outline.svg" />
-                <h3>Tesseract-ocr</h3>
+            <h1 class="left_padding">Tools</h1>
+            <div class="container">
+                <div class="flex-item">
+                    <img class="image" src="/icons/gimp.svg" />
+                    <h3>GIMP</h3>
+                </div>
+                <div class="flex-item">
+                    <img class="image" src="/icons/cube-outline.svg" />
+                    <h3>Tesseract-ocr</h3>
+                </div>
             </div>
         </div>
     </div>

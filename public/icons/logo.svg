@@ -1,0 +1,13 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Krita: https://krita.org -->
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:krita="http://krita.org/namespaces/svg/krita"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    width="734.4pt"
+    height="734.4pt"
+    viewBox="0 0 734.4 734.4">
+<defs/>
+<rect id="shape0" transform="matrix(0.999999966756452 0 0 0.999999966756452 28.0800206083403 28.0799990665212)" fill="#5e81ac" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" width="360.72" height="533.52" rx="18" ry="18"/><rect id="shape1" transform="matrix(0.999999966756452 0 0 0.999999966756452 100.080018214805 100.079996672986)" fill="#2e3440" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" width="360.72" height="533.52" rx="18" ry="18"/><rect id="shape2" transform="matrix(0.999999966756452 0 0 0.999999966756452 172.080015821269 172.07999427945)" fill="#5e81ac" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" width="360.72" height="532.8" rx="18" ry="18"/><path id="shape01" transform="matrix(14.3657942917556 0 0 14.3657942917556 201.743702462676 288.430945106328)" fill="#2e3440" stroke="#2e3440" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" d="M18.89 9.27C20 9.27 20.89 10.17 20.89 11.27C20.89 12.37 20 13.27 18.89 13.27L17.09 13.27L13.09 9.27L18.89 9.27M19.31 18.04L19.31 18.03L16.55 15.27L16.54 15.27L14.54 13.27L14.55 13.27L10.55 9.27L10.55 9.27L8.55 7.27L8.55 7.27L1.28 0L0 1.27L3.01 4.27C1.89 5.77 1.89 7.27 1.89 7.27L6 7.27L8 9.27L2.89 9.27C1.79 9.27 0.89 10.17 0.89 11.27C0.89 12.37 1.79 13.27 2.89 13.27L12 13.27L14 15.27L1.89 15.27L1.89 16.27C1.89 17.93 3.23 19.27 4.89 19.27L16.89 19.27C17.22 19.27 17.54 19.2 17.83 19.1L19.73 21L21 19.73L19.31 18.04M19.89 7.27C19.89 7.27 19.89 1.27 10.89 1.27C8.77 1.27 7.17 1.61 5.94 2.12L11.09 7.27Z" sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccc"/>
+</svg>

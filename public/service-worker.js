@@ -16,7 +16,10 @@ var version = 'v0.1.0::';
 */
 var offlineFundamentals = [
   '',
-  'index.html'
+  '/index.html',
+  '/assets/index.d5cf02a4.css',
+  '/assets/vendor.fc0fa693.js',
+  '/assets/index.ff1a49cb.js',
 ];
 
 /* The install event fires when the service worker is first installed.

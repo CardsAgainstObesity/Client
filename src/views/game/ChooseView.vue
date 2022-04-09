@@ -9,7 +9,7 @@ game.state = "choose";
 <template>
     <div>
         <Nav />
-        <div class="left_padding">
+        <div id="root" class="left_padding">
             <h1 class="noselect">{{ Room.getCzar().name }} es el Zar de las cartas.</h1>
             <div class="container left">
                 <Card text="Así es, yo maté a ___. ¿Que cómo lo hice? ___." :dark="true" :clickable="false" />

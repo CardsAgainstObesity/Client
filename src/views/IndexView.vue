@@ -15,7 +15,7 @@ import ToastTransition from '@/components/transitions/ToastTransition.vue'
     <div class="centered">
       <main>
         <div class="logo noselect">
-          <img src="/logo/icon/192x.png" />
+          <img src="/icons/logo.svg" />
           <span>Cartas Contra la Obesidad</span>
         </div>
         <input type="text" id="name" placeholder="Tu nombre" maxlength="25" />
