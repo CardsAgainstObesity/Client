@@ -20,7 +20,6 @@ defineProps({
   <div @click="assignInput(text, clickable); flip()" :class="'game-card ' + (dark ? 'dark ' : ' ') + (clickable ? 'clickable ' : ' ') + (active ? 'active ': ' ')">
     <div class="game-card-inner">
       <div class="game-card-front">
-        <p>Cards Against Obesity</p>
       </div>
       <div class="game-card-back">
         <p v-html="text.replaceAll(`___`, `${chapuza}`)" class="noselect"></p>

@@ -9,7 +9,9 @@ import Nav from "@/components/Nav.vue";
         <div id="root">
             <div class="container">
                 <div class="flex-item">
-                    <img class="image" src="/icons/vuejs.svg" />
+                    <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg" />
+                    <!-- https://en.wikipedia.org/wiki/Vue.js#/media/File:Vue.js_Logo_2.svg -->
+                    <!-- License: CC BY 4.0 -->
                     <h3>VueJS</h3>
                 </div>
                 <div class="flex-item">
@@ -24,8 +26,16 @@ import Nav from "@/components/Nav.vue";
             <h1 class="left_padding">Tools</h1>
             <div class="container">
                 <div class="flex-item">
-                    <img class="image" src="/icons/gimp.svg" />
-                    <h3>GIMP</h3>
+                    <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Calligrakrita-base.svg" />
+                    <!-- https://commons.wikimedia.org/wiki/File:Calligrakrita-base.svg -->
+                    <!-- License: CC BY-SA 4.0 -->
+                    <h3>Krita</h3>
+                </div>
+                <div class="flex-item">
+                    <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/0/0d/Inkscape_Logo.svg" />
+                    <!-- https://en.wikipedia.org/wiki/Inkscape#/media/File:Inkscape_Logo.svg -->
+                    <!-- License: CC BY-SA 3.0 -->
+                    <h3>Inkscape</h3>
                 </div>
                 <div class="flex-item">
                     <img class="image" src="/icons/cube-outline.svg" />
