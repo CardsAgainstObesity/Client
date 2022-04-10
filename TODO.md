@@ -22,3 +22,6 @@
     - Se van revelando las cartas de cada jugador (se dan la vuelta) pulsando un botón que pone "Siguiente"
     - Dicho botón también provoca que se sustituya el contenido de las cartas en la carta negra en caso de que tenga huecos de sustitución
     - Una vez se han revelado todas las cartas el Czar puede votar que carta gana la ronda. La carta se iluminará por el contorno de color azul para indicar que ha ganado y el contenido de la carta sustituirá la carta negra.
+- Ackee
+    - Trackear el numero de partidas creadas y acabadas con un evento custom
+        - Docs: https://docs.ackee.electerious.com/#/docs/Events
