@@ -4,7 +4,22 @@ import Nav from "@/components/Nav.vue";
 import Playerlist from "@/components/Playerlist.vue";
 import { game } from "@/services/cards.mjs";
 import Room from "@/services/Room.mjs";
+import { useRoomStore } from '@/stores/room';
+
+const roomStore = useRoomStore();
 game.state = "lobby";
+
+WSConnection.socket.on("RoomConnectionSuccess", () => {
+  roomStore.playerlist = Room.playersArr;
+});
+
+WSConnection.socket.on("RoomPlayerConnection", () => {
+  roomStore.playerlist = Room.playersArr;
+});
+
+WSConnection.socket.on("RoomPlayerDisconnection", () => {
+  roomStore.playerlist = Room.playersArr;
+});
 </script>
 
 <script>
@@ -31,7 +46,7 @@ export default {
   },
   mounted() {
     if (Room.roomId == "") this.$router.replace({ name: "index" });
-    this.loadPlayers();
+    // this.loadPlayers();
   }
 };
 </script>
@@ -44,7 +59,7 @@ export default {
         <!-- <button @click="appendplayer()">DEBUG Append player</button>
         <button @click="loadPlayers()">DEBUG Load player</button> -->
         <h1>Jugadores en la partida</h1>
-        <Playerlist :list="playerlist" :lobby="true" />
+        <Playerlist :list="roomStore.playerlist" :lobby="true" />
       </main>
     </div>
   </div>
