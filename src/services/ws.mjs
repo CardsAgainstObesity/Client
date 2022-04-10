@@ -16,7 +16,7 @@ export default class WSConnection {
     static connect() {
         // Create a connection to the WS server
         // WSConnection._socket = io(window.location.hostname + ":" + window.location.port);
-        WSConnection._socket = io(window.location.hostname + ":8443"); // TODO: Cambiar para producción
+        WSConnection._socket = io("https://" + window.location.hostname + ":8443"); // TODO: Cambiar para producción
 
 
         WSConnection.socket.on("connect", () => {
@@ -24,14 +24,14 @@ export default class WSConnection {
         });
 
         WSConnection.socket.on("error", (err) => {
-            console.error("ERROR:",err);
+            console.error("ERROR:", err);
         });
 
         WSConnection.socket.on("RoomConnectionSuccess", (room) => {
             console.log("[WS] Connected to room: ", room);
             Room.setCzar(room.czar);
             Room.roomId = room.id;
-            room.players.forEach(ply =>{
+            room.players.forEach(ply => {
                 Room.addPlayer(ply);
             });
         });
@@ -40,23 +40,23 @@ export default class WSConnection {
             console.log("[WS] Created room: ", room);
             Room.setCzar(room.czar);
             Room.roomId = room.id;
-            room.players.forEach(ply =>{
+            room.players.forEach(ply => {
                 Room.addPlayer(ply);
             });
         });
 
         WSConnection.socket.on("RoomPlayerConnection", (player) => {
-            console.log("[WS] Player connected: ",player);
+            console.log("[WS] Player connected: ", player);
             Room.addPlayer(player);
         });
 
         WSConnection.socket.on("RoomPlayerDisconnection", (player) => {
-            console.log("[WS] Player disconnected: ",player);
+            console.log("[WS] Player disconnected: ", player);
             Room.removePlayer(player);
         });
 
         WSConnection.socket.on("RoomStatusChanged", (status) => {
-            console.log("[WS] Room status changed: ",status);
+            console.log("[WS] Room status changed: ", status);
             Room.status = status;
         });
 
@@ -73,7 +73,7 @@ export default class WSConnection {
     }
 
     static createRoom(roomId) {
-        WSConnection.socket.emit("RoomCreationRequest",roomId);
+        WSConnection.socket.emit("RoomCreationRequest", roomId);
     }
 
     static joinRoom(roomId) {
