@@ -17,12 +17,34 @@ defineProps({
 </script>
 
 <template>
-  <div @click="assignInput(text, clickable)" :class="'event-card ' + (dark ? 'dark' : ' ') + (clickable ? 'clickable' : ' ')">
-    <p v-html="text.replaceAll(`___`, `${chapuza}`)" class="noselect"></p>
+  <div @click="assignInput(text, clickable); flip()" :class="'game-card ' + (dark ? 'dark ' : ' ') + (clickable ? 'clickable ' : ' ') + (active ? 'active ': ' ')">
+    <div class="game-card-inner">
+      <div class="game-card-front">
+        <p>Cards Against Obesity</p>
+      </div>
+      <div class="game-card-back">
+        <p v-html="text.replaceAll(`___`, `${chapuza}`)" class="noselect"></p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+export default {
+  data() {
+    return {
+      active: this.dark === true ? true : false
+    }
+  },
+  methods: {
+    flip() { // TODO: Hacer que este metodo se active al darle click a un botón que ponga "siguiente", no al darle click a la carta.
+      if (this.clickable) {
+        this.active = !this.active;
+      }
+    }
+  }
+}
+
 const chapuza = `<span class='card_input'>[...]</span>`;
 function assignInput(value, clickable) {
     if (clickable){
