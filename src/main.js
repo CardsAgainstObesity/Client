@@ -15,7 +15,7 @@ if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
             // Registration was successful
-            console.log('Registered!');
+            console.log('ServiceWorker registered!');
         }, function (err) {
             // registration failed :(
             console.log('ServiceWorker registration failed: ', err);
@@ -24,5 +24,12 @@ if ('serviceWorker' in navigator) {
         });
     });
 } else {
-    console.log('service worker is not supported');
+    console.log('ServiceWorker is not supported');
 }
+
+setTimeout(() => {
+    console.log(
+        "%cHey there!%c\n\nCards Against Obesity is Open Source!\nIf you found an issue or want to improve any aspect of the project, please contribute to it!\n🤝 https://gitlab.com/cardsagainstobesity",
+        "color:#83B4F0;font-family:system-ui;font-size:4rem;-webkit-text-stroke: 1px black;font-weight:bold","font-size:1.25rem;"
+    );
+}, 500);
