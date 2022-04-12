@@ -18,8 +18,8 @@ import ToastTransition from '@/components/transitions/ToastTransition.vue'
           <img src="/icons/logo.svg" />
           <span>Cartas Contra la Obesidad</span>
         </div>
-        <input type="text" id="name" placeholder="Tu nombre" maxlength="25" />
-        <input type="text" id="code" placeholder="Codigo de sala" />
+        <input type="text" id="username" placeholder="Tu nombre" maxlength="25" />
+        <input type="text" id="roomId" placeholder="Codigo de sala" maxlength="10" v-model="roomId" />
         <br />
         <button @click="connect">Unirse</button>
         <button @click="create">Crea una nueva partida</button>
@@ -36,7 +36,13 @@ export default {
       showToast: false,
       nTimeoutId: undefined,
       toastText: "ERROR",
-    };
+      roomId: ""
+    }
+  },
+  watch: {
+    roomId(roomId) {
+      this.roomId = roomId.replace(" ", "");
+    }
   },
   mounted() {
     WSConnection.socket.on("error", (err) => {
@@ -53,15 +59,15 @@ export default {
   },
   methods: {
     connect() {
-      const roomId = document.getElementById("code").value;
-      const name = document.getElementById("name").value;
-      WSConnection.changeName(name);
+      const roomId = document.getElementById("roomId").value;
+      const username = document.getElementById("username").value;
+      WSConnection.changeName(username);
       WSConnection.joinRoom(roomId);
     },
     create() {
-      const roomId = document.getElementById("code").value;
-      const name = document.getElementById("name").value;
-      WSConnection.changeName(name);
+      const roomId = document.getElementById("roomId").value;
+      const username = document.getElementById("username").value;
+      WSConnection.changeName(username);
       WSConnection.createRoom(roomId);
     },
     toast(text) {
