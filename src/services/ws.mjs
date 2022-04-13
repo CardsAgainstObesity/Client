@@ -83,4 +83,22 @@ export default class WSConnection {
     static changeName(newName) {
         WSConnection.socket.emit("RequestPlayerChangeName", newName);
     }
+
+    static startRoom() {
+        WSConnection.socket.emit("RoomStartRequest",Room.roomId);
+    }
+
+    static addCardPack(cardpack_id) {
+        WSConnection.socket.emit("LobbyAddCardpackRequest", {
+            "room_id": Room.roomId,
+            "cardpack_id": cardpack_id 
+        });
+    }
+
+    static removeCardPack(cardpack_id) {
+        WSConnection.socket.emit("LobbyRemoveCardpackRequest", {
+            "room_id": Room.roomId,
+            "cardpack_id": cardpack_id 
+        });
+    }
 }

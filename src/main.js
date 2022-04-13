@@ -27,6 +27,18 @@ if ('serviceWorker' in navigator) {
     console.log('ServiceWorker is not supported');
 }
 
+window.debug = {
+    addCardPack(cardpack_id) {
+        WSConnection.addCardPack(cardpack_id);
+    },
+    removeCardPack(cardpack_id) {
+        WSConnection.removeCardPack(cardpack_id);
+    },
+    startRoom() {
+        WSConnection.startRoom();
+    }
+}
+
 setTimeout(() => {
     console.log(
         "%cHey there!%c\n\nCards Against Obesity is Open Source!\nIf you found an issue or want to improve any aspect of the project, please contribute to it!\n🤝 https://gitlab.com/cardsagainstobesity",
