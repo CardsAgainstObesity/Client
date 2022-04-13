@@ -31,22 +31,8 @@ export default {
       nIntervId: undefined,
     };
   },
-  methods: {
-    appendplayer(player) {
-      const _player = { name: player ? player.name : "YOinkS" };
-      this.playerlist.push(_player);
-    },
-    loadPlayers() {
-      if (!this.nIntervId) {
-        this.nIntervId = setInterval(() => { // TODO: Esto es muy cutre, debe ser cambiado por algun mecanismo de Vue si es posible.
-          this.playerlist = Room.playersArr;
-        }, 250);
-      }
-    },
-  },
   mounted() {
     if (Room.roomId == "") this.$router.replace({ name: "index" });
-    // this.loadPlayers();
   }
 };
 </script>
@@ -56,9 +42,7 @@ export default {
     <Nav />
     <div class="left_padding">
       <main>
-        <!-- <button @click="appendplayer()">DEBUG Append player</button>
-        <button @click="loadPlayers()">DEBUG Load player</button> -->
-        <h1>Jugadores en la partida</h1>
+        <h1>{{$display.text("game_players_lobby")}}</h1>
         <Playerlist :list="roomStore.playerlist" :lobby="true" />
       </main>
     </div>

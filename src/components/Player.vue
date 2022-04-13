@@ -1,7 +1,5 @@
 <script setup>
-import IconPlayer from "@/components/icons/IconPlayer.vue";
-import IconPlayerReady from "@/components/icons/IconPlayerReady.vue";
-import IconPlayerCzar from "@/components/icons/IconPlayerCzar.vue";
+import { mdiAccount, mdiCrown } from '@mdi/js'; 
 defineProps({
     name: {
         type: String,
@@ -24,8 +22,8 @@ defineProps({
 
 <template>
     <div class="player">
-        <IconPlayerCzar v-if="czar" />
-        <IconPlayer v-else />
+        <Icon :path="mdiCrown" v-if="czar" />
+        <Icon :path="mdiAccount" v-else />
         <span>{{name}}</span>
     </div>
 </template>

@@ -79,6 +79,18 @@ body {
 
 /*******************************/
 
+a {
+    text-decoration: none;
+    color: #83b4f0;
+    transition: 0.4s;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: #2e3440;
+    }
+}
+
 footer {
     bottom: 0;
     position: fixed;
@@ -171,6 +183,19 @@ header > div > div.logo {
     /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
 }
 
+.left {
+    float: left;
+}
+  
+.right {
+    float: right;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 body::-webkit-scrollbar {
 	width: 12px;

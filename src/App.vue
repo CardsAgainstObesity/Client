@@ -1,6 +1,5 @@
 <script setup>
 import { RouterView, RouterLink } from 'vue-router';
-import HelloWorld from '@/components/HelloWorld.vue';
 import Nav from "@/components/Nav.vue";
 </script>
 
@@ -24,46 +23,4 @@ import Nav from "@/components/Nav.vue";
 
 <style>
 @import "@/assets/base.css";
-
-div.topnav {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--color-background-soft);
-  margin-bottom: 2rem;
-}
-
-.left {
-  float: left;
-}
-
-.right {
-  float: right;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: #83b4f0;
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: #2e3440;
-  }
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 1rem 1rem;
-  border-left: 1px solid var(--color-border);
-}
 </style>

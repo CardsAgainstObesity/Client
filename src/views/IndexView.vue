@@ -3,7 +3,8 @@ import Nav from "@/components/Nav.vue";
 import Toast from "@/components/Toast.vue";
 import WSConnection from "@/services/ws.mjs";
 import Room from "../services/Room.mjs";
-import ToastTransition from '@/components/transitions/ToastTransition.vue'
+import ToastTransition from "@/components/transitions/ToastTransition.vue";
+import { mdiHome } from "@mdi/js";
 </script>
 
 <template>
@@ -16,13 +17,28 @@ import ToastTransition from '@/components/transitions/ToastTransition.vue'
       <main>
         <div class="logo noselect">
           <img src="/icons/logo.svg" />
-          <span>Cartas Contra la Obesidad</span>
+          <span>{{ $display.text("app_name") }}</span>
         </div>
-        <input type="text" id="username" placeholder="Tu nombre" maxlength="25" />
-        <input type="text" id="roomId" placeholder="Codigo de sala" maxlength="10" v-model="roomId" />
+        <input
+          type="text"
+          id="username"
+          :placeholder="$display.text('index_username')"
+          maxlength="25"
+        />
+        <input
+          type="text"
+          id="roomId"
+          :placeholder="$display.text('index_roomid')"
+          maxlength="10"
+          v-model="roomId"
+        />
         <br />
-        <button @click="connect">Unirse</button>
-        <button @click="create">Crea una nueva partida</button>
+        <button @click="connect">
+          {{ $display.text("index_join_button") }}
+        </button>
+        <button @click="create">
+          {{ $display.text("index_create_button") }}
+        </button>
       </main>
     </div>
   </div>
@@ -36,13 +52,13 @@ export default {
       showToast: false,
       nTimeoutId: undefined,
       toastText: "ERROR",
-      roomId: ""
-    }
+      roomId: "",
+    };
   },
   watch: {
     roomId(roomId) {
       this.roomId = roomId.replace(" ", "");
-    }
+    },
   },
   mounted() {
     WSConnection.socket.on("error", (err) => {
@@ -102,7 +118,7 @@ main > div.logo > img {
 main > div.logo > span {
   font-size: 150%;
   white-space: nowrap;
-  color: #5E81AC;
+  color: #5e81ac;
   font-weight: bold;
 }
 

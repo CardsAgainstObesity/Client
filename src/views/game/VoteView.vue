@@ -9,7 +9,7 @@ game.state = "vote";
 <template>
     <div>
         <Nav/>
-        <h1 class="left_padding noselect">{{ Room.getCzar().name }} es el Zar de las cartas.</h1>
+        <h1 class="left_padding noselect">{{ Room.getCzar().name }} {{$display.text("game_current_czar")}}</h1>
         <div class="container">
             <Card text="Así es, yo maté a ___. ¿Que cómo lo hice? ___." :dark="true" :clickable="false" />
             <div class="break" />
