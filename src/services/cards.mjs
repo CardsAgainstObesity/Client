@@ -1,41 +1,80 @@
 let cards = [{
-        text: "Barack Obama.",
+        text: {
+            es: "Barack Obama.",
+            en: "Barack Obama."
+        },
         dark: false,
     },
     {
-        text: "Gente blanca.",
+        // text: "Gente blanca.",
+        text: {
+            es: "Gente blanca.",
+            en: "White people."
+        },
         dark: false,
     },
     {
-        text: "Los niños de la guerra.",
+        // text: "Los niños de la guerra.",
+        text: {
+            es: "Los niños de la guerra.",
+            en: "War kids."
+        },
         dark: false,
     },
     {
-        text: "Racismo.",
+        // text: "Racismo.",
+        text: {
+            es: "Racismo.",
+            en: "Racism."
+        },
         dark: false,
     },
     {
-        text: "Pedofilia.",
+        // text: "Pedofilia.",
+        text: {
+            es: "Pedofilia.",
+            en: "Pedophilia."
+        },
         dark: false,
     },
     {
-        text: "Porno con tentáculos.",
+        // text: "Porno con tentáculos.",
+        text: {
+            es: "Porno con tentáculos.",
+            en: "Porn with tentacles."
+        },
         dark: false,
     },
     {
-        text: "Nazis.",
+        // text: "Nazis.",
+        text: {
+            es: "Nazis.",
+            en: "Nazis."
+        },
         dark: false,
     },
     {
-        text: "Pilotos kamikaze.",
+        // text: "Pilotos kamikaze.",
+        text: {
+            es: "Pilotos kamikaze.",
+            en: "Kamikaze pilots."
+        },
         dark: false,
     },
     {
-        text: "Colegios tradicionalmente negros.",
+        // text: "Colegios tradicionalmente negros.",
+        text: {
+            es: "Colegios tradicionalmente negros.",
+            en: "Traditionally black schools."
+        },
         dark: false,
     },
     {
-        text: "Ocultar una erección.",
+        // text: "Ocultar una erección.",
+        text: {
+            es: "Ocultar una erección.",
+            en: "Hide an erection."
+        },
         dark: false,
     }
 ];

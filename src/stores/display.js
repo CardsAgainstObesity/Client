@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useDisplayStore = defineStore({
   id: 'display',
   state: () => ({
-    language: "es",
+    language: "en",
     text_obj: {
         es: {
             app_name: "Cartas Contra la Obesidad",

@@ -2,7 +2,6 @@ import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import { useDisplayStore } from '@/stores/display';
 import Icon from '@/components/Icon.vue';
-import vSelect from "vue-select";
 import App from './App.vue'
 import router from './router'
 import WSConnection from './services/ws.mjs';
@@ -14,7 +13,6 @@ app.use(createPinia())
 app.use(router);
 app.config.globalProperties.$display = useDisplayStore();
 app.component("Icon", Icon);
-app.component("v-select", vSelect);
 app.mount('#app');
 
 if ('serviceWorker' in navigator) {
