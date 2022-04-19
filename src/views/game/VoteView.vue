@@ -15,9 +15,9 @@ const debug_black_card = {
         <Nav/>
         <h1 class="left_padding noselect">{{ Room.getCzar().name }} {{$display.text("game_current_czar")}}</h1>
         <div class="container">
-            <Card :text="debug_black_card[$display.language]" :dark="true" :clickable="false" />
+            <Card :text="debug_black_card" :dark="true" :clickable="false" />
             <div class="break" />
-            <Card v-for="card in cards" :text="card.text[$display.language]" :dark="card.dark" :clickable="true" :key="card" />
+            <Card v-for="card in cards" :text="card.text" :dark="card.dark" :clickable="true" :key="card" />
         </div>
     </div>
 </template>

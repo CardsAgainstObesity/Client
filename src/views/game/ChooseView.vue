@@ -16,11 +16,11 @@ const debug_black_card = {
         <div id="root" class="left_padding">
             <h1 class="noselect">{{ Room.getCzar().name }} {{$display.text("game_current_czar")}}</h1>
             <div class="container left">
-                <Card :text="debug_black_card[$display.language]" :dark="true" :clickable="false" />
+                <Card :text="debug_black_card" :dark="true" :clickable="false" />
                 <button @click="resetCards()" class="btn">RESET</button>
                 <button class="btn">READY</button>
                 <div class="break" />
-                <Card v-for="card in cards" :text="card.text[$display.language]" :dark="card.dark" :clickable="true" :key="card" />
+                <Card v-for="card in cards" :text="card.text" :dark="card.dark" :clickable="true" :key="card" />
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@ export default {
   mounted() {
     if (game.card_index != 0) {
         document.querySelectorAll('.card_input').forEach((card, key) => {
-            card.innerHTML = game.getCardValue(key) == undefined ? "[...]":game.getCardValue(key);
+            card.innerHTML = game.getCardValue(key) == undefined ? "[...]":game.getCardValue(key)[this.$display.language].replaceAll(".","");
         });
     }
   }

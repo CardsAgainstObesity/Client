@@ -2,7 +2,7 @@
 import { game } from "@/services/cards.mjs";
 defineProps({
   text: {
-    type: String,
+    type: Object,
     required: true
   },
   dark: {
@@ -17,12 +17,12 @@ defineProps({
 </script>
 
 <template>
-  <div @click="assignInput(text, clickable); flip()" :class="'game-card ' + (dark ? 'dark ' : ' ') + (clickable ? 'clickable ' : ' ') + (active ? 'active ': ' ')">
+  <div @click="assignInput(text, clickable, $display.language); flip()" :class="'game-card ' + (dark ? 'dark ' : ' ') + (clickable ? 'clickable ' : ' ') + (active ? 'active ': ' ')">
     <div class="game-card-inner">
       <div class="game-card-front">
       </div>
       <div class="game-card-back">
-        <p v-html="text.replaceAll(`___`, `${chapuza}`)" class="noselect"></p>
+        <p v-html="text[$display.language].replaceAll(`___`, `${chapuza}`)" class="noselect"></p>
       </div>
     </div>
   </div>
@@ -45,13 +45,13 @@ export default {
 }
 
 const chapuza = `<span class='card_input'>[...]</span>`;
-function assignInput(value, clickable) {
+function assignInput(value, clickable, language) {
     if (clickable){
         if (document.querySelectorAll('.card_input').length <= game.card_index) {
           game.card = 0;
         } else {
-          document.querySelectorAll('.card_input')[game.card_index].innerHTML = value.replaceAll(".","");
-          game.appendCardValue(value.replaceAll(".",""));
+          document.querySelectorAll('.card_input')[game.card_index].innerHTML = value[language].replaceAll(".","");
+          game.appendCardValue(value);
           game.card_index++;
         }
     }
