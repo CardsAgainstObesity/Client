@@ -1,4 +1,5 @@
 import { io, Socket } from 'socket.io-client';
+import Player from '../../../server/src/entity/Player.mjs';
 import Room from './Room.mjs';
 
 export default class WSConnection {
@@ -68,6 +69,20 @@ export default class WSConnection {
         WSConnection.socket.on("RoomStart", () => {
             console.log("[WS] Room started!");
             Room.start();
+        })
+
+        WSConnection.socket.on("RoomCardsDealed",() => {
+            console.log("[WS] Cards dealed!");
+        });
+
+        WSConnection.socket.on("PlayerDeckUpdated",(deck) => {
+            console.log("[WS] Cards dealed!");
+            console.log(deck);
+        });
+
+        WSConnection.socket.on("RoomBlackCardChanged", (bCard) => {
+            console.log("[WS] Black card changed!");
+            console.log(bCard);
         })
 
     }
