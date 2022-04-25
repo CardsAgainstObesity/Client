@@ -5,6 +5,7 @@ import Icon from '@/components/Icon.vue';
 import App from './App.vue'
 import router from './router'
 import WSConnection from './services/ws.mjs';
+import Notifications from '@voerro/vue-notifications';
 
 WSConnection.connect();
 
@@ -12,7 +13,9 @@ const app = createApp(App);
 app.use(createPinia())
 app.use(router);
 app.config.globalProperties.$display = useDisplayStore();
+window.$display = useDisplayStore();
 app.component("Icon", Icon);
+app.component('notifications', Notifications);
 app.mount('#app');
 
 if ('serviceWorker' in navigator) {
