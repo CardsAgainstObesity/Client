@@ -1,5 +1,6 @@
 import { io, Socket } from 'socket.io-client';
-import Room from './Room.mjs';
+import Player from './api/Player.mjs';
+import Room from './api/Room.mjs';
 
 export default class WSConnection {
 
@@ -21,6 +22,7 @@ export default class WSConnection {
 
         WSConnection.socket.on("connect", () => {
             console.log("[WS] Connected to the server");
+            Player.__id = WSConnection.socket.id;
         });
 
         WSConnection.socket.on("error", (err) => {
@@ -54,6 +56,11 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomPlayerConnection", (player) => {
             console.log("[WS] Player connected: ", player);
+            if(player.id == Player.id)
+            {
+                Player.__name = player.name;
+                Player.__obesity = player.obesity;
+            }
             Room.addPlayer(player);
         });
 
@@ -64,7 +71,7 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomStatusChanged", (status) => {
             console.log("[WS] Room status changed: ", status);
-            Room.status = status;
+            Room.changeStatus(status);
         });
 
         WSConnection.socket.on("RoomCzarChanged", (newCzar) => {
@@ -74,23 +81,42 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomStart", () => {
             console.log("[WS] Room started!");
-            Room.start();
-        })
+        });
 
         WSConnection.socket.on("RoomCardsDealed",() => {
             console.log("[WS] Cards dealed!");
         });
 
         WSConnection.socket.on("PlayerDeckUpdated",(deck) => {
-            console.log("[WS] Cards dealed!");
-            console.log(deck);
+            console.log("[WS] Player deck updated!");
+            Player.updateDeck(deck);
         });
 
         WSConnection.socket.on("RoomBlackCardChanged", (bCard) => {
             console.log("[WS] Black card changed!");
-            console.log(bCard);
-        })
+            Room.setBlackCard(bCard);
+        });
+    
+        WSConnection.socket.on("PlayerChangeName", player => {
+            console.log(`[WS] Player with id ${player.id} changed name to ${player.name}`);
+            var player = Room.players.get(player.id);
+            if(player) player.name = player.name;
+            if(player.id == Player.id) { // If WE changed name , change the Player instance name
+                Player.__name = player.name;
+            }
+        });
 
+        WSConnection.socket.on("AnnouncePlayerIsNotReady", (player) => {
+            console.log("[WS] A player is not ready ", player);
+        });
+
+        WSConnection.socket.on("AnnouncePlayerIsReady", (player) => {
+            console.log("[WS] A player is ready ", player);
+        });
+
+        WSConnection.socket.on("RoomStartVoting", (cards) => {
+            console.log("[WS] Started voting for : ", cards);
+        })
     }
 
     static createRoom(roomId) {
@@ -122,4 +148,5 @@ export default class WSConnection {
             "cardpack_id": cardpack_id 
         });
     }
+
 }

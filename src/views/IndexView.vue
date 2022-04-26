@@ -1,7 +1,7 @@
 <script setup>
 import Nav from "@/components/Nav.vue";
 import WSConnection from "@/services/ws.mjs";
-import Room from "../services/Room.mjs";
+import Room from "../services/api/Room.mjs";
 import { mdiHome } from "@mdi/js";
 </script>
 

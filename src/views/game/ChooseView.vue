@@ -1,7 +1,7 @@
 <script setup>
 import Card from "@/components/Card.vue";
 import Nav from "@/components/Nav.vue";
-import Room from "@/services/Room.mjs";
+import Room from "@/services/api/Room.mjs";
 import { cards, game, czar } from "@/services/cards.mjs";
 game.state = "choose";
 const debug_black_card = {

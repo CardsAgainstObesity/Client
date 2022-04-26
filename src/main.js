@@ -5,7 +5,11 @@ import Icon from '@/components/Icon.vue';
 import App from './App.vue'
 import router from './router'
 import WSConnection from './services/ws.mjs';
-import Notifications from '@voerro/vue-notifications';
+import Player from './services/api/Player.mjs';
+import Room from './services/api/Room.mjs';
+//import Notifications from '@voerro/vue-notifications';
+
+const Notifications = {};
 
 WSConnection.connect();
 
@@ -43,8 +47,16 @@ window.debug = {
     },
     startRoom() {
         WSConnection.startRoom();
+    },
+    showPlayer() {
+        return Player;
+    },
+    showRoom() {
+        return Room;
     }
 }
+
+window.WSConnection = WSConnection;
 
 setTimeout(() => {
     console.log(

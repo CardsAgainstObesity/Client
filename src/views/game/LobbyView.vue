@@ -3,7 +3,7 @@ import WSConnection from "@/services/ws.mjs";
 import Nav from "@/components/Nav.vue";
 import Playerlist from "@/components/Playerlist.vue";
 import { game } from "@/services/cards.mjs";
-import Room from "@/services/Room.mjs";
+import Room from "@/services/api/Room.mjs";
 import { useRoomStore } from '@/stores/room';
 
 const roomStore = useRoomStore();

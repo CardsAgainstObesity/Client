@@ -1,6 +1,6 @@
 <script setup>
 import Player from "@/components/Player.vue";
-import Room from "@/services/Room.mjs";
+import Room from "@/services/api/Room.mjs";
 
 defineProps({
     list: {
