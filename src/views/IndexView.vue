@@ -45,7 +45,7 @@ export default {
     name: "IndexView",
     data() {
         return {
-            roomId: "",
+            roomId: this.$route.params.roomId,
         };
     },
     watch: {

@@ -32,7 +32,7 @@ export default {
     };
   },
   mounted() {
-    if (Room.roomId == "") this.$router.replace({ name: "index" });
+    if (Room.roomId == "") this.$router.replace({ name: "index", params: { roomId: this.$route.params.id } });
   }
 };
 </script>
