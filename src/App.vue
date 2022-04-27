@@ -5,7 +5,6 @@ import Nav from "@/components/Nav.vue";
 
 <template>
   <div>
-    <notifications position="top-right" style="top: 4rem;"/>
     <RouterView />
     <footer>
       <p>

@@ -1,6 +1,9 @@
 import { io, Socket } from 'socket.io-client';
 import Player from './api/Player.mjs';
 import Room from './api/Room.mjs';
+import { useToast } from "vue-toastification";
+
+const toast = useToast();
 
 export default class WSConnection {
 
@@ -27,13 +30,7 @@ export default class WSConnection {
 
         WSConnection.socket.on("error", (err) => {
             console.error("ERROR:", err);
-            notify({
-                text: `
-					<h3>ERROR</h3>
-					<p>${window.$display.text(err)}</p>
-				`,
-                theme: "red",
-            });
+            toast.error(`${window.$display.text(err)}`);
         });
 
         WSConnection.socket.on("RoomConnectionSuccess", (room) => {

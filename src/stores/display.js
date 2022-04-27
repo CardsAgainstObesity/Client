@@ -29,6 +29,7 @@ export const useDisplayStore = defineStore({
 
 				// ERRORS
 				UknownRoom: "Esta sala no existe.",
+				RoomAlreadyExists: "Ya hay una sala con ese código.",
 			},
 			en: {
 				// GENERAL
@@ -54,6 +55,7 @@ export const useDisplayStore = defineStore({
 
 				// ERRORS
 				UknownRoom: "This room does not exist.",
+				RoomAlreadyExists: "There is already a room with that code.",
 			}
 		},
 		// cards: fetch() // TODO: Descargar el pack de cartas del servidor

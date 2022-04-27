@@ -7,9 +7,8 @@ import router from './router'
 import WSConnection from './services/ws.mjs';
 import Player from './services/api/Player.mjs';
 import Room from './services/api/Room.mjs';
-//import Notifications from '@voerro/vue-notifications';
-
-const Notifications = {};
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 WSConnection.connect();
 
@@ -19,7 +18,17 @@ app.use(router);
 app.config.globalProperties.$display = useDisplayStore();
 window.$display = useDisplayStore();
 app.component("Icon", Icon);
-app.component('notifications', Notifications);
+const ToastOptions = {
+    position: "bottom-right",
+    pauseOnFocusLoss: false,
+    maxToasts: 5,
+    newestOnTop: false,
+    closeButton: false,
+    closeOnClick: true,
+    timeout: 5000
+};
+
+app.use(Toast, ToastOptions);
 app.mount('#app');
 
 if ('serviceWorker' in navigator) {
