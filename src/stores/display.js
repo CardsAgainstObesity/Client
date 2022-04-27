@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 export const useDisplayStore = defineStore({
 	id: 'display',
 	state: () => ({
-		language: "en",
+		language: "es",
 		text_obj: {
 			es: {
 				// GENERAL

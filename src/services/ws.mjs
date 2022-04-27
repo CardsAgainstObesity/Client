@@ -86,11 +86,13 @@ export default class WSConnection {
 
         WSConnection.socket.on("PlayerDeckUpdated",(deck) => {
             console.log("[WS] Player deck updated!");
+            window.$player.deck = deck; // temporal
             Player.updateDeck(deck);
         });
 
         WSConnection.socket.on("RoomBlackCardChanged", (bCard) => {
             console.log("[WS] Black card changed!");
+            window.$room.blackCard = bCard;
             Room.setBlackCard(bCard);
         });
     

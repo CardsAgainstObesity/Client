@@ -9,14 +9,30 @@ import Player from './services/api/Player.mjs';
 import Room from './services/api/Room.mjs';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
+import { useRoomStore } from './stores/room';
+import { usePlayerStore } from './stores/player';
 
 WSConnection.connect();
+
 
 const app = createApp(App);
 app.use(createPinia())
 app.use(router);
-app.config.globalProperties.$display = useDisplayStore();
-window.$display = useDisplayStore();
+
+// Stores
+const displayStore = useDisplayStore();
+const roomStore = useRoomStore();
+const playerStore = usePlayerStore();
+
+app.config.globalProperties.$display = displayStore;
+window.$display = displayStore;
+
+app.config.globalProperties.$room = roomStore;
+window.$room = roomStore;
+
+app.config.globalProperties.$player = playerStore;
+window.$player = playerStore;
+
 app.component("Icon", Icon);
 const ToastOptions = {
     position: "bottom-right",

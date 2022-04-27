@@ -3,6 +3,7 @@ import Card from "@/components/Card.vue";
 import Nav from "@/components/Nav.vue";
 import Room from "@/services/api/Room.mjs";
 import { cards, game, czar } from "@/services/cards.mjs";
+
 game.state = "choose";
 const debug_black_card = {
     es: "Así es, yo maté a ___. ¿Que cómo lo hice? ___.",
@@ -16,11 +17,11 @@ const debug_black_card = {
         <div id="root" class="left_padding">
             <h1 class="noselect">{{ Room.getCzar().name }} {{$display.text("game_current_czar")}}</h1>
             <div class="container left">
-                <Card :text="debug_black_card" :dark="true" :clickable="false" />
+                <Card :text="$room.blackCard.text" :dark="true" :clickable="false" />
                 <button @click="resetCards()" class="btn">RESET</button>
                 <button class="btn">READY</button>
                 <div class="break" />
-                <Card v-for="card in cards" :text="card.text" :dark="card.dark" :clickable="true" :key="card" />
+                <Card v-for="card in $player.deck" :text="card.text" :dark="card.dark" :clickable="true" :key="card" />
             </div>
         </div>
     </div>
