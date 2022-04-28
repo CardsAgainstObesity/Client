@@ -1,19 +1,24 @@
 import { createApp } from 'vue'
+
 import { createPinia } from 'pinia'
 import { useDisplayStore } from '@/stores/display';
-import Icon from '@/components/Icon.vue';
-import App from './App.vue'
-import router from './router'
-import WSConnection from './services/ws.mjs';
-import Player from './services/api/Player.mjs';
-import Room from './services/api/Room.mjs';
-import Toast from "vue-toastification";
-import "vue-toastification/dist/index.css";
 import { useRoomStore } from './stores/room';
 import { usePlayerStore } from './stores/player';
+import * as StoreManager from './stores/storeManager.mjs';
+
+import App from './App.vue';
+import router from './router';
+
+import WSConnection from './services/ws.mjs';
+
+import Player from './services/api/Player.mjs';
+import Room from './services/api/Room.mjs';
+
+import Icon from '@/components/Icon.vue';
+import Toast from "vue-toastification";
+import "vue-toastification/dist/index.css";
 
 WSConnection.connect();
-
 
 const app = createApp(App);
 app.use(createPinia())
@@ -28,10 +33,12 @@ app.config.globalProperties.$display = displayStore;
 window.$display = displayStore;
 
 app.config.globalProperties.$room = roomStore;
-window.$room = roomStore;
+// window.$room = roomStore;
+StoreManager.RoomStore.instance = roomStore;
 
 app.config.globalProperties.$player = playerStore;
-window.$player = playerStore;
+// window.$player = playerStore;
+StoreManager.PlayerStore.instance = playerStore;
 
 app.component("Icon", Icon);
 const ToastOptions = {
@@ -47,6 +54,7 @@ const ToastOptions = {
 app.use(Toast, ToastOptions);
 app.mount('#app');
 
+/* // Disable PWA for now.
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
@@ -62,6 +70,7 @@ if ('serviceWorker' in navigator) {
 } else {
     console.log('ServiceWorker is not supported');
 }
+*/
 
 window.debug = {
     addCardPack(cardpack_id) {

@@ -21,7 +21,7 @@ const debug_black_card = {
                 <button @click="resetCards()" class="btn">RESET</button>
                 <button class="btn">READY</button>
                 <div class="break" />
-                <Card v-for="card in $player.deck" :text="card.text" :dark="card.dark" :clickable="true" :key="card" />
+                <Card v-for="card in $player.deck" :text="card.text" :dark="false" :clickable="true" :key="card" />
             </div>
         </div>
     </div>

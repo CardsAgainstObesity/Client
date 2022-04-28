@@ -2,6 +2,7 @@ import { io, Socket } from 'socket.io-client';
 import Player from './api/Player.mjs';
 import Room from './api/Room.mjs';
 import { useToast } from "vue-toastification";
+import { PlayerStore, RoomStore } from '@/stores/storeManager.mjs';
 
 const toast = useToast();
 
@@ -86,13 +87,15 @@ export default class WSConnection {
 
         WSConnection.socket.on("PlayerDeckUpdated",(deck) => {
             console.log("[WS] Player deck updated!");
-            window.$player.deck = deck; // temporal
+            //window.$player.deck = deck; // temporal
+            PlayerStore.instance.deck = deck;
             Player.updateDeck(deck);
         });
 
         WSConnection.socket.on("RoomBlackCardChanged", (bCard) => {
             console.log("[WS] Black card changed!");
-            window.$room.blackCard = bCard;
+            // window.$room.blackCard = bCard;
+            RoomStore.instance.blackCard = bCard;
             Room.setBlackCard(bCard);
         });
     

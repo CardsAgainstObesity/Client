@@ -27,9 +27,11 @@ export const useDisplayStore = defineStore({
 				game_current_czar: "es el Zar de las Cartas.",
 				game_players_lobby: "Jugadores en la partida",
 
-				// ERRORS
+				// ERROR CODES
 				UknownRoom: "Esta sala no existe.",
 				RoomAlreadyExists: "Ya hay una sala con ese código.",
+				NoPermissions: "No tienes permisos para hacer eso.",
+				NotEnoughCards: "No hay suficientes cartas para empezar la partida.",
 			},
 			en: {
 				// GENERAL
@@ -53,9 +55,11 @@ export const useDisplayStore = defineStore({
 				game_current_czar: "is the Card Czar.",
 				game_players_lobby: "Players in this lobby",
 
-				// ERRORS
+				// ERROR CODES
 				UknownRoom: "This room does not exist.",
-				RoomAlreadyExists: "There is already a room with that code.",
+				RoomAlreadyExists: "There's already a room with that code.",
+				NoPermissions: "You don't have permissions to do that.",
+				NotEnoughCards: "There aren't enough cards to start the game.",
 			}
 		},
 		// cards: fetch() // TODO: Descargar el pack de cartas del servidor
