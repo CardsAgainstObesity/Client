@@ -4,6 +4,7 @@ import Nav from "@/components/Nav.vue";
 import Room from "@/services/api/Room.mjs";
 import { cards, game, czar } from "@/services/cards.mjs";
 import { PlayerStore, RoomStore } from '@/stores/storeManager.mjs';
+import WSConnection from "@/services/ws.mjs";
 
 game.state = "vote";
 const debug_black_card = {
@@ -22,11 +23,18 @@ const debug_black_card = {
 
             <div v-for="selection in RoomStore.instance.votingFor" :key="selection">
                 <span>{{selection.player_id}}</span>
-                <Card v-for="card in selection.cards" :text="card.text" :dark="card.dark" :clickable="true" :key="card" />
+                <Card v-for="card in selection.cards" @click="flipCard(card.id)" :text="card.text" :dark="card.dark" :clickable="PlayerStore.instance.isCzar ? true : false" :key="card" />
             </div>
         </div>
     </div>
 </template>
+
+<script>
+    function flipCard(card_id) {
+        WSConnection.socket.emit("RoomFlipCardRequest", card_id);
+    }
+</script>
+
 
 <style>
 @import "@/assets/card.css";

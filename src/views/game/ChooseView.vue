@@ -74,7 +74,7 @@ function resetCards() {
   game.card_index = 0;
   game.clearCardValues();
   PlayerStore.instance.selected.clear();
-  imReady();
+  if(PlayerStore.instance.ready)  WSConnection.playerIsNotReady();
 }
 
 function imReady() {

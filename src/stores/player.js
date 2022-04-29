@@ -7,7 +7,8 @@ export const usePlayerStore = defineStore({
     selected: new Set(),
     name:"",
     obesity:-1,
-    ready: false
+    ready: false,
+    isCzar:false
   }),
   actions: {
     setName(name) {

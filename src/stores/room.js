@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { PlayerStore } from '@/stores/storeManager.mjs';
 
 export const useRoomStore = defineStore({
   id: 'room',
@@ -33,6 +34,11 @@ export const useRoomStore = defineStore({
     setCzar(player) {
       //this.events.emit("CzarChanged", player);
       //this.events.emit("PlayerListUpdated");
+      if(player.id == PlayerStore.instance.id) {
+        PlayerStore.instance.isCzar = true;
+      } else {
+        PlayerStore.instance.isCzar = false;
+      }
       this.czar = player;
     },
     changeStatus(status) {

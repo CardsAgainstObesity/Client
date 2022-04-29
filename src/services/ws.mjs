@@ -135,6 +135,10 @@ export default class WSConnection {
         WSConnection.socket.on("RoomGoBackToLobby", () => {
             console.log("[WS] After the game ended, the czar has decided to send players back to lobby");
         });
+
+        WSConnection.socket.on("RoomFlipCard", (card_id) => {
+            console.log("[WS] Card fliped ", card_id);
+        });
     }
 
     static createRoom(roomId) {
@@ -151,6 +155,10 @@ export default class WSConnection {
 
     static startRoom() {
         WSConnection.socket.emit("RoomStartRequest",RoomStore.instance.roomId);
+    }
+
+    static flipCard(card_id) {
+        WSConnection.socket.emit("RoomFlipCardRequest",card_id);
     }
 
     static playerIsReady() {
