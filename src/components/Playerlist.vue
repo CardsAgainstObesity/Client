@@ -1,6 +1,6 @@
 <script setup>
 import Player from "@/components/Player.vue";
-import Room from "@/services/api/Room.mjs";
+import { PlayerStore, RoomStore } from '@/stores/storeManager.mjs';
 
 defineProps({
     list: {
@@ -17,7 +17,7 @@ defineProps({
 <template>
     <ul class="playerlist">
         <li v-for="player in list" :key="player">
-            <Player :name="player.name" :czar="player.id == Room.getCzar().id ? true:false" />
+            <Player :name="player.name" :czar="player.id == RoomStore.instance.czar.id ? true:false" />
         </li>
     </ul>
 </template>

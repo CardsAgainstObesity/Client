@@ -4,11 +4,11 @@ import Nav from "@/components/Nav.vue";
 import Playerlist from "@/components/Playerlist.vue";
 import { game } from "@/services/cards.mjs";
 import Room from "@/services/api/Room.mjs";
-import { useRoomStore } from "@/stores/room";
+import { PlayerStore, RoomStore } from '@/stores/storeManager.mjs';
 
-const roomStore = useRoomStore();
+const roomStore = RoomStore.instance;
 game.state = "lobby";
-
+/*
 WSConnection.socket.on("RoomConnectionSuccess", () => {
     roomStore.playerlist = Room.playersArr;
 });
@@ -20,6 +20,8 @@ WSConnection.socket.on("RoomPlayerConnection", () => {
 WSConnection.socket.on("RoomPlayerDisconnection", () => {
     roomStore.playerlist = Room.playersArr;
 });
+*/
+
 </script>
 
 <script>
@@ -27,12 +29,11 @@ export default {
     name: "LobbyView",
     data() {
         return {
-            playerlist: [],
-            nIntervId: undefined,
+            nIntervId: undefined
         };
     },
     mounted() {
-        if (Room.roomId == "")
+        if (RoomStore.instance.roomId == "")
             this.$router.replace({
                 name: "index",
                 params: { roomId: this.$route.params.id },
@@ -40,7 +41,7 @@ export default {
 		WSConnection.socket.on("RoomStart", () => {
 		this.$router.replace({
 			name: "choose",
-			params: { id: Room.roomId },
+			params: { id: RoomStore.instance.roomId },
 		});
 });
     },
@@ -69,7 +70,7 @@ export default {
         <div style="float: left; width: 45%;" class="left_padding">
             <main>
                 <h1>{{ $display.text("game_players_lobby") }}</h1>
-                <Playerlist :list="roomStore.playerlist" :lobby="true" />
+                <Playerlist :list="roomStore.players.values()" :lobby="true" />
             </main>
         </div>
         <div style="float: right; width: 45%;" class="right_padding">

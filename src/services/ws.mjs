@@ -1,6 +1,6 @@
 import { io, Socket } from 'socket.io-client';
-import Player from './api/Player.mjs';
-import Room from './api/Room.mjs';
+//import Player from './api/Player.mjs';
+//import Room from './api/Room.mjs';
 import { useToast } from "vue-toastification";
 import { PlayerStore, RoomStore } from '@/stores/storeManager.mjs';
 
@@ -26,7 +26,7 @@ export default class WSConnection {
 
         WSConnection.socket.on("connect", () => {
             console.log("[WS] Connected to the server");
-            Player.__id = WSConnection.socket.id;
+            PlayerStore.instance.playerId = WSConnection.socket.id;
         });
 
         WSConnection.socket.on("error", (err) => {
@@ -36,89 +36,105 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomConnectionSuccess", (room) => {
             console.log("[WS] Connected to room: ", room);
-            Room.setCzar(room.czar);
-            Room.roomId = room.id;
+            RoomStore.instance.setCzar(room.czar);
+            RoomStore.instance.roomId = room.roomId; // kekw
             room.players.forEach(ply => {
-                Room.addPlayer(ply);
+                RoomStore.instance.addPlayer(ply);
             });
         });
 
         WSConnection.socket.on("RoomCreationSuccess", (room) => {
             console.log("[WS] Created room: ", room);
-            Room.setCzar(room.czar);
-            Room.roomId = room.id;
+            RoomStore.instance.setCzar(room.czar);
+            RoomStore.instance.roomId = room.roomId;
             room.players.forEach(ply => {
-                Room.addPlayer(ply);
+                RoomStore.instance.addPlayer(ply);
             });
         });
 
         WSConnection.socket.on("RoomPlayerConnection", (player) => {
             console.log("[WS] Player connected: ", player);
-            if(player.id == Player.id)
+            if(player.id == PlayerStore.instance.playerId)
             {
-                Player.__name = player.name;
-                Player.__obesity = player.obesity;
+                PlayerStore.instance.setName(player.name);
+                PlayerStore.instance.setObesity(player.obesity);
             }
-            Room.addPlayer(player);
+            RoomStore.instance.addPlayer(player);
         });
 
         WSConnection.socket.on("RoomPlayerDisconnection", (player) => {
             console.log("[WS] Player disconnected: ", player);
-            Room.removePlayer(player);
+            RoomStore.instance.removePlayer(player);
         });
 
         WSConnection.socket.on("RoomStatusChanged", (status) => {
             console.log("[WS] Room status changed: ", status);
-            Room.changeStatus(status);
+            RoomStore.instance.changeStatus(status);
         });
 
         WSConnection.socket.on("RoomCzarChanged", (newCzar) => {
             console.log("[WS] Room Czar changed: ", newCzar);
-            Room.setCzar(newCzar);
+            RoomStore.instance.setCzar(newCzar);
         });
 
         WSConnection.socket.on("RoomStart", () => {
             console.log("[WS] Room started!");
         });
 
-        WSConnection.socket.on("RoomCardsDealed",() => {
-            console.log("[WS] Cards dealed!");
-        });
-
         WSConnection.socket.on("PlayerDeckUpdated",(deck) => {
             console.log("[WS] Player deck updated!");
-            //window.$player.deck = deck; // temporal
-            PlayerStore.instance.deck = deck;
-            Player.updateDeck(deck);
+            PlayerStore.instance.updateDeck(deck);
         });
 
         WSConnection.socket.on("RoomBlackCardChanged", (bCard) => {
             console.log("[WS] Black card changed!");
-            // window.$room.blackCard = bCard;
-            RoomStore.instance.blackCard = bCard;
-            Room.setBlackCard(bCard);
+            RoomStore.instance.setBlackCard(bCard);
         });
     
         WSConnection.socket.on("PlayerChangeName", player => {
             console.log(`[WS] Player with id ${player.id} changed name to ${player.name}`);
-            var player = Room.players.get(player.id);
-            if(player) player.name = player.name;
-            if(player.id == Player.id) { // If WE changed name , change the Player instance name
-                Player.__name = player.name;
+            var rPlayer = RoomStore.instance.players.get(player.id);
+            if(player) rPlayer.name = player.name;
+            if(player.id == PlayerStore.instance.playerId) { // If WE changed name , change the Player instance name
+                PlayerStore.instance.setName(player.name);
             }
+        });
+
+        WSConnection.socket.on("LobbyAddCardpackSuccess", (cardpack) => {
+            console.log("[WS] Added cardpack ", cardpack);
+        });
+
+        WSConnection.socket.on("LobbyRemoveCardpackSuccess", (cardpack_id) => {
+            console.log("[WS] Removed cardpack ", cardpack_id);
         });
 
         WSConnection.socket.on("AnnouncePlayerIsNotReady", (player) => {
             console.log("[WS] A player is not ready ", player);
+            if(player.id == PlayerStore.instance.playerId) PlayerStore.instance.setReady(player.ready);
         });
 
         WSConnection.socket.on("AnnouncePlayerIsReady", (player) => {
             console.log("[WS] A player is ready ", player);
+            if(player.id == PlayerStore.instance.playerId) PlayerStore.instance.setReady(player.ready);
         });
 
         WSConnection.socket.on("RoomStartVoting", (cards) => {
             console.log("[WS] Started voting for : ", cards);
-        })
+            RoomStore.instance.votingFor = cards;
+            RoomStore.instance.status = "voting";
+        });
+
+        WSConnection.socket.on("AnnounceRoomSelectWinner", (winner) => {
+            console.log("[WS] The czar selected a winner ", winner);
+        });
+
+        WSConnection.socket.on("RoomGameFinished", (winner) => {
+            console.log("[WS] The game finished and the winner is ", winner);
+        });
+
+        WSConnection.socket.on("RoomGoBackToLobby", () => {
+            console.log("[WS] After the game ended, the czar has decided to send players back to lobby");
+        });
     }
 
     static createRoom(roomId) {
@@ -134,19 +150,40 @@ export default class WSConnection {
     }
 
     static startRoom() {
-        WSConnection.socket.emit("RoomStartRequest",Room.roomId);
+        WSConnection.socket.emit("RoomStartRequest",RoomStore.instance.roomId);
+    }
+
+    static playerIsReady() {
+        let selectedCards = Array.from(PlayerStore.instance.selected);
+        WSConnection.socket.emit("PlayerIsReady", selectedCards);
+    }
+
+    static playerIsNotReady() {
+        WSConnection.socket.emit("PlayerIsNotReady");
+    }
+
+    static startVoting() {
+        WSConnection.socket.emit("RoomStartVotingRequest");
+    }
+
+    static selectWinner(player_id) {
+        WSConnection.socket.emit("RoomSelectWinnerRequest", player_id);
+    }
+
+    static backToLobby() {
+        WSConnection.socket.emit("RoomGoBackToLobbyRequest");
     }
 
     static addCardPack(cardpack_id) {
         WSConnection.socket.emit("LobbyAddCardpackRequest", {
-            "room_id": Room.roomId,
+            "room_id": RoomStore.instance.roomId,
             "cardpack_id": cardpack_id 
         });
     }
 
     static removeCardPack(cardpack_id) {
         WSConnection.socket.emit("LobbyRemoveCardpackRequest", {
-            "room_id": Room.roomId,
+            "room_id": RoomStore.instance.roomId,
             "cardpack_id": cardpack_id 
         });
     }
