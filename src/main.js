@@ -14,6 +14,7 @@ import WSConnection from './services/ws.mjs';
 import Player from './services/api/Player.mjs';
 import Room from './services/api/Room.mjs';
 
+import Checkbox from "@/components/Checkbox.vue";
 import Icon from '@/components/Icon.vue';
 import Toast from "vue-toastification";
 import "vue-toastification/dist/index.css";
@@ -42,6 +43,7 @@ app.config.globalProperties.$player = playerStore;
 StoreManager.PlayerStore.instance = playerStore;
 
 app.component("Icon", Icon);
+app.component("Checkbox", Checkbox);
 
 // Vue-Toastification
 

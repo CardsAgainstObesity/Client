@@ -28,6 +28,7 @@ export const useDisplayStore = defineStore({
 				game_players_lobby: "Jugadores en la partida",
 
 				// ERROR CODES
+				RateLimited: "¿¡¿¡PUEDES PARAR!?!?",
 				UknownRoom: "Esta sala no existe.",
 				RoomAlreadyExists: "Ya hay una sala con ese código.",
 				NoPermissions: "No tienes permisos para hacer eso.",
@@ -56,6 +57,7 @@ export const useDisplayStore = defineStore({
 				game_players_lobby: "Players in this lobby",
 
 				// ERROR CODES
+				RateLimited: "CAN YOU STOP!?!?",
 				UknownRoom: "This room does not exist.",
 				RoomAlreadyExists: "There's already a room with that code.",
 				NoPermissions: "You don't have permissions to do that.",

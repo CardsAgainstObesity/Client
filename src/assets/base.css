@@ -128,7 +128,15 @@ footer {
     height: 0;
 }
 
-input[type="text"],
+input[type="text"].checkbox {
+    width: 25px;
+    height: 25px;
+    caret-color: transparent;
+    cursor: pointer;
+}
+
+input[type="text"]:not(.checkbox),
+input[type="text"].checkbox,
 select,
 button {
     color: #83b4f0;
@@ -143,14 +151,16 @@ button {
     border: 0.15rem solid transparent;
 }
 
-input[type="text"]:focus,
+input[type="text"]:focus:not(.checkbox),
+input[type="text"].checkbox.checked,
 select:focus,
 button:hover {
     background-color: #83b4f0;
     color: #222222;
 }
 
-input[type="text"]:hover,
+input[type="text"]:hover:not(.checkbox),
+input[type="text"].checkbox,
 select:hover {
     border: 0.15rem solid #83b4f0;
 }

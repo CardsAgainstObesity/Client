@@ -78,7 +78,14 @@ export default {
 				<!-- TODO: Meter en un componente esto y hacer que sea responsive de nuevo. -->
 				<h1 style="direction: rtl;">game_card_packs</h1>
 				<ul>
-					<li><input @click="toggleCardPack($event.target.checked, 'base')" type="checkbox"><span>Base</span></li>
+					<!-- TODO: Deprecar el <input> nativo cuando se asegure plena compatibilidad del componente custom. -->
+					<li>
+						<input @click="toggleCardPack($event.target.checked, 'base')" type="checkbox"><span>Base</span>
+					</li>
+					<li>
+						<Checkbox id="base_card_pack" @checked="toggleCardPack($event, 'base')" />
+				        <label for="base_card_pack">Base</label>	
+					</li>
 				</ul>
 			</main>
 		</div>
