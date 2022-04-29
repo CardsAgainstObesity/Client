@@ -29,18 +29,32 @@ const displayStore = useDisplayStore();
 const roomStore = useRoomStore();
 const playerStore = usePlayerStore();
 
+// 
 app.config.globalProperties.$display = displayStore;
-window.$display = displayStore;
+window.$display = displayStore; // DEBUG
 
 app.config.globalProperties.$room = roomStore;
-// window.$room = roomStore;
+window.$room = roomStore; // DEBUG
 StoreManager.RoomStore.instance = roomStore;
 
 app.config.globalProperties.$player = playerStore;
-// window.$player = playerStore;
+// window.$player = playerStore; // DEBUG
 StoreManager.PlayerStore.instance = playerStore;
 
 app.component("Icon", Icon);
+
+// Vue-Toastification
+
+const filterBeforeCreate = (toast, toasts) => {
+    console.log("TOAST:", toast);
+    if (toasts.filter(t => t.content === toast.content).length !== 0) {
+        // Returning false discards the toast
+        return false;
+    }
+    // You can modify the toast if you want
+    return toast;
+}
+
 const ToastOptions = {
     position: "bottom-right",
     pauseOnFocusLoss: false,
@@ -48,10 +62,14 @@ const ToastOptions = {
     newestOnTop: false,
     closeButton: false,
     closeOnClick: true,
-    timeout: 5000
+    timeout: 5000,
+    filterBeforeCreate,
 };
 
 app.use(Toast, ToastOptions);
+
+// Mount
+
 app.mount('#app');
 
 /* // Disable PWA for now.
@@ -72,7 +90,7 @@ if ('serviceWorker' in navigator) {
 }
 */
 
-window.debug = {
+window.debug = { // DEBUG
     addCardPack(cardpack_id) {
         WSConnection.addCardPack(cardpack_id);
     },
@@ -90,7 +108,7 @@ window.debug = {
     }
 }
 
-window.WSConnection = WSConnection;
+window.WSConnection = WSConnection; // DEBUG
 
 setTimeout(() => {
     console.log(

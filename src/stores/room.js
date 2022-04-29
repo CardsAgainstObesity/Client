@@ -4,10 +4,9 @@ import { PlayerStore } from '@/stores/storeManager.mjs';
 export const useRoomStore = defineStore({
   id: 'room',
   state: () => ({
-    roomId:"",
+    roomId: "",
     czar: undefined,
-    status:"",
-    playerId: "",
+    status: "",
     blackCard: {
       text: {
         es: "Así es, yo maté a ___. ¿Que cómo lo hice? ___.",
@@ -34,7 +33,7 @@ export const useRoomStore = defineStore({
     setCzar(player) {
       //this.events.emit("CzarChanged", player);
       //this.events.emit("PlayerListUpdated");
-      if(player.id == PlayerStore.instance.id) {
+      if (player.id == PlayerStore.instance.id) {
         PlayerStore.instance.isCzar = true;
       } else {
         PlayerStore.instance.isCzar = false;

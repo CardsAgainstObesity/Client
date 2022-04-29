@@ -26,6 +26,7 @@ const playerStore = PlayerStore.instance;
           :text="roomStore.blackCard.text"
           :dark="true"
           :clickable="false"
+          :active="true"
         />
         <button @click="resetCards()" class="btn">RESET</button>
         <button @click="imReady()" class="btn">READY</button>
@@ -36,6 +37,7 @@ const playerStore = PlayerStore.instance;
           :text="card.text"
           :dark="false"
           :clickable="true"
+          :active="roomStore.czar.id !== playerStore.playerId"
           :key="card"
         />
       </div>

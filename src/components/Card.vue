@@ -12,12 +12,16 @@ defineProps({
   clickable: {
     type: Boolean,
     required: true
+  },
+  active: {
+    type: Boolean,
+    required: false
   }
 });
 </script>
 
 <template>
-  <div @click="assignInput(text, clickable, $display.language); flip()" :class="'game-card ' + (dark ? 'dark ' : ' ') + (clickable ? 'clickable ' : ' ') + (active ? 'active ': ' ')">
+  <div @click="assignInput(text, clickable, $display.language)" :class="'game-card ' + (dark ? 'dark ' : ' ') + (clickable ? 'clickable ' : ' ') + (active ? 'active ' : ' ')">
     <div class="game-card-inner">
       <div class="game-card-front">
       </div>
@@ -32,7 +36,7 @@ defineProps({
 export default {
   data() {
     return {
-      active: this.dark === true ? true : false
+      // active: this.dark === true ? true : false
     }
   },
   methods: {

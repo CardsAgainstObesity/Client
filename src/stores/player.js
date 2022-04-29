@@ -5,10 +5,11 @@ export const usePlayerStore = defineStore({
   state: () => ({
     deck: [],
     selected: new Set(),
-    name:"",
-    obesity:-1,
+    name: "",
+    playerId: "",
+    obesity: -1,
     ready: false,
-    isCzar:false
+    isCzar: false
   }),
   actions: {
     setName(name) {

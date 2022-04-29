@@ -136,8 +136,10 @@ export default class WSConnection {
             console.log("[WS] After the game ended, the czar has decided to send players back to lobby");
         });
 
-        WSConnection.socket.on("RoomFlipCard", (card_id) => {
-            console.log("[WS] Card fliped ", card_id);
+        WSConnection.socket.on("RoomFlipCard", (player_id) => {
+            console.log("[WS] Cards from player flipped ", player_id);
+            const selected_player = RoomStore.instance.votingFor.filter(selection => selection.player_id === player_id);
+            selected_player[0].flipped = !selected_player[0].flipped;
         });
     }
 
@@ -157,8 +159,8 @@ export default class WSConnection {
         WSConnection.socket.emit("RoomStartRequest",RoomStore.instance.roomId);
     }
 
-    static flipCard(card_id) {
-        WSConnection.socket.emit("RoomFlipCardRequest",card_id);
+    static flipCard(player_id) {
+        WSConnection.socket.emit("RoomFlipCardRequest", player_id);
     }
 
     static playerIsReady() {
