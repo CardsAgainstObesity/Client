@@ -1,23 +1,31 @@
 import { createApp } from 'vue'
 
+// Stores
 import { createPinia } from 'pinia'
 import { useDisplayStore } from '@/stores/display';
 import { useRoomStore } from './stores/room';
 import { usePlayerStore } from './stores/player';
 import * as vueBridge from '@/services/vueBridge.mjs';
 
+// Vue
 import App from './App.vue';
 import router from './router';
 
+// WS
 import WSConnection from './services/ws.mjs';
 
+// Deprecated
 import Player from './services/api/Player.mjs';
 import Room from './services/api/Room.mjs';
 
+// Components
 import Checkbox from "@/components/Checkbox.vue";
 import Icon from '@/components/Icon.vue';
 import Toast from "vue-toastification";
+
+// CSS
 import "vue-toastification/dist/index.css";
+import "@/assets/base.css";
 
 WSConnection.connect();
 
@@ -115,9 +123,8 @@ window.debug = { // DEBUG
 
 window.WSConnection = WSConnection; // DEBUG
 
-setTimeout(() => {
-    console.log(
-        "%cHey there!%c\n\nCards Against Obesity is Open Source!\nIf you found an issue or want to improve any aspect of the project, please contribute to it!\n🤝 https://gitlab.com/cardsagainstobesity",
-        "color:#83B4F0;font-family:system-ui;font-size:4rem;-webkit-text-stroke: 1px black;font-weight:bold", "font-size:1.25rem;"
-    );
-}, 500);
+
+console.log(
+    "%cHey there!%c\n\nCards Against Obesity is Open Source!\nIf you found an issue or want to improve any aspect of the project, please contribute to it!\n🤝 https://gitlab.com/cardsagainstobesity",
+    "color:#83B4F0;font-family:system-ui;font-size:4rem;-webkit-text-stroke: 1px black;font-weight:bold", "font-size:1.25rem;"
+);

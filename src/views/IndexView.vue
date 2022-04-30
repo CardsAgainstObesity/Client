@@ -120,7 +120,7 @@ button,
 input[type="text"] {
     margin-bottom: 0.5rem;
     max-width: 50vw;
-    background-color: #181818;
+    background-color: #181818 !important;
     font-size: 1rem;
     width: 100%;
 }
