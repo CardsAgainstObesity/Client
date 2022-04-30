@@ -59,7 +59,6 @@ app.component("Checkbox", Checkbox);
 // Vue-Toastification
 
 const filterBeforeCreate = (toast, toasts) => {
-    console.log("TOAST:", toast);
     if (toasts.filter(t => t.content === toast.content).length !== 0) {
         // Returning false discards the toast
         return false;

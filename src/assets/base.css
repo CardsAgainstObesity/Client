@@ -226,13 +226,13 @@ body::-webkit-scrollbar-thumb {
 
 /*******************************************/
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 601px) {
     .container.left {
         justify-content: left !important;
     }
 }
 
-@media only screen and (max-width: 499px){
+@media only screen and (max-width: 600px){
     div.newline {
         display: flex;
         justify-content: center;

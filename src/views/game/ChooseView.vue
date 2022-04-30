@@ -18,8 +18,8 @@ import { game } from "@/services/cards.mjs"; // Deprecar
                     :active="true"
                 />
                 <div class="newline">
-                    <button @click="resetCards()" :class="'btn ' + ((!this.$player.ready && this.$player.selected.size < 1) ? 'ready':'')">RESET</button>
-                    <button @click="imReady()" :class="'btn ' + (this.$player.ready ? 'ready':'')">READY</button>
+                    <button @click="resetCards()" :class="'btn ' + ((!$player.ready && $player.selected.size < 1) ? 'active':'')">RESET</button>
+                    <button @click="imReady()" :class="'btn ' + (($player.ready || $player.selected.size < 1) ? 'active':'')">READY</button>
                 </div>
                 <div class="break" />
                 <Card
@@ -88,7 +88,7 @@ export default {
 </style>
 
 <style scoped>
-button.btn.ready {
+button.btn.active {
     background-color: #83b4f0;
     color: #222222;
 }

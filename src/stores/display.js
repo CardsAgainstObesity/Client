@@ -31,7 +31,7 @@ export const useDisplayStore = defineStore({
 
 				// ERROR CODES
 				RateLimited: "¿¡¿¡PUEDES PARAR!?!?",
-				UknownRoom: "Esta sala no existe.",
+				UnknownRoom: "Esta sala no existe.",
 				RoomAlreadyExists: "Ya hay una sala con ese código.",
 				NoPermissions: "No tienes permisos para hacer eso.",
 				NotEnoughCards: "No hay suficientes cartas para empezar la partida.",
@@ -60,7 +60,7 @@ export const useDisplayStore = defineStore({
 
 				// ERROR CODES
 				RateLimited: "CAN YOU STOP!?!?",
-				UknownRoom: "This room does not exist.",
+				UnknownRoom: "This room does not exist.",
 				RoomAlreadyExists: "There's already a room with that code.",
 				NoPermissions: "You don't have permissions to do that.",
 				NotEnoughCards: "There aren't enough cards to start the game.",

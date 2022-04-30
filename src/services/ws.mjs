@@ -1,7 +1,7 @@
 import { io, Socket } from 'socket.io-client';
-//import Player from './api/Player.mjs';
-//import Room from './api/Room.mjs';
+
 import { useToast } from "vue-toastification";
+import Toast from "@/components/Toast.vue";
 import * as vueBridge from '@/services/vueBridge.mjs';
 import router from '../router'; // Vue Router
 
@@ -32,7 +32,19 @@ export default class WSConnection {
 
         WSConnection.socket.on("error", (err) => {
             console.error("ERROR:", err);
-            toast.error(`${window.$display.text(err)}`);
+            if (err == "RateLimited") toast.error(
+                { component: Toast, props: { displayCode: err, h1Text: true }},
+                {
+                    position: "bottom-center",
+                    timeout: false,
+                    pauseOnHover: false,
+                    closeButton: false,
+                    progressBar: false,
+                    draggable: false,
+                    pauseOnFocusLoss: false,
+                }
+            );
+            else toast.error({ component: Toast, props: { displayCode: err, h1Text: false }});
         });
 
         WSConnection.socket.on("RoomConnectionSuccess", (room) => {
