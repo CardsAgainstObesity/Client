@@ -1,6 +1,5 @@
 <script setup>
 import WSConnection from "@/services/ws.mjs";
-import Nav from "@/components/Nav.vue";
 import Playerlist from "@/components/Playerlist.vue";
 </script>
 
@@ -35,7 +34,6 @@ export default {
 
 <template>
     <div>
-        <Nav />
         <div style="float: left; width: 45%" class="left_padding">
             <main>
                 <h1>{{ $display.text("game_players_lobby") }}</h1>

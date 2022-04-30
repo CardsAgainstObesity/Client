@@ -1,13 +1,11 @@
 <script setup>
 import Card from "@/components/Card.vue";
 import WSConnection from "@/services/ws.mjs";
-import Nav from "@/components/Nav.vue";
 import { game } from "@/services/cards.mjs"; // Deprecar
 </script>
 
 <template>
     <div>
-        <Nav />
         <div id="root" class="left_padding">
             <h1 class="noselect">
                 {{ $room.czar.name }} {{ $display.text("game_current_czar") }}

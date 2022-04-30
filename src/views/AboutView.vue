@@ -1,10 +1,5 @@
-<script setup>
-import Nav from "@/components/Nav.vue";
-</script>
-
 <template>
     <div>
-        <Nav />
         <h1 class="left_padding">Web</h1>
         <div id="root">
             <div class="container">

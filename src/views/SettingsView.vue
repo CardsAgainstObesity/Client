@@ -1,20 +1,20 @@
-<script setup>
-import Nav from "@/components/Nav.vue";
-</script>
-
 <template>
-    <div>
-        <Nav />
-        <main class="centered_text">
-            <label for="language">
-                {{$display.text("settings_language")}}
-                </label>
-            <ul>
-                <!-- TODO: Cambiar este v-for por cartas que tengan el estilo de las banderas del idioma. -->
-                <li style="cursor: pointer;" @click="setLanguage(lang)" v-for="lang in languages" :key="lang.code">{{lang.label}}</li>
-            </ul>
-        </main>
-    </div>
+    <main class="centered_text">
+        <label for="language">
+            {{ $display.text("settings_language") }}
+        </label>
+        <ul>
+            <!-- TODO: Cambiar este v-for por cartas que tengan el estilo de las banderas del idioma. -->
+            <li
+                style="cursor: pointer"
+                @click="setLanguage(lang)"
+                v-for="lang in languages"
+                :key="lang.code"
+            >
+                {{ lang.label }}
+            </li>
+        </ul>
+    </main>
 </template>
 
 <script>
@@ -29,10 +29,10 @@ export default {
         };
     },
     methods: {
-        setLanguage (value) {
+        setLanguage(value) {
             this.$display.language = value.code;
         },
-    }
+    },
 };
 </script>
 

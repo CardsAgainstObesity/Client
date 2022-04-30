@@ -1,5 +1,4 @@
 <script setup>
-import Nav from "@/components/Nav.vue";
 import WSConnection from "@/services/ws.mjs";
 import Room from "../services/api/Room.mjs";
 import { mdiHome } from "@mdi/js";
@@ -7,8 +6,6 @@ import { mdiHome } from "@mdi/js";
 
 <template>
     <div>
-        <Nav :hidelogo="true" />
-
         <div class="centered">
             <main>
                 <div class="logo noselect">

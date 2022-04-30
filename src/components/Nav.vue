@@ -1,20 +1,12 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import { game } from '@/services/cards.mjs';
-import Room from '../services/api/Room.mjs';
 import { ackree } from '@/services/ackree.mjs';
 import { mdiHome, mdiHamburger, mdiBookOpenVariant, mdiCog, mdiInformation } from '@mdi/js';
 // ackree(); // https://ackee.electerious.com/
-defineProps({
-    hidelogo: {
-        type: Boolean,
-        required: false
-    }
-});
 </script>
 <template>
     <header>
-        <div class="topnav noselect" :class="(hidelogo === true ? 'hide':'')">
+        <div class="topnav noselect" :class="(this.$router.currentRoute.value.name === 'index' ? 'hide':'')">
             <nav class="center">
                 <RouterLink v-if="$room.roomId == ''" to="/"><Icon :path="mdiHome" /> {{$display.text("nav_index")}}</RouterLink>
                 <RouterLink v-if="$room.roomId != ''" :to="{ name: $room.status, params: { id: ($room.roomId == '' ? 'DEBUG':$room.roomId) } }"><Icon :path="mdiHamburger" /> {{$display.text("nav_game")}}</RouterLink>
