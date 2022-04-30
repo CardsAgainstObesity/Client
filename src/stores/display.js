@@ -1,9 +1,11 @@
 import { defineStore } from 'pinia'
 
+const ls_language = localStorage.getItem("language"); // Persist language selection
+
 export const useDisplayStore = defineStore({
 	id: 'display',
 	state: () => ({
-		language: "es",
+		language: ls_language === null ? 'en' : ls_language,
 		text_obj: {
 			es: {
 				// GENERAL

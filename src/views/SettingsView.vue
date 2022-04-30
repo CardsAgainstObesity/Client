@@ -31,6 +31,7 @@ export default {
     methods: {
         setLanguage(value) {
             this.$display.language = value.code;
+            localStorage.setItem("language", value.code);
         },
     },
 };
