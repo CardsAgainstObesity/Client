@@ -8,6 +8,6 @@ import Footer from "@/components/Footer.vue";
   <div>
     <Nav />
     <RouterView />
-    <Footer />
+    <!-- <Footer /> -->
   </div>
 </template>

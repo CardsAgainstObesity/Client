@@ -57,8 +57,4 @@ function flipCard(player_id) {
 
 <style>
 @import "@/assets/card.css";
-
-.container.left {
-    justify-content: left !important;
-}
 </style>

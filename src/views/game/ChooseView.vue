@@ -17,8 +17,10 @@ import { game } from "@/services/cards.mjs"; // Deprecar
                     :clickable="false"
                     :active="true"
                 />
-                <button @click="resetCards()" class="btn">RESET</button>
-                <button @click="imReady()" class="btn">READY</button>
+                <div class="newline">
+                    <button @click="resetCards()" :class="'btn ' + ((!this.$player.ready && this.$player.selected.size < 1) ? 'ready':'')">RESET</button>
+                    <button @click="imReady()" :class="'btn ' + (this.$player.ready ? 'ready':'')">READY</button>
+                </div>
                 <div class="break" />
                 <Card
                     @click="selectCard(card.id)"
@@ -50,6 +52,13 @@ export default {
         }
     },
     methods: {
+        toggleReady() {
+            if (this.$player.ready) {
+                this.resetCards();
+            } else {
+                this.imReady();
+            }
+        },
         resetCards() {
             for (let input of document.querySelectorAll(".card_input")) {
                 input.innerHTML = "[...]";
@@ -76,13 +85,11 @@ export default {
 
 <style>
 @import "@/assets/card.css";
+</style>
 
-.container.left {
-    justify-content: left !important;
-}
-
-button.btn {
-    margin-bottom: 24px;
-    height: 2.5rem;
+<style scoped>
+button.btn.ready {
+    background-color: #83b4f0;
+    color: #222222;
 }
 </style>

@@ -223,3 +223,30 @@ body::-webkit-scrollbar {
 body::-webkit-scrollbar-thumb {
 	background-color: #222222;
 }
+
+/*******************************************/
+
+@media only screen and (min-width: 500px) {
+    .container.left {
+        justify-content: left !important;
+    }
+}
+
+@media only screen and (max-width: 499px){
+    div.newline {
+        display: flex;
+        justify-content: center;
+    }
+    button.btn {
+        width: 100px;
+    }
+}
+
+button.btn {
+    margin-bottom: 24px;
+    height: 2.5rem;
+}
+
+div.newline {
+    width: 100%;
+}
