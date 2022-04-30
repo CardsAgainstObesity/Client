@@ -2,98 +2,89 @@
 import Card from "@/components/Card.vue";
 import WSConnection from "@/services/ws.mjs";
 import Nav from "@/components/Nav.vue";
-import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
-import { game } from "@/services/cards.mjs";
-
-game.state = "choose";
-const debug_black_card = {
-  es: "Así es, yo maté a ___. ¿Que cómo lo hice? ___.",
-  en: "I killed ___, indeed. How did I do it? ___.",
-};
-const roomStore = RoomStore.instance;
-const playerStore = PlayerStore.instance;
+import { game } from "@/services/cards.mjs"; // Deprecar
 </script>
 
 <template>
-  <div>
-    <Nav />
-    <div id="root" class="left_padding">
-      <h1 class="noselect">
-        {{ roomStore.czar.name }} {{ $display.text("game_current_czar") }}
-      </h1>
-      <div class="container left">
-        <Card
-          :text="roomStore.blackCard.text"
-          :dark="true"
-          :clickable="false"
-          :active="true"
-        />
-        <button @click="resetCards()" class="btn">RESET</button>
-        <button @click="imReady()" class="btn">READY</button>
-        <div class="break" />
-        <Card
-          @click="selectCard(card.id)"
-          v-for="card in playerStore.deck"
-          :text="card.text"
-          :dark="false"
-          :clickable="true"
-          :active="roomStore.czar.id !== playerStore.playerId"
-          :key="card"
-        />
-      </div>
+    <div>
+        <Nav />
+        <div id="root" class="left_padding">
+            <h1 class="noselect">
+                {{ $room.czar.name }} {{ $display.text("game_current_czar") }}
+            </h1>
+            <div class="container left">
+                <Card
+                    :text="$room.blackCard.text"
+                    :dark="true"
+                    :clickable="false"
+                    :active="true"
+                />
+                <button @click="resetCards()" class="btn">RESET</button>
+                <button @click="imReady()" class="btn">READY</button>
+                <div class="break" />
+                <Card
+                    @click="selectCard(card.id)"
+                    v-for="card in $player.deck"
+                    :text="card.text"
+                    :dark="false"
+                    :clickable="true"
+                    :active="$room.czar.id !== $player.playerId"
+                    :key="card"
+                />
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  name: "ChooseView",
-  mounted() {
-    if (game.card_index != 0) {
-      document.querySelectorAll(".card_input").forEach((card, key) => {
-        card.innerHTML =
-          game.getCardValue(key) == undefined
-            ? "[...]"
-            : game
-                .getCardValue(key)
-                [this.$display.language].replaceAll(".", "");
-      });
-    }
-  },
+    name: "ChooseView",
+    mounted() {
+        if (game.card_index != 0) {
+            document.querySelectorAll(".card_input").forEach((card, key) => {
+                card.innerHTML =
+                    game.getCardValue(key) == undefined
+                        ? "[...]"
+                        : game
+                              .getCardValue(key)
+                              [this.$display.language].replaceAll(".", "");
+            });
+        }
+    },
+    methods: {
+        resetCards() {
+            for (let input of document.querySelectorAll(".card_input")) {
+                input.innerHTML = "[...]";
+            }
+            game.card_index = 0;
+            game.clearCardValues();
+            this.$player.selected.clear();
+            if (this.$player.ready) WSConnection.playerIsNotReady();
+        },
+
+        imReady() {
+            if (!this.$player.ready) WSConnection.playerIsReady();
+            else WSConnection.playerIsNotReady();
+        },
+
+        selectCard(card_id) {
+            if (this.$player.selected.size < this.$room.blackCard.slots) {
+                this.$player.selected.add(card_id);
+            }
+        },
+    },
 };
-
-function resetCards() {
-  for (let input of document.querySelectorAll(".card_input")) {
-    input.innerHTML = "[...]";
-  }
-  game.card_index = 0;
-  game.clearCardValues();
-  PlayerStore.instance.selected.clear();
-  if(PlayerStore.instance.ready)  WSConnection.playerIsNotReady();
-}
-
-function imReady() {
-  if (!PlayerStore.instance.ready) WSConnection.playerIsReady();
-  else WSConnection.playerIsNotReady();
-}
-
-function selectCard(card_id) {
-  if (PlayerStore.instance.selected.size < RoomStore.instance.blackCard.slots) {
-    PlayerStore.instance.selected.add(card_id);
-  }
-}
 </script>
-
 
 <style>
 @import "@/assets/card.css";
 
 .container.left {
-  justify-content: left !important;
+    justify-content: left !important;
 }
 
 button.btn {
-  margin-bottom: 24px;
-  height: 2.5rem;
+    margin-bottom: 24px;
+    height: 2.5rem;
 }
 </style>

@@ -2,47 +2,17 @@
 import WSConnection from "@/services/ws.mjs";
 import Nav from "@/components/Nav.vue";
 import Playerlist from "@/components/Playerlist.vue";
-import { game } from "@/services/cards.mjs";
-import Room from "@/services/api/Room.mjs";
-import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
-
-const roomStore = RoomStore.instance;
-game.state = "lobby";
-/*
-WSConnection.socket.on("RoomConnectionSuccess", () => {
-    roomStore.playerlist = Room.playersArr;
-});
-
-WSConnection.socket.on("RoomPlayerConnection", () => {
-    roomStore.playerlist = Room.playersArr;
-});
-
-WSConnection.socket.on("RoomPlayerDisconnection", () => {
-    roomStore.playerlist = Room.playersArr;
-});
-*/
 </script>
 
 <script>
 export default {
     name: "LobbyView",
-    data() {
-        return {
-            nIntervId: undefined,
-        };
-    },
     mounted() {
-        if (RoomStore.instance.roomId == "")
+        if (this.$room.roomId == "")
             this.$router.replace({
                 name: "index",
                 params: { roomId: this.$route.params.id },
             });
-        // WSConnection.socket.on("RoomStart", () => {
-        //     this.$router.replace({
-        //         name: "choose",
-        //         params: { id: RoomStore.instance.roomId },
-        //     });
-        // });
     },
     methods: {
         toggleCardPack(checked, id) {
@@ -69,7 +39,7 @@ export default {
         <div style="float: left; width: 45%" class="left_padding">
             <main>
                 <h1>{{ $display.text("game_players_lobby") }}</h1>
-                <Playerlist :list="roomStore.players.values()" :lobby="true" />
+                <Playerlist :list="$room.players.values()" :lobby="true" />
             </main>
         </div>
         <div style="float: right; width: 45%" class="right_padding">

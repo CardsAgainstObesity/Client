@@ -1,4 +1,3 @@
-// TODO: Agrupar todas las stores en un solo objeto
 export const PlayerStore = {
     get instance(){
         return this.__store;

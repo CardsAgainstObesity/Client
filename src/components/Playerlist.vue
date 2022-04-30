@@ -4,7 +4,7 @@ import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
 
 defineProps({
     list: {
-        type: Array,
+        type: Object,
         required: true
     },
     lobby: {
