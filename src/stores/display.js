@@ -28,13 +28,6 @@ export const useDisplayStore = defineStore({
 				// VIEW: GAME
 				game_current_czar: "es el Zar de las Cartas.",
 				game_players_lobby: "Jugadores en la partida",
-
-				// ERROR CODES
-				RateLimited: "¿¡¿¡PUEDES PARAR!?!?",
-				UnknownRoom: "Esta sala no existe.",
-				RoomAlreadyExists: "Ya hay una sala con ese código.",
-				NoPermissions: "No tienes permisos para hacer eso.",
-				NotEnoughCards: "No hay suficientes cartas para empezar la partida.",
 			},
 			en: {
 				// GENERAL
@@ -57,20 +50,31 @@ export const useDisplayStore = defineStore({
 				// VIEW: GAME
 				game_current_czar: "is the Card Czar.",
 				game_players_lobby: "Players in this lobby",
-
-				// ERROR CODES
+			}
+		},
+		error_obj: {
+			es: {
+				RateLimited: "¿¡¿¡PUEDES PARAR!?!?",
+				UnknownRoom: "Esta sala no existe.",
+				RoomAlreadyExists: "Ya hay una sala con ese código.",
+				NoPermissions: "No tienes permisos para hacer eso.",
+				NotEnoughCards: "No hay suficientes cartas para empezar la partida.",
+			},
+			en: {
 				RateLimited: "CAN YOU STOP!?!?",
 				UnknownRoom: "This room does not exist.",
 				RoomAlreadyExists: "There's already a room with that code.",
 				NoPermissions: "You don't have permissions to do that.",
 				NotEnoughCards: "There aren't enough cards to start the game.",
 			}
-		},
-		// cards: fetch() // TODO: Descargar el pack de cartas del servidor
+		}
 	}),
 	actions: {
 		text(key) {
-			return this.text_obj[this.language][key]
+			return this.text_obj[this.language][key];
+		},
+		error(key) {
+			return this.error_obj[this.language][key];
 		},
 	}
 })
