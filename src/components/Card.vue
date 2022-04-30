@@ -25,7 +25,8 @@ defineProps({
     <div class="game-card-inner">
       <div class="game-card-front">
       </div>
-      <div class="game-card-back">
+      <div class="game-card-back" :style="active ? 'z-index: 0;' : 'z-index: -1;'">
+        <!-- Es necesario modificar el z-index para que html2canvas imprima la imagen correctamente. -->
         <p v-html="text[$display.language].replaceAll(`___`, `${chapuza}`)" class="noselect"></p>
       </div>
     </div>
@@ -33,20 +34,6 @@ defineProps({
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      // active: this.dark === true ? true : false
-    }
-  },
-  methods: {
-    flip() { // TODO: Hacer que este metodo se active al darle click a un botón que ponga "siguiente", no al darle click a la carta.
-      if (this.clickable) {
-        this.active = !this.active;
-      }
-    }
-  }
-}
 
 const chapuza = `<span class='card_input'>[...]</span>`;
 function assignInput(value, clickable, language) {

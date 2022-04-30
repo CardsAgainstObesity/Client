@@ -68,6 +68,7 @@
 
 .game-card-back {
     background-color: #5e81ac;
+    z-index: 0;
     color: white;
     transform: rotateY(180deg);
 }
