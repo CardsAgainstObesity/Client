@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { PlayerStore } from '@/stores/storeManager.mjs';
+import { PlayerStore } from '@/services/vueBridge.mjs';
 
 export const useRoomStore = defineStore({
   id: 'room',
@@ -21,18 +21,12 @@ export const useRoomStore = defineStore({
       this.blackCard = bCard;
     },
     addPlayer(player) {
-      //this.events.emit("PlayerAdded", player);
-      //this.events.emit("PlayerListUpdated");
       this.players.set(player.id, player);
     },
     removePlayer(player) {
-      //this.events.emit("PlayerRemoved", player);
-      //this.events.emit("PlayerListUpdated");
       this.players.delete(player.id);
     },
     setCzar(player) {
-      //this.events.emit("CzarChanged", player);
-      //this.events.emit("PlayerListUpdated");
       if (player.id == PlayerStore.instance.id) {
         PlayerStore.instance.isCzar = true;
       } else {

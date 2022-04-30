@@ -16,8 +16,8 @@ defineProps({
     <header>
         <div class="topnav noselect" :class="(hidelogo === true ? 'hide':'')">
             <nav class="center">
-                <RouterLink v-if="Room.roomId == ''" to="/"><Icon :path="mdiHome" /> {{$display.text("nav_index")}}</RouterLink>
-                <RouterLink v-if="Room.roomId != ''" :to="{ name: game.state, params: { id: (Room.roomId == '' ? 'DEBUG':Room.roomId) } }"><Icon :path="mdiHamburger" /> {{$display.text("nav_game")}}</RouterLink>
+                <RouterLink v-if="$room.roomId == ''" to="/"><Icon :path="mdiHome" /> {{$display.text("nav_index")}}</RouterLink>
+                <RouterLink v-if="$room.roomId != ''" :to="{ name: $room.status, params: { id: ($room.roomId == '' ? 'DEBUG':$room.roomId) } }"><Icon :path="mdiHamburger" /> {{$display.text("nav_game")}}</RouterLink>
                 <RouterLink to="/rules"><Icon :path="mdiBookOpenVariant" /> {{$display.text("nav_rules")}}</RouterLink>
                 <RouterLink to="/settings"><Icon :path="mdiCog" /> {{$display.text("nav_settings")}}</RouterLink>
                 <RouterLink to="/about"><Icon :path="mdiInformation" /> {{$display.text("nav_about")}}</RouterLink>

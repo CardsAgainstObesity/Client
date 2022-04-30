@@ -53,22 +53,6 @@ export default {
             this.roomId = roomId.replace(" ", "");
         },
     },
-    mounted() {
-        WSConnection.socket.on("RoomConnectionSuccess", (room) => {
-            Room.roomId = room.roomId; // Si esto no se pone el valor de Room.roomId es "undefined".
-            this.$router.replace({
-                name: "lobby",
-                params: { id: Room.roomId },
-            });
-        });
-        WSConnection.socket.on("RoomCreationSuccess", (room) => {
-            Room.roomId = room.roomId; // Si esto no se pone el valor de Room.roomId es "undefined".
-            this.$router.replace({
-                name: "lobby",
-                params: { id: Room.roomId },
-            });
-        });
-    },
     methods: {
         connect() {
             const roomId = document.getElementById("roomId").value;

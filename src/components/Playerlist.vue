@@ -1,6 +1,6 @@
 <script setup>
 import Player from "@/components/Player.vue";
-import { PlayerStore, RoomStore } from '@/stores/storeManager.mjs';
+import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
 
 defineProps({
     list: {

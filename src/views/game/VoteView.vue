@@ -3,7 +3,7 @@ import Card from "@/components/Card.vue";
 import Nav from "@/components/Nav.vue";
 import Room from "@/services/api/Room.mjs";
 import { cards, game, czar } from "@/services/cards.mjs";
-import { PlayerStore, RoomStore } from "@/stores/storeManager.mjs";
+import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
 import WSConnection from "@/services/ws.mjs";
 
 game.state = "vote";

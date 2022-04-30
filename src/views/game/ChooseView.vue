@@ -2,7 +2,7 @@
 import Card from "@/components/Card.vue";
 import WSConnection from "@/services/ws.mjs";
 import Nav from "@/components/Nav.vue";
-import { PlayerStore, RoomStore } from "@/stores/storeManager.mjs";
+import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
 import { game } from "@/services/cards.mjs";
 
 game.state = "choose";
@@ -59,13 +59,6 @@ export default {
                 [this.$display.language].replaceAll(".", "");
       });
     }
-    // TODO: Mirar
-    WSConnection.socket.on("RoomStartVoting", () => {
-      this.$router.replace({
-        name: "vote",
-        params: { id: RoomStore.instance.roomId },
-      });
-    });
   },
 };
 

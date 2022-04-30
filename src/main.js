@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import { useDisplayStore } from '@/stores/display';
 import { useRoomStore } from './stores/room';
 import { usePlayerStore } from './stores/player';
-import * as StoreManager from './stores/storeManager.mjs';
+import * as vueBridge from '@/services/vueBridge.mjs';
 
 import App from './App.vue';
 import router from './router';
@@ -30,17 +30,20 @@ const displayStore = useDisplayStore();
 const roomStore = useRoomStore();
 const playerStore = usePlayerStore();
 
-// 
+// Vue -> JS
 app.config.globalProperties.$display = displayStore;
 window.$display = displayStore; // DEBUG
 
 app.config.globalProperties.$room = roomStore;
 window.$room = roomStore; // DEBUG
-StoreManager.RoomStore.instance = roomStore;
+vueBridge.RoomStore.instance = roomStore;
 
 app.config.globalProperties.$player = playerStore;
 // window.$player = playerStore; // DEBUG
-StoreManager.PlayerStore.instance = playerStore;
+vueBridge.PlayerStore.instance = playerStore;
+
+window.$router = router; // DEBUG
+
 
 app.component("Icon", Icon);
 app.component("Checkbox", Checkbox);

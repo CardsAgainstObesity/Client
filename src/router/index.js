@@ -24,12 +24,12 @@ let router = createRouter({
         },
         {
             path: "/game/:id",
-            name: "choose",
+            name: "choosing",
             component: ChooseView,
         },
         {
             path: "/game/:id",
-            name: "vote",
+            name: "voting",
             component: VoteView,
         },
         {

@@ -2,7 +2,8 @@ import { io, Socket } from 'socket.io-client';
 //import Player from './api/Player.mjs';
 //import Room from './api/Room.mjs';
 import { useToast } from "vue-toastification";
-import { PlayerStore, RoomStore } from '@/stores/storeManager.mjs';
+import * as vueBridge from '@/services/vueBridge.mjs';
+import router from '../router'; // Vue Router
 
 const toast = useToast();
 
@@ -26,7 +27,7 @@ export default class WSConnection {
 
         WSConnection.socket.on("connect", () => {
             console.log("[WS] Connected to the server");
-            PlayerStore.instance.playerId = WSConnection.socket.id;
+            vueBridge.PlayerStore.instance.playerId = WSConnection.socket.id;
         });
 
         WSConnection.socket.on("error", (err) => {
@@ -36,67 +37,81 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomConnectionSuccess", (room) => {
             console.log("[WS] Connected to room: ", room);
-            RoomStore.instance.setCzar(room.czar);
-            RoomStore.instance.roomId = room.roomId; // kekw
+            vueBridge.RoomStore.instance.setCzar(room.czar);
+            vueBridge.RoomStore.instance.roomId = room.roomId; // kekw
             room.players.forEach(ply => {
-                RoomStore.instance.addPlayer(ply);
+                vueBridge.RoomStore.instance.addPlayer(ply);
+            });
+            vueBridge.RoomStore.instance.changeStatus("lobby");
+            router.replace({
+                name: "lobby",
+                params: { id: vueBridge.RoomStore.instance.roomId },
             });
         });
 
         WSConnection.socket.on("RoomCreationSuccess", (room) => {
             console.log("[WS] Created room: ", room);
-            RoomStore.instance.setCzar(room.czar);
-            RoomStore.instance.roomId = room.roomId;
+            vueBridge.RoomStore.instance.setCzar(room.czar);
+            vueBridge.RoomStore.instance.roomId = room.roomId;
             room.players.forEach(ply => {
-                RoomStore.instance.addPlayer(ply);
+                vueBridge.RoomStore.instance.addPlayer(ply);
+            });
+            vueBridge.RoomStore.instance.changeStatus("lobby");
+            router.replace({
+                name: "lobby",
+                params: { id: vueBridge.RoomStore.instance.roomId },
             });
         });
 
         WSConnection.socket.on("RoomPlayerConnection", (player) => {
             console.log("[WS] Player connected: ", player);
-            if(player.id == PlayerStore.instance.playerId)
-            {
-                PlayerStore.instance.setName(player.name);
-                PlayerStore.instance.setObesity(player.obesity);
+            if (player.id == vueBridge.PlayerStore.instance.playerId) {
+                vueBridge.PlayerStore.instance.setName(player.name);
+                vueBridge.PlayerStore.instance.setObesity(player.obesity);
             }
-            RoomStore.instance.addPlayer(player);
+            vueBridge.RoomStore.instance.addPlayer(player);
         });
 
         WSConnection.socket.on("RoomPlayerDisconnection", (player) => {
             console.log("[WS] Player disconnected: ", player);
-            RoomStore.instance.removePlayer(player);
+            vueBridge.RoomStore.instance.removePlayer(player);
         });
 
         WSConnection.socket.on("RoomStatusChanged", (status) => {
             console.log("[WS] Room status changed: ", status);
-            RoomStore.instance.changeStatus(status);
+            vueBridge.RoomStore.instance.changeStatus(status);
         });
 
         WSConnection.socket.on("RoomCzarChanged", (newCzar) => {
             console.log("[WS] Room Czar changed: ", newCzar);
-            RoomStore.instance.setCzar(newCzar);
+            vueBridge.RoomStore.instance.setCzar(newCzar);
         });
 
         WSConnection.socket.on("RoomStart", () => {
             console.log("[WS] Room started!");
+            vueBridge.RoomStore.instance.changeStatus("choosing");
+            if (router.currentRoute.value.name == "lobby") router.replace({
+                name: "choosing",
+                params: { id: vueBridge.RoomStore.instance.roomId },
+            });
         });
 
-        WSConnection.socket.on("PlayerDeckUpdated",(deck) => {
+        WSConnection.socket.on("PlayerDeckUpdated", (deck) => {
             console.log("[WS] Player deck updated!");
-            PlayerStore.instance.updateDeck(deck);
+            vueBridge.PlayerStore.instance.updateDeck(deck);
         });
 
         WSConnection.socket.on("RoomBlackCardChanged", (bCard) => {
             console.log("[WS] Black card changed!");
-            RoomStore.instance.setBlackCard(bCard);
+            vueBridge.RoomStore.instance.setBlackCard(bCard);
         });
-    
+
         WSConnection.socket.on("PlayerChangeName", player => {
             console.log(`[WS] Player with id ${player.id} changed name to ${player.name}`);
-            var rPlayer = RoomStore.instance.players.get(player.id);
-            if(player) rPlayer.name = player.name;
-            if(player.id == PlayerStore.instance.playerId) { // If WE changed name , change the Player instance name
-                PlayerStore.instance.setName(player.name);
+            var rPlayer = vueBridge.RoomStore.instance.players.get(player.id);
+            if (player) rPlayer.name = player.name;
+            if (player.id == vueBridge.PlayerStore.instance.playerId) { // If WE changed name , change the Player instance name
+                vueBridge.PlayerStore.instance.setName(player.name);
             }
         });
 
@@ -110,18 +125,23 @@ export default class WSConnection {
 
         WSConnection.socket.on("AnnouncePlayerIsNotReady", (player) => {
             console.log("[WS] A player is not ready ", player);
-            if(player.id == PlayerStore.instance.playerId) PlayerStore.instance.setReady(player.ready);
+            if (player.id == vueBridge.PlayerStore.instance.playerId) vueBridge.PlayerStore.instance.setReady(player.ready);
         });
 
         WSConnection.socket.on("AnnouncePlayerIsReady", (player) => {
             console.log("[WS] A player is ready ", player);
-            if(player.id == PlayerStore.instance.playerId) PlayerStore.instance.setReady(player.ready);
+            if (player.id == vueBridge.PlayerStore.instance.playerId) vueBridge.PlayerStore.instance.setReady(player.ready);
         });
 
         WSConnection.socket.on("RoomStartVoting", (cards) => {
             console.log("[WS] Started voting for : ", cards);
-            RoomStore.instance.votingFor = cards;
-            RoomStore.instance.status = "voting";
+            vueBridge.RoomStore.instance.changeStatus("voting");
+            vueBridge.RoomStore.instance.votingFor = cards;
+            if (router.currentRoute.value.name == "choosing") router.replace({
+                name: "voting",
+                params: { id: vueBridge.RoomStore.instance.roomId },
+            });
+            // vueBridge.RoomStore.instance.status = "voting";
         });
 
         WSConnection.socket.on("AnnounceRoomSelectWinner", (winner) => {
@@ -138,7 +158,7 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomFlipCard", (player_id) => {
             console.log("[WS] Cards from player flipped ", player_id);
-            const selected_player = RoomStore.instance.votingFor.filter(selection => selection.player_id === player_id);
+            const selected_player = vueBridge.RoomStore.instance.votingFor.filter(selection => selection.player_id === player_id);
             selected_player[0].flipped = !selected_player[0].flipped;
         });
     }
@@ -156,7 +176,7 @@ export default class WSConnection {
     }
 
     static startRoom() {
-        WSConnection.socket.emit("RoomStartRequest",RoomStore.instance.roomId);
+        WSConnection.socket.emit("RoomStartRequest", vueBridge.RoomStore.instance.roomId);
     }
 
     static flipCard(player_id) {
@@ -164,7 +184,7 @@ export default class WSConnection {
     }
 
     static playerIsReady() {
-        let selectedCards = Array.from(PlayerStore.instance.selected);
+        let selectedCards = Array.from(vueBridge.PlayerStore.instance.selected);
         WSConnection.socket.emit("PlayerIsReady", selectedCards);
     }
 
@@ -186,15 +206,15 @@ export default class WSConnection {
 
     static addCardPack(cardpack_id) {
         WSConnection.socket.emit("LobbyAddCardpackRequest", {
-            "room_id": RoomStore.instance.roomId,
-            "cardpack_id": cardpack_id 
+            "room_id": vueBridge.RoomStore.instance.roomId,
+            "cardpack_id": cardpack_id
         });
     }
 
     static removeCardPack(cardpack_id) {
         WSConnection.socket.emit("LobbyRemoveCardpackRequest", {
-            "room_id": RoomStore.instance.roomId,
-            "cardpack_id": cardpack_id 
+            "room_id": vueBridge.RoomStore.instance.roomId,
+            "cardpack_id": cardpack_id
         });
     }
 
