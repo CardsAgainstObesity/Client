@@ -32,8 +32,12 @@ export default class WSConnection {
 
         WSConnection.socket.on("error", (err) => {
             console.error("ERROR:", err);
-            if (err == "RateLimited") toast.error(
-                { component: Toast, props: { displayCode: err, h1Text: true }},
+            toast.error({ component: Toast, props: { displayCode: err, h1Text: false }});
+        });
+
+        WSConnection.socket.on("RateLimited", (reply) => {
+            console.error("Rate Limited:", reply);
+            toast.error({component: Toast, props: { displayCode: "RateLimited", h1Text: true }},
                 {
                     position: "bottom-center",
                     timeout: false,
@@ -44,7 +48,6 @@ export default class WSConnection {
                     pauseOnFocusLoss: false,
                 }
             );
-            else toast.error({ component: Toast, props: { displayCode: err, h1Text: false }});
         });
 
         WSConnection.socket.on("RoomConnectionSuccess", (room) => {
