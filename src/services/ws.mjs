@@ -39,7 +39,7 @@ export default class WSConnection {
             console.error("Rate Limited:", reply);
             toast.error({component: Toast, props: { displayCode: "RateLimited", h1Text: true }},
                 {
-                    position: "bottom-center",
+                    position: "top-center",
                     timeout: false,
                     pauseOnHover: false,
                     closeButton: false,

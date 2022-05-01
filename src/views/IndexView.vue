@@ -87,32 +87,9 @@ main > div.logo > span {
     font-weight: bold;
 }
 
-.centered {
-    margin: 0;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    padding: 5rem 2rem;
-    background-color: #222222;
-    border-radius: 1rem;
-    text-align: center;
-    max-width: 50vh;
-}
-
 @media only screen and (max-height: 600px) {
     main > div.logo {
         display: none;
-    }
-
-    .centered {
-        top: 15%;
-        left: 10%;
-        right: 10%;
-        -ms-transform: none;
-        transform: none;
-        max-width: 100vw;
     }
 }
 

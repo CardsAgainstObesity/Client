@@ -12,7 +12,7 @@ export default {
         },
         h1Text: {
             type: Boolean,
-            required: true
+            required: false
         },
     },
 }

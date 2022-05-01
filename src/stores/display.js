@@ -59,6 +59,7 @@ export const useDisplayStore = defineStore({
 				RoomAlreadyExists: "Ya hay una sala con ese código.",
 				NoPermissions: "No tienes permisos para hacer eso.",
 				NotEnoughCards: "No hay suficientes cartas para empezar la partida.",
+				CardpackAlreadyAdded: "Ya has añadido este pack de cartas.",
 			},
 			en: {
 				RateLimited: "CAN YOU STOP!?!?",
@@ -66,6 +67,7 @@ export const useDisplayStore = defineStore({
 				RoomAlreadyExists: "There's already a room with that code.",
 				NoPermissions: "You don't have permissions to do that.",
 				NotEnoughCards: "There aren't enough cards to start the game.",
+				CardpackAlreadyAdded: "You've already added this cardpack.",
 			}
 		}
 	}),
