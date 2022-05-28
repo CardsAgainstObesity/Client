@@ -152,19 +152,21 @@ export default class WSConnection {
             console.log("[WS] Started voting for : ", cards);
             vueBridge.RoomStore.instance.changeStatus("voting");
             vueBridge.RoomStore.instance.votingFor = cards;
+            vueBridge.RoomStore.instance.roundWinner = undefined;
             if (router.currentRoute.value.name == "choosing") router.replace({
                 name: "voting",
                 params: { id: vueBridge.RoomStore.instance.roomId },
             });
-            // vueBridge.RoomStore.instance.status = "voting";
         });
 
         WSConnection.socket.on("AnnounceRoomSelectWinner", (winner) => {
             console.log("[WS] The czar selected a winner ", winner);
+            vueBridge.RoomStore.instance.roundWinner = winner;
         });
 
         WSConnection.socket.on("RoomGameFinished", (winner) => {
             console.log("[WS] The game finished and the winner is ", winner);
+            vueBridge.RoomStore.instance.roundWinner = winner;
         });
 
         WSConnection.socket.on("RoomGoBackToLobby", () => {
@@ -174,7 +176,8 @@ export default class WSConnection {
         WSConnection.socket.on("RoomFlipCard", (player_id) => {
             console.log("[WS] Cards from player flipped ", player_id);
             const selected_player = vueBridge.RoomStore.instance.votingFor.filter(selection => selection.player_id === player_id);
-            selected_player[0].flipped = !selected_player[0].flipped;
+            // selected_player[0].flipped = !selected_player[0].flipped; // Toggle
+            selected_player[0].flipped = true; // Set to true (flipped)
         });
     }
 

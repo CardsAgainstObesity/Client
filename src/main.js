@@ -40,10 +40,10 @@ const playerStore = usePlayerStore();
 
 // Vue -> JS
 app.config.globalProperties.$display = displayStore;
-window.$display = displayStore; // DEBUG
+window.$displayStore = displayStore; // DEBUG
 
 app.config.globalProperties.$room = roomStore;
-window.$room = roomStore; // DEBUG
+window.$roomStore = roomStore; // DEBUG
 vueBridge.RoomStore.instance = roomStore;
 
 app.config.globalProperties.$player = playerStore;

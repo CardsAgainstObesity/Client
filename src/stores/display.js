@@ -26,8 +26,10 @@ export const useDisplayStore = defineStore({
 				index_create_button: "Crear una nueva sala",
 
 				// VIEW: GAME
-				game_current_czar: "es el Zar de las Cartas.",
+				game_current_czar_you: "Tú eres el Zar de las cartas.",
+				game_current_czar_other: "es el Zar de las Cartas.",
 				game_players_lobby: "Jugadores en la partida",
+				game_next_round: "Siguiente ronda",
 			},
 			en: {
 				// GENERAL
@@ -48,9 +50,11 @@ export const useDisplayStore = defineStore({
 				index_create_button: "Create new room",
 
 				// VIEW: GAME
-				game_current_czar: "is the Card Czar.",
+				game_current_czar_you: "You are the Card Czar.",
+				game_current_czar_other: "is the Card Czar.",
 				game_players_lobby: "Players in this lobby",
-			}
+				game_next_round: "Next round",
+			},
 		},
 		error_obj: {
 			es: {
@@ -68,15 +72,22 @@ export const useDisplayStore = defineStore({
 				NoPermissions: "You don't have permissions to do that.",
 				NotEnoughCards: "There aren't enough cards to start the game.",
 				CardpackAlreadyAdded: "You've already added this cardpack.",
-			}
-		}
+			},
+		},
+		console_log_obj: {
+			es: {},
+			en: {},
+		},
 	}),
-	actions: {
+	actions: { // TODO: If no translated text is available for the selected language, default to English.
 		text(key) {
 			return this.text_obj[this.language][key];
 		},
 		error(key) {
 			return this.error_obj[this.language][key];
 		},
+		console_log(key) {
+			return this.console_log_obj[this.language][key];
+		}
 	}
 })

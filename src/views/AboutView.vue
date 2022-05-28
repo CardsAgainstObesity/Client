@@ -10,10 +10,6 @@
                     <h3>VueJS</h3>
                 </div>
                 <div class="flex-item">
-                    <img class="image" src="/icons/expressjs.svg" />
-                    <h3>ExpressJS</h3>
-                </div>
-                <div class="flex-item">
                     <img class="image" src="/icons/socketio.svg" />
                     <h3>Socket.io</h3>
                 </div>

@@ -8,7 +8,12 @@ import { game } from "@/services/cards.mjs"; // Deprecar
     <div>
         <div id="root" class="left_padding">
             <h1 class="noselect">
-                {{ $room.czar.name }} {{ $display.text("game_current_czar") }}
+                <span v-if="$room.czar.id == $player.playerId">
+                    {{ $display.text("game_current_czar_you") }}
+                </span>
+                <span v-else>
+                    {{ $room.czar.name }} {{ $display.text("game_current_czar_other") }}
+                </span>
             </h1>
             <div class="container left">
                 <Card
