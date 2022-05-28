@@ -1,8 +1,6 @@
 <script setup>
 import { RouterLink } from 'vue-router';
-import { ackree } from '@/services/ackree.mjs';
 import { mdiHome, mdiHamburger, mdiBookOpenVariant, mdiCog, mdiInformation } from '@mdi/js';
-// ackree(); // https://ackee.electerious.com/
 </script>
 <template>
     <header>
