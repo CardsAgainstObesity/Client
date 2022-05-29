@@ -1,9 +1,3 @@
-<script setup>
-import Card from "@/components/Card.vue";
-import WSConnection from "@/services/ws.mjs";
-import { game } from "@/services/cards.mjs"; // Deprecar
-</script>
-
 <template>
     <div>
         <div id="root" class="left_padding">
@@ -23,7 +17,18 @@ import { game } from "@/services/cards.mjs"; // Deprecar
                     :active="true"
                 />
                 <div class="newline" v-if="$player.isCzar">
-                    <p>(LOCALE) No puedes elegir cartas esta ronda</p>
+                    <button id="show-modal" @click="showModal = true">Show Modal</button>
+                    <Teleport to="body">
+                        <modal :show="showModal" @close="showModal = false">
+                        <template #header>
+                            <h3>(LOCALE) Eres el Zar!</h3>
+                        </template>
+                        <template #body>
+                            <p>(LOCALE) Eso quiere decir que esta ronda no podrás elegir carta.</p>
+                            <p>Cuando los demás jugadores acaben de elegir sus cartas, deberás elegir la carta ganadora.</p>
+                        </template>
+                        </modal>
+                    </Teleport>
                 </div>
                 <div class="newline" v-else>
                     <button @click="resetCards" :class="'btn ' + ((!$player.ready && $player.selected.size < 1) ? 'active':'')">RESET</button>
@@ -45,8 +50,22 @@ import { game } from "@/services/cards.mjs"; // Deprecar
 </template>
 
 <script>
+import Card from "@/components/Card.vue";
+import Modal from "@/components/Modal.vue";
+import WSConnection from "@/services/ws.mjs";
+import { game } from "@/services/cards.mjs"; // Deprecar
+
 export default {
     name: "ChooseView",
+    components: {
+        Card,
+        Modal,
+    },
+    data() {
+        return {
+            showModal: true
+        }
+    },
     mounted() {
         if (game.card_index != 0) {
             document.querySelectorAll(".card_input").forEach((card, key) => {

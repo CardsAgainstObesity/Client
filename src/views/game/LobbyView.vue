@@ -6,7 +6,7 @@ import Playerlist from "@/components/Playerlist.vue";
 <script>
 export default {
 	name: "LobbyView",
-	mounted() {
+	created() {
 		if (this.$room.roomId == "")
 			this.$router.replace({
 				name: "index",
