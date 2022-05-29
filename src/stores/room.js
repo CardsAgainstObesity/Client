@@ -28,7 +28,7 @@ export const useRoomStore = defineStore({
 			this.players.delete(player.id);
 		},
 		setCzar(player) {
-			if (player.id == PlayerStore.instance.id) {
+			if (player.id == PlayerStore.instance.playerId) {
 				PlayerStore.instance.isCzar = true;
 			} else {
 				PlayerStore.instance.isCzar = false;

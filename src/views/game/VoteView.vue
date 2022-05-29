@@ -54,7 +54,7 @@ import html2canvas from "html2canvas";
 export default {
     methods: {
         nextRound(){
-            
+            WSConnection.startChoosing();
         },
         clickHandler(selection) {
             if (this.$room.roundWinner == undefined) { // If no winner has been already selected

@@ -47,10 +47,10 @@ window.$roomStore = roomStore; // DEBUG
 vueBridge.RoomStore.instance = roomStore;
 
 app.config.globalProperties.$player = playerStore;
-// window.$player = playerStore; // DEBUG
+window.$playerStore = playerStore; // DEBUG
 vueBridge.PlayerStore.instance = playerStore;
 
-window.$router = router; // DEBUG
+window.$vueRouter = router; // DEBUG
 
 
 app.component("Icon", Icon);
@@ -120,7 +120,7 @@ window.debug = { // DEBUG
     }
 }
 
-window.WSConnection = WSConnection; // DEBUG
+window.$WSConnection = WSConnection; // DEBUG
 
 
 console.log(

@@ -8,7 +8,7 @@ import { game } from "@/services/cards.mjs"; // Deprecar
     <div>
         <div id="root" class="left_padding">
             <h1 class="noselect">
-                <span v-if="$room.czar.id == $player.playerId">
+                <span v-if="$player.isCzar">
                     {{ $display.text("game_current_czar_you") }}
                 </span>
                 <span v-else>
@@ -22,9 +22,12 @@ import { game } from "@/services/cards.mjs"; // Deprecar
                     :clickable="false"
                     :active="true"
                 />
-                <div class="newline">
-                    <button @click="resetCards()" :class="'btn ' + ((!$player.ready && $player.selected.size < 1) ? 'active':'')">RESET</button>
-                    <button @click="imReady()" :class="'btn ' + (($player.ready || $player.selected.size < 1) ? 'active':'')">READY</button>
+                <div class="newline" v-if="$player.isCzar">
+                    <p>(LOCALE) No puedes elegir cartas esta ronda</p>
+                </div>
+                <div class="newline" v-else>
+                    <button @click="resetCards" :class="'btn ' + ((!$player.ready && $player.selected.size < 1) ? 'active':'')">RESET</button>
+                    <button @click="imReady" :class="'btn ' + (($player.ready || $player.selected.size < 1) ? 'active':'')">READY</button>
                 </div>
                 <div class="break" />
                 <Card
@@ -64,6 +67,7 @@ export default {
                 this.imReady();
             }
         },
+
         resetCards() {
             for (let input of document.querySelectorAll(".card_input")) {
                 input.innerHTML = "[...]";
@@ -83,6 +87,10 @@ export default {
             if (this.$player.selected.size < this.$room.blackCard.slots) {
                 this.$player.selected.add(card_id);
             }
+        },
+
+        startVoting(){
+            WSConnection.startVoting();
         },
     },
 };

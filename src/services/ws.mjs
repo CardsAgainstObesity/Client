@@ -159,6 +159,16 @@ export default class WSConnection {
             });
         });
 
+        WSConnection.socket.on("RoomStartChoosing", () => {
+            console.log("[WS] Started choosing");
+            vueBridge.RoomStore.instance.changeStatus("choosing");
+            vueBridge.RoomStore.instance.roundWinner = undefined;
+            if (router.currentRoute.value.name == "voting") router.replace({
+                name: "choosing",
+                params: { id: vueBridge.RoomStore.instance.roomId },
+            });
+        });
+
         WSConnection.socket.on("AnnounceRoomSelectWinner", (winner) => {
             console.log("[WS] The czar selected a winner ", winner);
             vueBridge.RoomStore.instance.roundWinner = winner;
@@ -212,6 +222,10 @@ export default class WSConnection {
 
     static startVoting() {
         WSConnection.socket.emit("RoomStartVotingRequest");
+    }
+
+    static startChoosing() {
+        WSConnection.socket.emit("RoomStartChoosingRequest");
     }
 
     static selectWinner(player_id) {
