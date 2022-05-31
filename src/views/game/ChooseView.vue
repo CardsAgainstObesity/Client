@@ -11,7 +11,7 @@
             </h1>
             <div class="container left">
                 <Card
-                    :text="$room.blackCard.text"
+                    :data="$room.blackCard"
                     :dark="true"
                     :clickable="false"
                     :active="true"
@@ -38,7 +38,7 @@
                 <Card
                     @click="selectCard(card.id)"
                     v-for="card in $player.deck"
-                    :text="card.text"
+                    :data="card"
                     :dark="false"
                     :clickable="true"
                     :active="$room.czar.id !== $player.playerId"
@@ -64,18 +64,6 @@ export default {
         return {
             showModal: true
         }
-    },
-    mounted() {
-        // if (game.card_index != 0) {
-        //     document.querySelectorAll(".card_input").forEach((card, key) => {
-        //         card.innerHTML =
-        //             game.getCardValue(key) == undefined
-        //                 ? "[...]"
-        //                 : game
-        //                       .getCardValue(key)
-        //                       [this.$display.language].replaceAll(".", "");
-        //     });
-        // }
     },
     methods: {
         toggleReady() {

@@ -7,13 +7,14 @@ export default {
     },
 	data(){
 		return {
-			// card_text: 'Creo que me olvidado ___ en ___.',
-			card_text: this.text[this.$display.language],
+			card_text: {
+				es: "Así es, yo maté a ___. ¿Que cómo lo hice? ___.", // DEBUG
+			},
 			card_counter: 0,
 		}
 	},
     props: {
-        text: {
+        data: {
             type: Object,
             required: true,
         },
@@ -31,22 +32,20 @@ export default {
         },
     },
 	methods: {
-		assignInput(value, clickable) {
-			// TODO: Migrar esto a una store de Pinia
-			if (clickable) {
-				console.log("CARTA AÑADIDA:", value);
-				this.$player.appendCardValue(value);
+		assignInput() {
+			if (this.clickable) {
+				this.$player.appendCardValue(this.data.text);
 			}
 		},
 		setWhiteCard() {
 			const cardValue = this.$player.getCardValue(this.card_counter++);
-			return `<CardInput text="${ cardValue === undefined ? '[...]':cardValue[this.$display.language].replaceAll(".", "") }" />`;
+			return `<CardInput text="${ cardValue === undefined ? '[...]' : cardValue[this.$display.language].replace(/\.$/, "") }" />`;
 		}
 	},
 	computed: {
         dynamic_card_text() {
 			this.card_counter = 0;
-            let text = this.card_text.replace(/___/g, this.setWhiteCard);
+            let text = this.data.text[this.$display.language].replace(/___/g, this.setWhiteCard);
             return { // Returrns a dynamically-generated component.
                 components: {
                     CardInput
@@ -61,7 +60,7 @@ export default {
 
 <template>
     <div
-        @click="assignInput(text, clickable)"
+        @click="assignInput"
         :class="
             'game-card ' +
             (dark ? 'dark ' : ' ') +
@@ -78,8 +77,9 @@ export default {
                 <!-- Es necesario modificar el z-index para que html2canvas imprima la imagen correctamente. -->
                 <!-- <p v-html="text[$display.language].replaceAll(`___`, `${chapuza}`)" class="noselect"></p> -->
 				<!-- <p v-html="'Creo que me olvidado ___ en ___.'.replaceAll(`___`, `${chapuza}`)" class="noselect"></p> -->
-				<component v-if="dark" :is="dynamic_card_text"></component>
-				<span v-else>{{ text[$display.language] }}</span>
+				<component v-if="dark && data.text !== undefined" :is="dynamic_card_text"></component>
+				<span v-if="!dark && data.text !== undefined">{{ data.text[$display.language] }}</span>
+				<span v-else/>
             </div>
         </div>
     </div>

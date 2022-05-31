@@ -23,7 +23,7 @@ import html2canvas from "html2canvas";
         </h1>
         <div class="container">
             <Card
-                :text="$room.blackCard.text"
+                :data="$room.blackCard"
                 :dark="true"
                 :clickable="false"
                 :active="true"
@@ -35,7 +35,7 @@ import html2canvas from "html2canvas";
                 <Card
                     v-for="card in selection.cards"
                     @click="clickHandler(selection)"
-                    :text="card.text"
+                    :data="card"
                     :dark="false"
                     :active="selection.flipped"
                     :clickable="$player.isCzar ? true : false"
