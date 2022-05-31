@@ -9,7 +9,8 @@ export const usePlayerStore = defineStore({
 		playerId: "",
 		obesity: -1,
 		ready: false,
-		isCzar: false
+		isCzar: false,
+		cards: [],
 	}),
 	actions: {
 		setName(name) {
@@ -23,6 +24,15 @@ export const usePlayerStore = defineStore({
 		},
 		setReady(status) {
 			this.ready = status;
+		},
+		appendCardValue(card_value){
+			this.cards.push(card_value);
+		},
+		getCardValue(index){
+			return this.cards[index];
+		},
+		clearCardValues(){
+			this.cards = [];
 		}
 	}
 });

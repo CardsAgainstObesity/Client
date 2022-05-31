@@ -53,7 +53,6 @@
 import Card from "@/components/Card.vue";
 import Modal from "@/components/Modal.vue";
 import WSConnection from "@/services/ws.mjs";
-import { game } from "@/services/cards.mjs"; // Deprecar
 
 export default {
     name: "ChooseView",
@@ -67,16 +66,16 @@ export default {
         }
     },
     mounted() {
-        if (game.card_index != 0) {
-            document.querySelectorAll(".card_input").forEach((card, key) => {
-                card.innerHTML =
-                    game.getCardValue(key) == undefined
-                        ? "[...]"
-                        : game
-                              .getCardValue(key)
-                              [this.$display.language].replaceAll(".", "");
-            });
-        }
+        // if (game.card_index != 0) {
+        //     document.querySelectorAll(".card_input").forEach((card, key) => {
+        //         card.innerHTML =
+        //             game.getCardValue(key) == undefined
+        //                 ? "[...]"
+        //                 : game
+        //                       .getCardValue(key)
+        //                       [this.$display.language].replaceAll(".", "");
+        //     });
+        // }
     },
     methods: {
         toggleReady() {
@@ -88,11 +87,7 @@ export default {
         },
 
         resetCards() {
-            for (let input of document.querySelectorAll(".card_input")) {
-                input.innerHTML = "[...]";
-            }
-            game.card_index = 0;
-            game.clearCardValues();
+            this.$player.clearCardValues();
             this.$player.selected.clear();
             if (this.$player.ready) WSConnection.playerIsNotReady();
         },

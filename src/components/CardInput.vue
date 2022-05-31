@@ -7,5 +7,5 @@ export default {
 </script>
 
 <template>
-    <span style="color: #82b2ee; font-weight: bold">{{ text }}</span>
+    <span class="card_input">{{ text }}</span>
 </template>
