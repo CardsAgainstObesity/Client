@@ -1,5 +1,4 @@
-import { createApp } from 'vue'
-
+import { createApp } from 'vue';
 // Stores
 import { createPinia } from 'pinia'
 import { useDisplayStore } from '@/stores/display';

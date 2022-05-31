@@ -1,5 +1,6 @@
 <template>
     <main class="centered_text">
+        <!--
         <h1>Reglas del juego</h1>
         <p>
             Para empezar el juego, cada jugador recibe
@@ -46,6 +47,10 @@
             <b>si pierdes</b> la ronda
             <b>perderás también el punto de victoria</b> que has apostado.
         </p>
+        -->
+        <h1>Test de componentes dinamicos</h1>
+        <input type="text" v-model="card_text" style="width: 100%;"/>
+        <component v-bind:is="dynamic_card_text"></component>
     </main>
 </template>
 
@@ -58,3 +63,29 @@ b {
     font-weight: bold;
 }
 </style>
+
+<script>
+import CardInput from "@/components/CardInput.vue";
+export default {
+    components: {
+        CardInput
+    },
+    data() {
+        return {
+            card_text: "¿Qué quieres comer? Quiero ___.",
+        };
+    },
+    computed: {
+        dynamic_card_text() {
+            let text = this.card_text.replaceAll('___', '<CardInput text="TEST" />');
+            return { // Returrns a dynamically-generated component.
+                components: {
+                    CardInput
+                },
+                template: `<div>${text}</div>`
+            }
+
+        }
+    },
+};
+</script>
