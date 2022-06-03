@@ -13,10 +13,6 @@ import router from './router';
 // WS
 import WSConnection from './services/ws.mjs';
 
-// Deprecated
-import Player from './services/api/Player.mjs';
-import Room from './services/api/Room.mjs';
-
 // Components
 import Checkbox from "@/components/Checkbox.vue";
 import Icon from '@/components/Icon.vue';

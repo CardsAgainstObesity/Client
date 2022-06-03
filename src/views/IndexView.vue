@@ -1,9 +1,3 @@
-<script setup>
-import WSConnection from "@/services/ws.mjs";
-import Room from "../services/api/Room.mjs";
-import { mdiHome } from "@mdi/js";
-</script>
-
 <template>
     <div>
         <div class="centered">
@@ -38,10 +32,13 @@ import { mdiHome } from "@mdi/js";
 </template>
 
 <script>
+import { mdiHome } from "@mdi/js";
+
 export default {
     name: "IndexView",
     data() {
         return {
+            mdiHome,
             roomId: this.$route.params.roomId,
         };
     },
