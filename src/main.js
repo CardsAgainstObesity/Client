@@ -16,7 +16,7 @@ import WSConnection from './services/ws.mjs';
 // Components
 import Checkbox from "@/components/Checkbox.vue";
 import Icon from '@/components/Icon.vue';
-import Toast from "vue-toastification";
+import Toast, { useToast } from "vue-toastification";
 
 // CSS
 import "vue-toastification/dist/index.css";
@@ -74,6 +74,7 @@ const ToastOptions = {
 };
 
 app.use(Toast, ToastOptions);
+window.$vueToast = useToast(); // DEBUG
 
 // Mount
 

@@ -33,11 +33,13 @@
 
 <script>
 import { mdiHome } from "@mdi/js";
+import WSConnection from "@/services/ws.mjs";
 
 export default {
     name: "IndexView",
     data() {
         return {
+            WSConnection,
             mdiHome,
             roomId: this.$route.params.roomId,
         };

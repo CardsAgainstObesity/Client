@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import { RoomStore } from "@/services/vueBridge.mjs";
 
 export const usePlayerStore = defineStore({
 	id: 'player',
@@ -33,6 +34,12 @@ export const usePlayerStore = defineStore({
 		},
 		clearCardValues(){
 			this.cards.clear();
+		}
+	},
+	getters: {
+		isRoundWinner(){
+			if (RoomStore.instance.roundWinner === undefined) return false;
+			return RoomStore.instance.roundWinner.id === this.playerId;
 		}
 	}
 });

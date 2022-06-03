@@ -1,16 +1,16 @@
 {
-    "short_name": "CAO",
-    "name": "Cards Against Obesity",
-    "description": "Progressive Web App (Dev)",
-    "icons": [
-      {
-      "src":"/icons/logo.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
-      }
-    ],
-    "start_url": "/",
-    "background_color": "#181818",
-    "theme_color": "#222222",
-    "display": "standalone"
-  }
+	"short_name": "CAO",
+	"name": "Cards Against Obesity",
+	"description": "Progressive Web App (Dev)",
+	"icons": [
+		{
+			"src": "/icons/logo.svg",
+			"sizes": "any",
+			"type": "image/svg+xml"
+		}
+	],
+	"start_url": "/",
+	"background_color": "#181818",
+	"theme_color": "#222222",
+	"display": "standalone"
+}

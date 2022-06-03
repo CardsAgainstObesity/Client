@@ -41,7 +41,13 @@ export default {
             />
             <div class="break" />
 
-            <div style="margin: 1rem;" v-for="selection in $room.votingFor" :key="selection">
+            <button v-if="$room.roundWinner && $player.isCzar" @click="nextRound">
+                {{ $display.text("game_next_round") }}
+            </button>
+
+            <div v-if="$room.roundWinner && $player.isCzar" class="break" />
+
+            <div class="player_card_container" :class="$room.isRoundWinner(selection.player_id) ? 'winner':''" v-for="selection in $room.votingFor" :key="selection">
                 <div :set="player = $room.players.get(selection.player_id)" style="text-align: center;">
                     {{ player === undefined ? "player_disconnected" : player.name }}
                 </div>
@@ -56,13 +62,22 @@ export default {
                     style="margin: 1rem auto;"
                 />
             </div>
-            <div class="break" />
-            <button @click="nextRound" v-if="$room.roundWinner != undefined">
-                {{ $display.text("game_next_round") }}
-            </button>
         </div>
     </div>
 </template>
+
+<style scoped>
+.player_card_container {
+    background-color: rgba(46, 52, 64, 0.25);
+    margin: 1rem;
+    padding: 0.5rem 1rem 0 1rem;
+    border-radius: 1rem;
+}
+
+.player_card_container.winner {
+    background-color: rgba(46, 52, 64, 1);
+}
+</style>
 
 <style>
 @import "@/assets/card.css";

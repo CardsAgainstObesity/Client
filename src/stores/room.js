@@ -33,6 +33,10 @@ export const useRoomStore = defineStore({
 		changeStatus(status) {
 			this.status = status;
 		},
+		isRoundWinner(player_id){
+			if (this.roundWinner === undefined) return false;
+			return this.roundWinner.id === player_id
+		},
 	},
 	getters: {
 		flippedCards() {

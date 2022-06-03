@@ -163,8 +163,11 @@ export default class WSConnection {
         WSConnection.socket.on("RoomStartChoosing", () => {
             console.log("[WS] Started choosing");
             vueBridge.RoomStore.instance.changeStatus("choosing");
+
+            WSConnection.playerIsNotReady();
             vueBridge.PlayerStore.instance.clearCardValues();
             vueBridge.PlayerStore.instance.selected.clear();
+            
             vueBridge.RoomStore.instance.roundWinner = undefined;
             if (router.currentRoute.value.name == "voting") router.replace({
                 name: "choosing",
@@ -198,7 +201,6 @@ export default class WSConnection {
             // selected_player[0].flipped = !selected_player[0].flipped; // Toggle
             selected_player[0].flipped = true; // Set to true (flipped)
 
-            console.log("selected_player[0]", selected_player[0]);
             vueBridge.PlayerStore.instance.clearCardValues();
             for (const card of selected_player[0].cards) {
                 vueBridge.PlayerStore.instance.appendCardValue(card.text);
