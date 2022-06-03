@@ -151,6 +151,7 @@ export default class WSConnection {
         WSConnection.socket.on("RoomStartVoting", (cards) => {
             console.log("[WS] Started voting for : ", cards);
             vueBridge.RoomStore.instance.changeStatus("voting");
+            vueBridge.PlayerStore.instance.clearCardValues();
             vueBridge.RoomStore.instance.votingFor = cards;
             vueBridge.RoomStore.instance.roundWinner = undefined;
             if (router.currentRoute.value.name == "choosing") router.replace({
@@ -162,6 +163,7 @@ export default class WSConnection {
         WSConnection.socket.on("RoomStartChoosing", () => {
             console.log("[WS] Started choosing");
             vueBridge.RoomStore.instance.changeStatus("choosing");
+            vueBridge.PlayerStore.instance.clearCardValues();
             vueBridge.RoomStore.instance.roundWinner = undefined;
             if (router.currentRoute.value.name == "voting") router.replace({
                 name: "choosing",

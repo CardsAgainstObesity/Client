@@ -1,13 +1,60 @@
+<script>
+import Card from "@/components/Card.vue";
+import Modal from "@/components/Modal.vue";
+import CzarName from "@/components/CzarName.vue";
+
+import WSConnection from "@/services/ws.mjs";
+
+export default {
+    name: "ChooseView",
+    components: {
+        Card,
+        Modal,
+        CzarName,
+    },
+    data() {
+        return {
+            showModal: true
+        }
+    },
+    methods: {
+        toggleReady() {
+            if (this.$player.ready) {
+                this.resetCards();
+            } else {
+                this.imReady();
+            }
+        },
+
+        resetCards() {
+            this.$player.clearCardValues();
+            this.$player.selected.clear();
+            if (this.$player.ready) WSConnection.playerIsNotReady();
+        },
+
+        imReady() {
+            if (!this.$player.ready) WSConnection.playerIsReady();
+            else WSConnection.playerIsNotReady();
+        },
+
+        selectCard(card_id) {
+            if (this.$player.selected.size < this.$room.blackCard.slots) {
+                this.$player.selected.add(card_id);
+            }
+        },
+
+        startVoting(){
+            WSConnection.startVoting();
+        },
+    },
+};
+</script>
+
 <template>
     <div>
         <div id="root" class="left_padding">
             <h1 class="noselect">
-                <span v-if="$player.isCzar">
-                    {{ $display.text("game_current_czar_you") }}
-                </span>
-                <span v-else>
-                    {{ $room.czar.name }} {{ $display.text("game_current_czar_other") }}
-                </span>
+                <CzarName />
             </h1>
             <div class="container left">
                 <Card
@@ -48,55 +95,6 @@
         </div>
     </div>
 </template>
-
-<script>
-import Card from "@/components/Card.vue";
-import Modal from "@/components/Modal.vue";
-import WSConnection from "@/services/ws.mjs";
-
-export default {
-    name: "ChooseView",
-    components: {
-        Card,
-        Modal,
-    },
-    data() {
-        return {
-            showModal: true
-        }
-    },
-    methods: {
-        toggleReady() {
-            if (this.$player.ready) {
-                this.resetCards();
-            } else {
-                this.imReady();
-            }
-        },
-
-        resetCards() {
-            this.$player.clearCardValues();
-            this.$player.selected.clear();
-            if (this.$player.ready) WSConnection.playerIsNotReady();
-        },
-
-        imReady() {
-            if (!this.$player.ready) WSConnection.playerIsReady();
-            else WSConnection.playerIsNotReady();
-        },
-
-        selectCard(card_id) {
-            if (this.$player.selected.size < this.$room.blackCard.slots) {
-                this.$player.selected.add(card_id);
-            }
-        },
-
-        startVoting(){
-            WSConnection.startVoting();
-        },
-    },
-};
-</script>
 
 <style>
 @import "@/assets/card.css";

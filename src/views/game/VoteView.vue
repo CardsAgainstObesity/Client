@@ -1,57 +1,16 @@
-<script setup>
+<script>
 import Card from "@/components/Card.vue";
+import CzarName from "@/components/CzarName.vue";
+
 import WSConnection from "@/services/ws.mjs";
 import { mdiCamera } from "@mdi/js";
 import html2canvas from "html2canvas";
-</script>
 
-<template>
-    <div>
-        <h1 class="left_padding noselect">
-            <span v-if="$room.czar.id == $player.playerId">
-                {{ $display.text("game_current_czar_you") }}
-            </span>
-            <span v-else>
-                {{ $room.czar.name }}
-                {{ $display.text("game_current_czar_other") }}
-            </span>
-            <Icon
-                style="vertical-align: unset; cursor: pointer"
-                :path="mdiCamera"
-                @click="screenshot"
-            />
-        </h1>
-        <div class="container">
-            <Card
-                :data="$room.blackCard"
-                :dark="true"
-                :clickable="false"
-                :active="true"
-            />
-            <div class="break" />
-
-            <div v-for="selection in $room.votingFor" :key="selection">
-                <span>{{ selection.player_id }}</span>
-                <Card
-                    v-for="card in selection.cards"
-                    @click="clickHandler(selection)"
-                    :data="card"
-                    :dark="false"
-                    :active="selection.flipped"
-                    :clickable="$player.isCzar ? true : false"
-                    :key="card"
-                />
-            </div>
-            <div class="break" />
-            <button @click="nextRound" v-if="$room.roundWinner != undefined">
-                {{ $display.text("game_next_round") }}
-            </button>
-        </div>
-    </div>
-</template>
-
-<script>
 export default {
+    components: {
+        Card,
+        CzarName,
+    },
     methods: {
         nextRound(){
             WSConnection.startChoosing();
@@ -81,6 +40,46 @@ export default {
     },
 };
 </script>
+
+<template>
+    <div>
+        <h1 class="left_padding noselect">
+            <CzarName />
+            <Icon
+                style="vertical-align: unset; cursor: pointer"
+                :path="mdiCamera"
+                @click="screenshot"
+            />
+        </h1>
+        <div class="container">
+            <Card
+                :data="$room.blackCard"
+                :dark="true"
+                :clickable="false"
+                :active="true"
+            />
+            <div class="break" />
+
+            <div v-for="selection in $room.votingFor" :key="selection">
+                <span>{{ selection.player_id }}</span>
+                <Card
+                    v-for="card in selection.cards"
+                    @click="clickHandler(selection)"
+                    :data="card"
+                    :dark="false"
+                    :active="selection.flipped"
+                    :clickable="$player.isCzar ? true : false"
+                    :key="card"
+                    style="margin: 1rem auto;"
+                />
+            </div>
+            <div class="break" />
+            <button @click="nextRound" v-if="$room.roundWinner != undefined">
+                {{ $display.text("game_next_round") }}
+            </button>
+        </div>
+    </div>
+</template>
 
 <style>
 @import "@/assets/card.css";
