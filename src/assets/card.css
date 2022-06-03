@@ -73,6 +73,7 @@
     color: white;
     transform: rotateY(180deg);
     overflow-wrap: break-word;
+    overflow-y: auto;
 }
 
 .card_input {

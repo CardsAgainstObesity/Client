@@ -37,15 +37,27 @@ export default {
 				this.$player.appendCardValue(this.data.text);
 			}
 		},
-		setWhiteCard() {
+		setWhiteCard(arg1, arg2, arg3) {
 			const cardValue = this.$player.getCardValue(this.card_counter++);
-			return `<CardInput text="${ cardValue === undefined ? '[...]' : cardValue[this.$display.language].replace(/\.$/, "") }" />`;
+            let displayText = '[...]';
+
+            if (cardValue !== undefined) {
+                displayText = cardValue[this.$display.language];
+                if (arg1 === "_-_") displayText = displayText.replaceAll(" ", "-");
+                displayText = displayText.replace(/\.$/, ""); // Remove trailing dot.
+            }
+            return `<CardInput text="${ displayText }" />`;
 		}
 	},
 	computed: {
         dynamic_card_text() {
 			this.card_counter = 0;
-            let text = this.data.text[this.$display.language].replace(/___/g, this.setWhiteCard);
+            let text = this.data.text[this.$display.language];
+            text = text.replaceAll("\\n", "<br>");
+            
+            // "___": "Some sample text."
+            // "_-_": "Some-sample-text."
+            text = text.replace(/(___|_-_)/g, this.setWhiteCard);
             return { // Returrns a dynamically-generated component.
                 components: {
                     CardInput
@@ -75,8 +87,6 @@ export default {
                 :style="active ? 'z-index: 0;' : 'z-index: -1;'"
             >
                 <!-- Es necesario modificar el z-index para que html2canvas imprima la imagen correctamente. -->
-                <!-- <p v-html="text[$display.language].replaceAll(`___`, `${chapuza}`)" class="noselect"></p> -->
-				<!-- <p v-html="'Creo que me olvidado ___ en ___.'.replaceAll(`___`, `${chapuza}`)" class="noselect"></p> -->
 				<component v-if="dark && data.text !== undefined" :is="dynamic_card_text"></component>
 				<span v-if="!dark && data.text !== undefined">{{ data.text[$display.language] }}</span>
 				<span v-else/>
