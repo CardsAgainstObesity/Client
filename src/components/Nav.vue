@@ -1,10 +1,44 @@
-<script setup>
+<script>
 import { RouterLink } from 'vue-router';
-import { mdiHome, mdiHamburger, mdiBookOpenVariant, mdiCog, mdiInformation } from '@mdi/js';
+import { mdiCamera, mdiHome, mdiHamburger, mdiBookOpenVariant, mdiCog, mdiInformation } from '@mdi/js';
+import html2canvas from "html2canvas";
+
+export default {
+    data(){
+        return {
+            mdiCamera, mdiHome, mdiHamburger, mdiBookOpenVariant, mdiCog, mdiInformation,
+        }
+    },
+    components: {
+        RouterLink
+    },
+    methods: {
+        screenshot() {
+            html2canvas(document.querySelector("body")).then((canvas) => {
+                var link = document.createElement("a");
+                link.download = `${this.$display
+                    .text("app_name")
+                    .replaceAll(" ", "-")}_${new Date()
+                    .toISOString()
+                    .slice(0, 10)}`;
+                link.href = canvas.toDataURL();
+                link.click();
+            });
+        },
+    },
+}
 </script>
+
 <template>
     <header>
         <div class="topnav noselect" :class="($router.currentRoute.value.name === 'index' ? 'hide':'')">
+            <div style="position: absolute; top: 0; left: 0; margin-left: 1rem; margin-top: 1rem; z-index: 1;" title="nav_screenshot">
+                <Icon
+                    style="vertical-align: unset; cursor: pointer; color: var(--color-text);"
+                    :path="mdiCamera"
+                    @click="screenshot"
+                />
+            </div>
             <nav class="center">
                 <RouterLink v-if="$room.roomId == ''" to="/"><Icon :path="mdiHome" /> {{$display.text("nav_index")}}</RouterLink>
                 <RouterLink v-if="$room.roomId != ''" :to="{ name: $room.status, params: { id: ($room.roomId == '' ? 'DEBUG':$room.roomId) } }"><Icon :path="mdiHamburger" /> {{$display.text("nav_game")}}</RouterLink>

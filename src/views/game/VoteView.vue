@@ -3,18 +3,11 @@ import Card from "@/components/Card.vue";
 import CzarName from "@/components/CzarName.vue";
 
 import WSConnection from "@/services/ws.mjs";
-import { mdiCamera } from "@mdi/js";
-import html2canvas from "html2canvas";
 
 export default {
     components: {
         Card,
         CzarName,
-    },
-    data(){
-        return {
-            mdiCamera
-        }
     },
     methods: {
         nextRound(){
@@ -30,18 +23,6 @@ export default {
                     WSConnection.flipCard(selection.player_id);
             }
         },
-        screenshot() {
-            html2canvas(document.querySelector("body")).then((canvas) => {
-                var link = document.createElement("a");
-                link.download = `${this.$display
-                    .text("app_name")
-                    .replaceAll(" ", "-")}_${new Date()
-                    .toISOString()
-                    .slice(0, 10)}`;
-                link.href = canvas.toDataURL();
-                link.click();
-            });
-        },
     },
 };
 </script>
@@ -50,11 +31,6 @@ export default {
     <div>
         <h1 class="left_padding noselect">
             <CzarName />
-            <Icon
-                style="vertical-align: unset; cursor: pointer"
-                :path="mdiCamera"
-                @click="screenshot"
-            />
         </h1>
         <div class="container">
             <Card
@@ -66,7 +42,9 @@ export default {
             <div class="break" />
 
             <div style="margin: 1rem;" v-for="selection in $room.votingFor" :key="selection">
-                <div style="text-align: center;">{{ $room.players.get(selection.player_id).name }}</div>
+                <div :set="player = $room.players.get(selection.player_id)" style="text-align: center;">
+                    {{ player === undefined ? "player_disconnected" : player.name }}
+                </div>
                 <Card
                     v-for="card in selection.cards"
                     @click="clickHandler(selection)"
