@@ -72,6 +72,7 @@
     z-index: 0;
     color: white;
     transform: rotateY(180deg);
+    overflow-wrap: break-word;
 }
 
 .card_input {

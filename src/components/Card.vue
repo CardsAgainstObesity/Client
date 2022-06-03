@@ -33,7 +33,7 @@ export default {
     },
 	methods: {
 		assignInput() {
-			if (this.clickable) {
+			if (this.clickable && (this.$room.status == "choosing" && !this.$player.isCzar)) {
 				this.$player.appendCardValue(this.data.text);
 			}
 		},

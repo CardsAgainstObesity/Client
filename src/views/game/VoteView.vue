@@ -11,6 +11,11 @@ export default {
         Card,
         CzarName,
     },
+    data(){
+        return {
+            mdiCamera
+        }
+    },
     methods: {
         nextRound(){
             WSConnection.startChoosing();
@@ -60,8 +65,8 @@ export default {
             />
             <div class="break" />
 
-            <div v-for="selection in $room.votingFor" :key="selection">
-                <span>{{ selection.player_id }}</span>
+            <div style="margin: 1rem;" v-for="selection in $room.votingFor" :key="selection">
+                <div style="text-align: center;">{{ $room.players.get(selection.player_id).name }}</div>
                 <Card
                     v-for="card in selection.cards"
                     @click="clickHandler(selection)"

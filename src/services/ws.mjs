@@ -164,6 +164,7 @@ export default class WSConnection {
             console.log("[WS] Started choosing");
             vueBridge.RoomStore.instance.changeStatus("choosing");
             vueBridge.PlayerStore.instance.clearCardValues();
+            vueBridge.PlayerStore.instance.selected.clear();
             vueBridge.RoomStore.instance.roundWinner = undefined;
             if (router.currentRoute.value.name == "voting") router.replace({
                 name: "choosing",
@@ -174,6 +175,12 @@ export default class WSConnection {
         WSConnection.socket.on("AnnounceRoomSelectWinner", (winner) => {
             console.log("[WS] The czar selected a winner ", winner);
             vueBridge.RoomStore.instance.roundWinner = winner;
+            
+            const selected_player = vueBridge.RoomStore.instance.votingFor.filter(selection => selection.player_id === winner.id);
+            vueBridge.PlayerStore.instance.clearCardValues();
+            for (const card of selected_player[0].cards) {
+                vueBridge.PlayerStore.instance.appendCardValue(card.text);
+            }
         });
 
         WSConnection.socket.on("RoomGameFinished", (winner) => {
@@ -190,6 +197,12 @@ export default class WSConnection {
             const selected_player = vueBridge.RoomStore.instance.votingFor.filter(selection => selection.player_id === player_id);
             // selected_player[0].flipped = !selected_player[0].flipped; // Toggle
             selected_player[0].flipped = true; // Set to true (flipped)
+
+            console.log("selected_player[0]", selected_player[0]);
+            vueBridge.PlayerStore.instance.clearCardValues();
+            for (const card of selected_player[0].cards) {
+                vueBridge.PlayerStore.instance.appendCardValue(card.text);
+            }
         });
     }
 
