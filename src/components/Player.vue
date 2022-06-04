@@ -1,23 +1,31 @@
-<script setup>
+<script>
 import { mdiAccount, mdiCrown } from '@mdi/js'; 
-defineProps({
-    name: {
-        type: String,
-        required: true
+
+export default {
+    data(){
+        return {
+            mdiAccount, mdiCrown
+        }
     },
-    ready: {
-        type: Boolean,
-        required: false
-    },
-    avatar: {
-        type: String,
-        required: false
-    },
-    czar: {
-        type: Boolean,
-        required: true
-    }
-})
+	props: {
+        name: {
+            type: String,
+            required: true
+        },
+        ready: {
+            type: Boolean,
+            required: false
+        },
+        avatar: {
+            type: String,
+            required: false
+        },
+        czar: {
+            type: Boolean,
+            required: true
+        }
+	}
+}
 </script>
 
 <template>

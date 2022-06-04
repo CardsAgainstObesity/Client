@@ -1,10 +1,12 @@
-<script setup>
-defineProps({
-  path: {
-    type: String,
-    required: true,
-  },
-});
+<script>
+export default {
+	props: {
+		path: {
+			type: String,
+			required: true,
+		},
+	}
+}
 </script>
 
 <template>

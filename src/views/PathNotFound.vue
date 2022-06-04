@@ -1,7 +1,3 @@
-<script setup>
-// document.title = "Error 404"; // TODO
-</script>
-
 <template>
     <div>
         <main class="centered_text">

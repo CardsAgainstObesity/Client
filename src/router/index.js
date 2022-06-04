@@ -14,51 +14,77 @@ let router = createRouter({
         {
             path: "/",
             name: "index",
+            meta: {
+                code: "nav_index",
+            },
             component: IndexView,
             props: true,
         },
         {
             path: "/game/:id",
             name: "lobby",
+            meta: {
+                code: "nav_game",
+                game_code: "game_state_lobby",
+            },
             component: LobbyView,
         },
         {
             path: "/game/:id",
             name: "choosing",
+            meta: {
+                code: "nav_game",
+                game_code: "game_state_choosing",
+            },
             component: ChooseView,
         },
         {
             path: "/game/:id",
             name: "voting",
+            meta: {
+                code: "nav_game",
+                game_code: "game_state_voting",
+            },
             component: VoteView,
         },
         {
             path: "/rules",
             name: "rules",
+            meta: {
+                code: "nav_rules",
+            },
             component: RulesView,
         },
         {
             path: "/settings",
             name: "settings",
+            meta: {
+                code: "nav_settings",
+            },
             component: SettingsView,
         },
         {
             path: "/about",
             name: "about",
+            meta: {
+                code: "nav_about",
+            },
             component: AboutView,
         },
-        // ,
-        // {
-        //     path: '/about',
-        //     name: 'about',
-        //     // route level code-splitting
-        //     // this generates a separate chunk (About.[hash].js) for this route
-        //     // which is lazy-loaded when the route is visited.
-        //     component: () =>
-        //         import ('../views/AboutView.vue')
-        // }
+        { // DEBUG
+            path: '/test',
+            name: 'test',
+            meta: {
+                code: "error",
+            },
+            component: () => import('../views/TestView.vue'),
+        },
         {
             path: "/:pathMatch(.*)*",
+            name: "error404",
+            meta: {
+                code: "error",
+            },
             component: PathNotFound,
         },
     ],

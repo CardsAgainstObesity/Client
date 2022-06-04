@@ -10,9 +10,12 @@ export const useDisplayStore = defineStore({
 			es: {
 				// GENERAL
 				app_name: "Cartas Contra la Obesidad",
+				app_short_name: "CCO",
 				settings_language: "Idioma",
+				error: "Error",
 
 				// NAV
+				nav_screenshot: "Hacer una captura de pantalla",
 				nav_index: "Inicio",
 				nav_game: "Partida",
 				nav_rules: "Reglas",
@@ -26,17 +29,26 @@ export const useDisplayStore = defineStore({
 				index_create_button: "Crear una nueva sala",
 
 				// VIEW: GAME
+				game_state_lobby: "Sala de espera",
+				game_state_choosing: "Eligiendo",
+				game_state_voting: "Votando",
+
+				game_start_game_button: "Empezar partida",
 				game_current_czar_you: "Tú eres el Zar de las cartas.",
 				game_current_czar_other: "es el Zar de las Cartas.",
 				game_players_lobby: "Jugadores en la partida",
+				game_card_packs: "Mazos de cartas",
 				game_next_round: "Siguiente ronda",
 			},
 			en: {
 				// GENERAL
 				app_name: "Cards Against Obesity",
+				app_short_name: "CAO",
 				settings_language: "Language",
+				error: "Error",
 
 				// NAV
+				nav_screenshot: "Take a screenshot",
 				nav_index: "Home",
 				nav_game: "Game",
 				nav_rules: "Rules",
@@ -50,9 +62,15 @@ export const useDisplayStore = defineStore({
 				index_create_button: "Create new room",
 
 				// VIEW: GAME
+				game_state_lobby: "Lobby",
+				game_state_choosing: "Choosing",
+				game_state_voting: "Voting",
+
+				game_start_game_button: "Start game",
 				game_current_czar_you: "You are the Card Czar.",
 				game_current_czar_other: "is the Card Czar.",
 				game_players_lobby: "Players in this lobby",
+				game_card_packs: "Card packs",
 				game_next_round: "Next round",
 			},
 		},

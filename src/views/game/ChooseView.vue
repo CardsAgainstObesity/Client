@@ -38,7 +38,7 @@ export default {
         },
 
         selectCard(card_id) {
-            if (this.$player.selected.size < this.$room.blackCard.slots) {
+            if (this.$player.selected.size < this.$room.blackCard.slots && !this.$player.isCzar) {
                 this.$player.selected.add(card_id);
             }
         },

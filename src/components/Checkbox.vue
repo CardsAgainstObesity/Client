@@ -5,6 +5,14 @@ export default {
             checked: false,
         };
     },
+    methods: {
+        requestCheck(){
+            if (this.$player.isCzar) {
+                this.checked = !this.checked;
+                this.$emit('checked', this.checked)
+            }
+        }
+    }
 };
 </script>
 
@@ -14,6 +22,6 @@ export default {
         class="checkbox noselect"
         :class="checked ? 'checked' : ''"
         maxlength="0"
-        @click="checked = !checked; $emit('checked', checked)"
+        @click="requestCheck"
     />
 </template>

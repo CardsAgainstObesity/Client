@@ -1,11 +1,16 @@
-<script setup>
-import WSConnection from "@/services/ws.mjs";
-import Playerlist from "@/components/Playerlist.vue";
-</script>
-
 <script>
+import Playerlist from "@/components/Playerlist.vue";
+import WSConnection from "@/services/ws.mjs";
+
 export default {
-	name: "LobbyView",
+	data(){
+		return {
+			WSConnection
+		}
+	},
+	components: {
+		Playerlist
+	},
 	created() {
 		if (this.$room.roomId == "")
 			this.$router.replace({
@@ -33,18 +38,18 @@ export default {
 </script>
 
 <template>
-	<div>
-		<div style="float: left; width: 45%" class="left_padding">
+	<div class="lobby_container">
+		<div>
 			<main>
 				<h1>{{ $display.text("game_players_lobby") }}</h1>
 				<Playerlist :list="$room.players.values()" :lobby="true" />
 			</main>
 		</div>
-		<div style="float: right; width: 45%" class="right_padding">
+		<div>
 			<main>
-				<!-- TODO: Meter en un componente esto y hacer que sea responsive de nuevo. -->
-				<h1 style="direction: rtl">game_card_packs</h1>
-				<ul>
+				<!-- TODO: Meter esto en un componente -->
+				<h1>{{ $display.text("game_card_packs") }}</h1>
+				<ul class="card_pack_container">
 					<li>
 						<Checkbox
 							id="base_card_pack"
@@ -55,6 +60,36 @@ export default {
 				</ul>
 			</main>
 		</div>
-		<button @click="startGame">game_start_game_button</button>
+		<div class="lobby_button_start" style="flex-basis: 100%;">
+			<button @click="startGame">{{ $display.text("game_start_game_button") }}</button>
+		</div>
 	</div>
 </template>
+
+<style scoped>
+.lobby_container {
+	padding: 1rem;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2rem;
+}
+
+.lobby_container > div {
+	flex: max-content;
+}
+
+.card_pack_container {
+	list-style-type: none;
+}
+
+.lobby_button_start > button {
+	margin-left: 0;
+	margin-right: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+	.lobby_container {
+		flex-direction: column;
+	}
+}
+</style>
