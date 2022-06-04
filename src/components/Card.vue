@@ -80,7 +80,7 @@ export default {
             (active ? 'active ' : ' ')
         "
     >
-        <div class="game-card-inner" :class="($player.cardIsSelected(data.id) ? 'selected ' : ' ')">
+        <div class="game-card-inner" :class="($player.cardIsSelected(data.id) && $room.status === 'choosing' ? 'selected ' : ' ')">
             <div class="game-card-front"></div>
             <div
                 class="game-card-back"
