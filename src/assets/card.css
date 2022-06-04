@@ -29,6 +29,10 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
+.game-card-inner > * {
+    transition: background-color 0.25s;
+}
+
 .game-card-inner,
 .game-card-front,
 .game-card-back {

@@ -80,7 +80,7 @@ export default {
             (active ? 'active ' : ' ')
         "
     >
-        <div class="game-card-inner">
+        <div class="game-card-inner" :class="($player.cardIsSelected(data.id) ? 'selected ' : ' ')">
             <div class="game-card-front"></div>
             <div
                 class="game-card-back"
@@ -94,3 +94,9 @@ export default {
         </div>
     </div>
 </template>
+
+<style scoped>
+.selected > * {
+    background-color: #2E3440;
+}
+</style>

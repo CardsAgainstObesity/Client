@@ -45,8 +45,6 @@ export default {
                 {{ $display.text("game_next_round") }}
             </button>
 
-            <div v-if="$room.roundWinner && $player.isCzar" class="break" />
-
             <div class="player_card_container" :class="$room.isRoundWinner(selection.player_id) ? 'winner':''" v-for="selection in $room.randomVotingFor" :key="selection">
                 <div v-if="$room.roundWinner" :set="player = $room.players.get(selection.player_id)" style="text-align: center;">
                     {{ player === undefined ? "player_disconnected" : player.name }}
