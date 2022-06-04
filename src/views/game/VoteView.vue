@@ -41,14 +41,14 @@ export default {
             />
             <div class="break" />
 
-            <button v-if="$room.roundWinner && $player.isCzar" @click="nextRound">
+            <button v-if="$room.roundWinner && $player.isCzar" style="position: absolute; top: 350px;" @click="nextRound">
                 {{ $display.text("game_next_round") }}
             </button>
 
             <div v-if="$room.roundWinner && $player.isCzar" class="break" />
 
-            <div class="player_card_container" :class="$room.isRoundWinner(selection.player_id) ? 'winner':''" v-for="selection in $room.votingFor" :key="selection">
-                <div :set="player = $room.players.get(selection.player_id)" style="text-align: center;">
+            <div class="player_card_container" :class="$room.isRoundWinner(selection.player_id) ? 'winner':''" v-for="selection in $room.randomVotingFor" :key="selection">
+                <div v-if="$room.roundWinner" :set="player = $room.players.get(selection.player_id)" style="text-align: center;">
                     {{ player === undefined ? "player_disconnected" : player.name }}
                 </div>
                 <Card

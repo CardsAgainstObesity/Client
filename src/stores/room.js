@@ -46,5 +46,9 @@ export const useRoomStore = defineStore({
 			const flippedCards = this.flippedCards;
 			return flippedCards.length == this.votingFor.length;
 		},
+		randomVotingFor(){
+			let votingFor = Object.assign(this.votingFor);
+			return votingFor.sort((a, b) => 0.5 - Math.random());
+		}
 	},
 });
