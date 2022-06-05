@@ -34,5 +34,11 @@ export default {
 	{{ setRouteTitle }}
     <Nav />
     <RouterView />
+	<ul style="display: none;">
+		<li v-for="audio in $audio.audio_array" :key="audio">
+			<audio :id="`audio_${audio.name}`" class="audio_card_flip" :src="`/audio/${audio.name}.mp3`" controls />
+			<button style="display: block;" @click="$audio.playAudioFlip(audio)">{{ audio.name }}</button>
+		</li>
+	</ul>
   </div>
 </template>

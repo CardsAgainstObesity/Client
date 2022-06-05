@@ -14,6 +14,10 @@
                 {{ lang.label }}
             </li>
         </ul>
+        <label for="audio_volume_range">
+            audio_volume_range
+        </label>
+        <input type="range" min="0" max="1" step="0.1" id="audio_volume_range" v-model="$audio.audio_volume" @change="$audio.setAudioVolume" style="width: 100%;"/>
     </main>
 </template>
 
@@ -36,23 +40,3 @@ export default {
     },
 };
 </script>
-
-<style scoped>
-.v-select {
-    background-color: #222;
-    --vs-controls-color: #83b4f0;
-    --vs-border-color: #83b4f0;
-
-    --vs-dropdown-bg: #222222;
-    --vs-dropdown-color: #cc99cd;
-    --vs-dropdown-option-color: #83b4f0;
-
-    --vs-selected-bg: #83b4f0;
-    --vs-selected-color: #83b4f0;
-
-    --vs-search-input-color: #eeeeee;
-
-    --vs-dropdown-option--active-bg: #83b4f0;
-    --vs-dropdown-option--active-color: #222222;
-}
-</style>
