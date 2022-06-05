@@ -73,13 +73,13 @@
 .game-card-back {
     background-color: var(--color-highlighted-text);
     z-index: 0;
-    color: white;
+    color: var(--color-card-text);
     transform: rotateY(180deg);
     overflow-wrap: break-word;
     overflow-y: auto;
 }
 
 .card_input {
-    color: #82b2ee;
+    color: var(--color-primary);
     font-weight: bold;
 }

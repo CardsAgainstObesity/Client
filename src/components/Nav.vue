@@ -37,7 +37,7 @@ export default {
         <div class="topnav noselect" :class="($router.currentRoute.value.name === 'index' ? 'hide':'')">
             <div style="position: absolute; top: 0; left: 0; margin-left: 1rem; margin-top: 1rem; z-index: 1;" :title="$display.text('nav_screenshot')">
                 <Icon
-                    style="vertical-align: unset; cursor: pointer; color: var(--color-text);"
+                    style="vertical-align: unset; cursor: pointer; color: var(--color-ui-text);"
                     :path="mdiCamera"
                     @click="screenshot"
                 />
@@ -88,7 +88,7 @@ div.topnav {
 }
 
 nav a.router-link-exact-active {
-    color: var(--color-text);
+    color: var(--color-ui-text);
 }
 
 nav a.router-link-exact-active:hover {

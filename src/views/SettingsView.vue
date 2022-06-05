@@ -12,7 +12,8 @@ export default {
             css_property_select: [
                 { label: "settings_color_primary", code: "--color-primary" },
                 { label: "settings_color_secondary", code: "--color-secondary" },
-                { label: "settings_color_tertiary", code: "--color-tertiary" },
+                { label: "settings_color_ui_text", code: "--color-ui-text" },
+                { label: "settings_color_card_text", code: "--color-card-text" },
                 { label: "settings_color_background", code: "--color-background" },
                 { label: "settings_color_background-alt", code: "--color-background-alt" },
             ],
@@ -36,9 +37,7 @@ export default {
 
 <template>
     <main class="centered_text">
-        <label for="language">
-            {{ $display.text("settings_language") }}
-        </label>
+        <p>{{ $display.text("settings_language") }}</p>
         <ul>
             <!-- TODO: Cambiar este v-for por cartas que tengan el estilo de las banderas del idioma. -->
             <li
@@ -50,19 +49,15 @@ export default {
                 {{ lang.label }}
             </li>
         </ul>
-        <label for="audio_volume_range">
-            audio_volume_range
-        </label>
-        <input type="range" min="0" max="1" step="0.05" id="audio_volume_range" v-model="$config.audio_volume" @change="$config.setAudioVolume" style="width: 100%;"/>
+        <p>settings_audio_volume_range</p>
+        <input type="range" min="0" max="1" step="0.05" v-model="$config.audio_volume" @change="$config.setAudioVolume" style="width: 100%;"/>
 
-        <br>
-        <label for="css_property">settings_css_property</label>
+        <p>settings_css_property</p>
         <select id="css_property" v-model="css_property">
             <option v-for="property_option in css_property_select" :key="property_option" :value="property_option.code">{{ property_option.label }}</option>
         </select>
 
-        <br>
-        <label for="css_color">settings_css_color</label>
+        <p>settings_css_color</p>
         <input id="css_color" type="color" v-model="css_value"/>
         <button @click="set_property(css_property, css_value)">settings_apply</button>
     </main>

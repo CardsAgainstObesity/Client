@@ -27,6 +27,7 @@ export const useConfigStore = defineStore({
             for (const element of document.querySelectorAll(".audio_card_flip")){
                 element.volume = this.audio_volume;
             }
+            this.playRandomAudioClip(); // Preview volume
         },
         playRandomAudioClip(){
             const randomAudio = this.audio_array[getRandomIntInclusive(1, Object.keys(this.audio_array).length)];
