@@ -1,99 +1,86 @@
 <template>
     <svg
-    viewBox="0 0 734.4 734.4"
-    version="1.1"
-    id="svg8"
-    sodipodi:docname="logo.svg"
-    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
-    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlns:svg="http://www.w3.org/2000/svg">
-
-    <sodipodi:namedview
-        id="namedview10"
-        pagecolor="#ffffff"
-        bordercolor="#666666"
-        borderopacity="1.0"
-        inkscape:pageshadow="2"
-        inkscape:pageopacity="0.0"
-        inkscape:pagecheckerboard="0"
-        inkscape:document-units="pt"
-        showgrid="false"
-        inkscape:zoom="0.64338233"
-        inkscape:cx="435.97716"
-        inkscape:cy="489.60002"
-        inkscape:window-width="1920"
-        inkscape:window-height="993"
-        inkscape:window-x="0"
-        inkscape:window-y="0"
-        inkscape:window-maximized="1"
-        inkscape:current-layer="svg8" />
-    <defs
-        id="defs2" />
-    <rect
-        id="shape0"
-        fill="#83b4f0"
-        fill-rule="evenodd"
-        stroke-opacity="0"
-        stroke="#000000"
-        stroke-width="0"
-        stroke-linecap="square"
-        stroke-linejoin="bevel"
-        width="360.72"
-        height="533.52002"
-        rx="18"
-        ry="18"
-        x="114.84002"
-        y="28.08" />
-    <rect
-        id="shape1"
-        fill="#2e3440"
-        fill-rule="evenodd"
-        stroke-opacity="0"
-        stroke="#000000"
-        stroke-width="0"
-        stroke-linecap="square"
-        stroke-linejoin="bevel"
-        width="360.72"
-        height="533.52002"
-        rx="18"
-        ry="18"
-        x="186.84001"
-        y="100.07999" />
-    <rect
-        id="shape2"
-        fill="#83b4f0"
-        fill-rule="evenodd"
-        stroke-opacity="0"
-        stroke="#000000"
-        stroke-width="0"
-        stroke-linecap="square"
-        stroke-linejoin="bevel"
-        width="360.72"
-        height="532.79999"
-        rx="18"
-        ry="18"
-        x="258.84003"
-        y="172.08" />
-    <path
-        id="shape01"
-        fill="#2e3440"
-        stroke="#2e3440"
-        stroke-width="14.3658"
-        stroke-linecap="square"
-        stroke-linejoin="bevel"
-        d="m 559.87356,421.60186 c 15.94603,0 28.73158,12.92921 28.73158,28.73159 0,15.80237 -12.78555,28.73159 -28.73158,28.73159 h -25.85843 l -57.46318,-57.46318 h 83.32161 m 6.03363,125.98801 v -0.14365 l -39.64959,-39.6496 h -0.14366 l -28.73159,-28.73158 h 0.14366 l -57.46318,-57.46318 v 0 l -28.73159,-28.73159 v 0 L 306.89192,288.43095 288.5037,306.6755 l 43.24104,43.09739 c -16.08969,21.54869 -16.08969,43.09738 -16.08969,43.09738 h 59.04342 l 28.73159,28.73159 h -73.40921 c -15.80238,0 -28.73159,12.92921 -28.73159,28.73159 0,15.80237 12.92921,28.73159 28.73159,28.73159 h 130.87238 l 28.73159,28.73158 H 315.65505 v 14.3658 c 0,23.84722 19.25017,43.09738 43.09739,43.09738 h 172.38953 c 4.74071,0 9.33776,-1.0056 13.50384,-2.44218 l 27.29501,27.29501 18.24456,-18.24456 -24.27819,-24.2782 m 8.33216,-154.7196 c 0,0 0,-86.19477 -129.29215,-86.19477 -30.45548,0 -53.44075,4.88437 -71.11068,12.21093 l 73.98384,73.98384 z"
-        sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccc" />
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlns:krita="http://krita.org/namespaces/svg/krita"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        viewBox="0 0 734.4 734.4"
+    >
+        <defs />
+        <rect
+            id="background"
+            fill="none"
+            width="734.4"
+            height="734.4"
+            rx="18"
+            ry="18"
+        />
+        <rect
+            id="card01"
+            transform="matrix(0.999999933512905 0 0 0.999999933512905 114.480016802618 28.0799981330424)"
+            fill="#5e81ac"
+            fill-rule="evenodd"
+            stroke-opacity="0"
+            stroke="#000000"
+            stroke-width="0"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            width="360.72"
+            height="533.52"
+            rx="18"
+            ry="18"
+        />
+        <rect
+            id="card02"
+            transform="matrix(0.999999933512905 0 0 0.999999933512905 186.480012015548 100.079993345972)"
+            fill="#2e3440"
+            fill-rule="evenodd"
+            stroke-opacity="0"
+            stroke="#000000"
+            stroke-width="0"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            width="360.72"
+            height="533.52"
+            rx="18"
+            ry="18"
+        />
+        <rect
+            id="card03"
+            transform="matrix(0.999999933512905 0 0 0.999999933512905 258.480007228476 172.0799885589)"
+            fill="#5e81ac"
+            fill-rule="evenodd"
+            stroke-opacity="0"
+            stroke="#000000"
+            stroke-width="0"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            width="360.72"
+            height="532.8"
+            rx="18"
+            ry="18"
+        />
+        <path
+            id="hamburger"
+            transform="matrix(14.3657938141856 0 0 14.3657938141856 316.8 316.8)"
+            fill="#2e3440"
+            stroke="none"
+            stroke-width="1"
+            stroke-linecap="square"
+            stroke-linejoin="bevel"
+            d="M15.3283 7.52215C16.229 7.52215 16.9512 8.25246 16.9512 9.14506C16.9512 10.0377 16.229 10.768 15.3283 10.768L13.8677 10.768L10.6219 7.52215L15.3283 7.52215M15.6691 14.6386L15.6691 14.6305L13.4295 12.3909L13.4214 12.3909L11.7985 10.768L11.8066 10.768L8.56081 7.52215L8.56081 7.52215L6.93791 5.89925L6.93791 5.89925L1.03866 0L0 1.03054L2.44247 3.4649C1.53364 4.68207 1.53364 5.89925 1.53364 5.89925L4.86871 5.89925L6.49161 7.52215L2.34509 7.52215C1.4525 7.52215 0.722192 8.25246 0.722192 9.14506C0.722192 10.0377 1.4525 10.768 2.34509 10.768L9.73742 10.768L11.3603 12.3909L1.53364 12.3909L1.53364 13.2023C1.53364 14.5493 2.62099 15.6367 3.968 15.6367L13.7054 15.6367C13.9732 15.6367 14.2329 15.5799 14.4682 15.4987L16.0099 17.0405L17.0405 16.0099L15.6691 14.6386M16.1398 5.89925C16.1398 5.89925 16.1398 1.03054 8.83671 1.03054C7.11643 1.03054 5.81811 1.30644 4.82002 1.72028L8.999 5.89925Z"
+            sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccc"
+        />
     </svg>
 </template>
 
 <style scoped>
-#shape0, #shape2 {
+#card01,
+#card03 {
     fill: var(--color-highlighted-text);
 }
-#shape1, #shape01 {
+#card02,
+#hamburger {
     fill: var(--color-card-back);
-    stroke: var(--color-card-back);
 }
 </style>
