@@ -48,7 +48,7 @@ window.$playerStore = playerStore; // DEBUG
 vueBridge.PlayerStore.instance = playerStore;
 
 app.config.globalProperties.$audio = audioStore;
-// vueBridge.AudioStore.instance = audioStore; // TODO
+vueBridge.AudioStore.instance = audioStore;
 window.$audioStore = audioStore; // DEBUG
 
 window.$vueRouter = router; // DEBUG

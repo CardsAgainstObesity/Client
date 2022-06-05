@@ -98,6 +98,10 @@ export const useDisplayStore = defineStore({
 		},
 	}),
 	actions: { // TODO: If no translated text is available for the selected language, default to English.
+		setLanguage(value) {
+            this.language = value.code;
+            localStorage.setItem("language", value.code);
+        },
 		text(key) {
 			return this.text_obj[this.language][key];
 		},

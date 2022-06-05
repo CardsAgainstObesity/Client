@@ -15,3 +15,12 @@ export const RoomStore = {
         this.__store = value;
     }
 };
+
+export const AudioStore = {
+    get instance(){
+        return this.__store;
+    },
+    set instance(value){
+        this.__store = value;
+    }
+};
