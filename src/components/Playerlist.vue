@@ -1,13 +1,7 @@
 <script>
 import Player from "@/components/Player.vue";
-import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
 
 export default {
-    data(){
-        return {
-            PlayerStore, RoomStore
-        }
-    },
     components: {
         Player
     },
@@ -26,11 +20,8 @@ export default {
 
 <template>
     <ul class="playerlist">
-        <li v-for="player in list" :key="player">
-            <Player
-                :name="player.name"
-                :czar="player.id == RoomStore.instance.czar.id ? true : false"
-            />
+        <li v-for="player in list" :key="player.id">
+            <Player :player="player" />
         </li>
     </ul>
 </template>

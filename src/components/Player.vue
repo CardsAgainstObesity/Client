@@ -1,30 +1,34 @@
 <script>
-import { mdiAccount, mdiCrown } from '@mdi/js'; 
+import { mdiAccount, mdiCrown } from '@mdi/js';
+import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
+import WSConnection from "@/services/ws.mjs";
 
 export default {
+    props: {
+        player: {
+            type: Object,
+            required: true,
+        },
+	},
     data(){
         return {
-            mdiAccount, mdiCrown
+            WSConnection, mdiAccount, mdiCrown, PlayerStore, RoomStore,
+            name: this.player.name,
         }
     },
-	props: {
-        name: {
-            type: String,
-            required: true
-        },
-        ready: {
-            type: Boolean,
-            required: false
-        },
-        avatar: {
-            type: String,
-            required: false
-        },
-        czar: {
-            type: Boolean,
-            required: true
+    methods: {
+        changeName(){
+            WSConnection.changeName(this.name);
         }
-	}
+    },
+    computed: {
+        czar(){
+            return this.player.id === RoomStore.instance.czar.id;
+        },
+        editable(){
+            return this.player.id === PlayerStore.instance.playerId;
+        }
+    },
 }
 </script>
 
@@ -32,6 +36,7 @@ export default {
     <div class="player">
         <Icon :path="mdiCrown" v-if="czar" />
         <Icon :path="mdiAccount" v-else />
-        <span>{{name}}</span>
+        <input v-if="editable" type="text" style="padding: 0;" v-model="name" @keyup.enter="changeName">
+        <span v-else style="margin-left: 0;">{{player.name}}</span>
     </div>
 </template>

@@ -123,8 +123,10 @@ export default class WSConnection {
 
         WSConnection.socket.on("PlayerChangeName", player => {
             console.log(`[WS] Player with id ${player.id} changed name to ${player.name}`);
-            var rPlayer = vueBridge.RoomStore.instance.players.get(player.id);
+            
+            const rPlayer = vueBridge.RoomStore.instance.players.get(player.id);
             if (player) rPlayer.name = player.name;
+
             if (player.id == vueBridge.PlayerStore.instance.playerId) { // If WE changed name , change the Player instance name
                 vueBridge.PlayerStore.instance.setName(player.name);
             }

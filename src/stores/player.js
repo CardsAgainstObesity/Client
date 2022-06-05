@@ -33,7 +33,7 @@ export const usePlayerStore = defineStore({
 			return [...this.cards][index];
 		},
 		cardIsSelected(id){
-			return this.selected.has(id);;
+			return this.selected.has(id);
 		},
 		clearCardValues(){
 			this.cards.clear();
