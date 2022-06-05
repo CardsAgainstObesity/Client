@@ -27,7 +27,13 @@ export const usePlayerStore = defineStore({
 			this.ready = status;
 		},
 		appendCardValue(card_value){
-			this.cards.add(card_value);
+			if (this.cards.has(card_value)){
+				this.cards.delete(card_value);
+			} else {
+				if (this.cards.size < RoomStore.instance.blackCard.slots) {
+                    this.cards.add(card_value);
+                }
+			}
 		},
 		getCardValue(index){
 			return [...this.cards][index];
