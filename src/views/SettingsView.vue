@@ -7,7 +7,7 @@
             <!-- TODO: Cambiar este v-for por cartas que tengan el estilo de las banderas del idioma. -->
             <li
                 style="cursor: pointer"
-                @click="$display.setLanguage(lang)"
+                @click="$config.setLanguage(lang)"
                 v-for="lang in languages"
                 :key="lang.code"
             >
@@ -17,7 +17,7 @@
         <label for="audio_volume_range">
             audio_volume_range
         </label>
-        <input type="range" min="0" max="1" step="0.05" id="audio_volume_range" v-model="$audio.audio_volume" @change="$audio.setAudioVolume" style="width: 100%;"/>
+        <input type="range" min="0" max="1" step="0.05" id="audio_volume_range" v-model="$config.audio_volume" @change="$config.setAudioVolume" style="width: 100%;"/>
     </main>
 </template>
 

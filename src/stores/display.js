@@ -1,11 +1,9 @@
-import { defineStore } from 'pinia'
-
-const ls_language = localStorage.getItem("language"); // Persist language selection
+import { defineStore } from 'pinia';
+import { ConfigStore } from "@/services/vueBridge.mjs";
 
 export const useDisplayStore = defineStore({
 	id: 'display',
 	state: () => ({
-		language: ls_language === null ? 'en' : ls_language,
 		text_obj: {
 			es: {
 				// GENERAL
@@ -98,18 +96,14 @@ export const useDisplayStore = defineStore({
 		},
 	}),
 	actions: { // TODO: If no translated text is available for the selected language, default to English.
-		setLanguage(value) {
-            this.language = value.code;
-            localStorage.setItem("language", value.code);
-        },
 		text(key) {
-			return this.text_obj[this.language][key];
+			return this.text_obj[ConfigStore.instance.language][key];
 		},
 		error(key) {
-			return this.error_obj[this.language][key];
+			return this.error_obj[ConfigStore.instance.language][key];
 		},
 		console_log(key) {
-			return this.console_log_obj[this.language][key];
+			return this.console_log_obj[ConfigStore.instance.language][key];
 		}
 	}
 })

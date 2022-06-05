@@ -46,7 +46,7 @@ export default {
             let displayText = '[...]';
 
             if (cardValue !== undefined) {
-                displayText = cardValue[this.$display.language];
+                displayText = cardValue[this.$config.language];
                 if (arg1 === "_-_") displayText = displayText.replaceAll(" ", "-");
                 displayText = displayText.replace(/\.$/, ""); // Remove trailing dot.
             }
@@ -56,7 +56,7 @@ export default {
 	computed: {
         dynamic_card_text() {
 			this.card_counter = 0;
-            let text = this.data.text[this.$display.language];
+            let text = this.data.text[this.$config.language];
             text = text.replaceAll("\\n", "<br>");
             
             // "___": "Some sample text."
@@ -92,9 +92,9 @@ export default {
             >
                 <!-- Es necesario modificar el z-index para que html2canvas imprima la imagen correctamente. -->
 				<component v-if="dark && data.text !== undefined" :is="dynamic_card_text"></component>
-				<span v-if="!dark && data.text !== undefined">{{ data.text[$display.language] }}</span>
+				<span v-if="!dark && data.text !== undefined">{{ data.text[$config.language] }}</span>
 				<span v-else/>
-                <span v-if="0 < index" style="position: absolute; bottom: 0.25rem; right: 0.5rem;">{{ index }}</span>
+                <span v-if="0 < index && 1 < $room.blackCard.slots" style="position: absolute; bottom: 0.25rem; right: 0.5rem;">{{ index }}</span>
             </div>
         </div>
     </div>

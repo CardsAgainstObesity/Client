@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import { useDisplayStore } from '@/stores/display';
 import { useRoomStore } from '@/stores/room';
 import { usePlayerStore } from '@/stores/player';
-import { useAudioStore } from '@/stores/audio';
+import { useConfigStore } from '@/stores/config';
 import * as vueBridge from '@/services/vueBridge.mjs';
 
 // Vue
@@ -33,7 +33,7 @@ app.use(router);
 const displayStore = useDisplayStore();
 const roomStore = useRoomStore();
 const playerStore = usePlayerStore();
-const audioStore = useAudioStore();
+const configStore = useConfigStore();
 
 // Vue -> JS
 app.config.globalProperties.$display = displayStore;
@@ -47,9 +47,9 @@ app.config.globalProperties.$player = playerStore;
 window.$playerStore = playerStore; // DEBUG
 vueBridge.PlayerStore.instance = playerStore;
 
-app.config.globalProperties.$audio = audioStore;
-vueBridge.AudioStore.instance = audioStore;
-window.$audioStore = audioStore; // DEBUG
+app.config.globalProperties.$config = configStore;
+vueBridge.ConfigStore.instance = configStore;
+window.$configStore = configStore; // DEBUG
 
 window.$vueRouter = router; // DEBUG
 
@@ -82,9 +82,9 @@ const ToastOptions = {
 app.use(Toast, ToastOptions);
 window.$vueToast = useToast(); // DEBUG
 
-// Init AudioStore
+// Init Audio array
 for(let index = 1; index <= 6; index++){
-    audioStore.audio_array[index] = {
+    configStore.audio_array[index] = {
         name: `card_flip_${index}`,
     }
 }

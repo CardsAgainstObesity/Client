@@ -16,7 +16,7 @@ export const RoomStore = {
     }
 };
 
-export const AudioStore = {
+export const ConfigStore = {
     get instance(){
         return this.__store;
     },

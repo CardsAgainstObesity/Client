@@ -6,15 +6,22 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min); // The maximum is inclusive and the minimum is inclusive
 }
 
-const ls_audio_volume = localStorage.getItem("audio_volume"); // Persist audio volume selection
+// Data persistance
+const ls_language = localStorage.getItem("language");
+const ls_audio_volume = localStorage.getItem("audio_volume");
 
-export const useAudioStore = defineStore({
+export const useConfigStore = defineStore({
 	id: 'audio',
 	state: () => ({
-        audio_array: {},
+        language: ls_language === null ? 'en' : ls_language,
         audio_volume: ls_audio_volume === null ? 0.5 : ls_audio_volume,
+        audio_array: {},
 	}),
     actions: {
+        setLanguage(value) {
+            this.language = value.code;
+            localStorage.setItem("language", value.code);
+        },
         setAudioVolume(){
             localStorage.setItem("audio_volume", this.audio_volume);
             for (const element of document.querySelectorAll(".audio_card_flip")){

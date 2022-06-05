@@ -202,7 +202,7 @@ export default class WSConnection {
             const selected_player = vueBridge.RoomStore.instance.votingFor.filter(selection => selection.player_id === player_id);
             // selected_player[0].flipped = !selected_player[0].flipped; // Toggle
             selected_player[0].flipped = true; // Set to true (flipped)
-            vueBridge.AudioStore.instance.playRandomAudioClip();
+            vueBridge.ConfigStore.instance.playRandomAudioClip();
 
             vueBridge.PlayerStore.instance.clearCardValues();
             for (const card of selected_player[0].cards) {
