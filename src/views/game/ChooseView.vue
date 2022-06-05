@@ -107,7 +107,7 @@ export default {
 
 <style scoped>
 button.btn.active {
-    background-color: #83b4f0;
-    color: #222222;
+    background-color: var(--color-highlighted-text);
+    color: var(--color-background-alt);
 }
 </style>

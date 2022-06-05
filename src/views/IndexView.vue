@@ -1,42 +1,13 @@
-<template>
-    <div>
-        <div class="centered">
-            <main>
-                <div class="logo noselect">
-                    <img src="/icons/logo.svg" />
-                    <span>{{ $display.text("app_name") }}</span>
-                </div>
-                <input
-                    type="text"
-                    id="username"
-                    :placeholder="$display.text('index_username')"
-                    maxlength="25"
-                />
-                <input
-                    type="text"
-                    id="roomId"
-                    :placeholder="$display.text('index_roomid')"
-                    maxlength="10"
-                    v-model="roomId"
-                />
-                <br />
-                <button @click="connect">
-                    {{ $display.text("index_join_button") }}
-                </button>
-                <button @click="create">
-                    {{ $display.text("index_create_button") }}
-                </button>
-            </main>
-        </div>
-    </div>
-</template>
-
 <script>
 import { mdiHome } from "@mdi/js";
 import WSConnection from "@/services/ws.mjs";
 
+import Logo from "@/components/Logo.vue";
+
 export default {
-    name: "IndexView",
+    components: {
+        Logo,
+    },
     data() {
         return {
             WSConnection,
@@ -66,6 +37,40 @@ export default {
 };
 </script>
 
+<template>
+    <div>
+        <div class="centered">
+            <main>
+                <div class="logo noselect">
+                    <!-- <img src="/icons/logo.svg" /> -->
+                    <Logo />
+                    <span>{{ $display.text("app_name") }}</span>
+                </div>
+                <input
+                    type="text"
+                    id="username"
+                    :placeholder="$display.text('index_username')"
+                    maxlength="25"
+                />
+                <input
+                    type="text"
+                    id="roomId"
+                    :placeholder="$display.text('index_roomid')"
+                    maxlength="10"
+                    v-model="roomId"
+                />
+                <br />
+                <button @click="connect">
+                    {{ $display.text("index_join_button") }}
+                </button>
+                <button @click="create">
+                    {{ $display.text("index_create_button") }}
+                </button>
+            </main>
+        </div>
+    </div>
+</template>
+
 <style scoped>
 main > div.logo {
     flex-wrap: wrap;
@@ -75,14 +80,15 @@ main > div.logo {
     align-items: center;
 }
 
-main > div.logo > img {
+main > div.logo > img,
+main > div.logo > svg {
     width: 20%;
 }
 
 main > div.logo > span {
     font-size: 150%;
     white-space: nowrap;
-    color: #5e81ac;
+    color: var(--color-highlighted-text);
     font-weight: bold;
 }
 
@@ -96,15 +102,15 @@ button,
 input[type="text"] {
     margin-bottom: 0.5rem;
     max-width: 50vw;
-    background-color: #181818 !important;
+    background-color: var(--color-background) !important;
     font-size: 1rem;
     width: 100%;
 }
 
 input[type="text"]:focus,
 button:hover {
-    background-color: #83b4f0 !important;
-    color: #181818;
+    background-color: var(--color-highlighted-text) !important;
+    color: var(--color-background);
 }
 
 input[type="text"] {

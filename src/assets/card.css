@@ -17,7 +17,7 @@
 
 .dark .game-card-front,
 .dark .game-card-back {
-    background: #2e3440 !important;
+    background: var(--color-card-back) !important;
 }
 
 .game-card-inner {
@@ -58,8 +58,7 @@
 }
 
 .game-card-front {
-    background-color: #5e81ac;
-    background-image: url('/icons/hamburger-off.svg');
+    background-color: var(--color-highlighted-text);
     background-size: contain;
     background-repeat: no-repeat;
     background-position-y: center;
@@ -72,7 +71,7 @@
 }
 
 .game-card-back {
-    background-color: #5e81ac;
+    background-color: var(--color-highlighted-text);
     z-index: 0;
     color: white;
     transform: rotateY(180deg);

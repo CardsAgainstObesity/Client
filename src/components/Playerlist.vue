@@ -37,13 +37,14 @@ ul.playerlist > li {
     margin-bottom: 0.5rem;
     min-width: 200px;
     max-width: 50vw;
-    background-color: #222222;
-    transition: background-color 0.25s, transform 0.25s;
+    background-color: var(--color-background-alt);
+    transition: background-color 0.5s, transform 0.5s;
     overflow-x: hidden;
 }
 
 ul.playerlist > li:hover {
-    background-color: #333;
+    background-color: var(--color-tertiary);
+    color: var(--color-background-alt);
     transform: scale(1.025);
 }
 

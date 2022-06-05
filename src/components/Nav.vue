@@ -3,6 +3,8 @@ import { RouterLink } from 'vue-router';
 import { mdiCamera, mdiHome, mdiHamburger, mdiBookOpenVariant, mdiCog, mdiInformation } from '@mdi/js';
 import html2canvas from "html2canvas";
 
+import Logo from "@/components/Logo.vue";
+
 export default {
     data(){
         return {
@@ -10,7 +12,8 @@ export default {
         }
     },
     components: {
-        RouterLink
+        RouterLink,
+        Logo,
     },
     methods: {
         screenshot() {
@@ -40,6 +43,7 @@ export default {
                 />
             </div>
             <nav class="center">
+                <RouterLink to="/test" style="display: none;"><Icon :path="mdiInformation" /> TEST</RouterLink>
                 <RouterLink v-if="$room.roomId == ''" to="/"><Icon :path="mdiHome" /> {{$display.text("nav_index")}}</RouterLink>
                 <RouterLink v-if="$room.roomId != ''" :to="{ name: $room.status, params: { id: ($room.roomId == '' ? 'DEBUG':$room.roomId) } }"><Icon :path="mdiHamburger" /> {{$display.text("nav_game")}}</RouterLink>
                 <RouterLink to="/rules"><Icon :path="mdiBookOpenVariant" /> {{$display.text("nav_rules")}}</RouterLink>
@@ -47,6 +51,7 @@ export default {
                 <RouterLink to="/about"><Icon :path="mdiInformation" /> {{$display.text("nav_about")}}</RouterLink>
             </nav>
             <div class="right logo">
+                <Logo />
                 <span>{{$display.text("app_name")}}</span>
             </div>
         </div>
@@ -55,16 +60,16 @@ export default {
 
 <style scoped>
 @media only screen and (min-height: 601px) {
-	div.hide > div.logo {
+	/* div.hide > div.logo {
 		background-image: none;
-	}
-    div.hide > div.logo > span {
+	} */
+    div.hide > div.logo {
         display: none;
     }
 }
 
 @media screen and (max-width: 1000px) {
-    div > div.logo > span {
+    div > div.logo {
         display: none;
     }
 }
@@ -107,8 +112,16 @@ div.right {
     right: 0;
 }
 
+div.logo {
+    display: flex;
+    align-items: center;
+}
+
 div.logo > span {
-    color: #83b4f0;
-    padding: 1rem 1rem 1rem 2.5rem;
+    color: var(--color-highlighted-text);
+    padding: 1rem 1rem 1rem 0.25rem;
+}
+div.logo > svg {
+    height: 2rem;
 }
 </style>

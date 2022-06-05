@@ -1,5 +1,6 @@
 <script>
 import CardInput from "@/components/CardInput.vue";
+import { mdiHamburgerOff } from '@mdi/js';
 
 export default {
     components: {
@@ -7,6 +8,7 @@ export default {
     },
 	data(){
 		return {
+            mdiHamburgerOff,
 			card_text: {
 				es: "Así es, yo maté a ___. ¿Que cómo lo hice? ___.", // DEBUG
 			},
@@ -85,7 +87,12 @@ export default {
         "
     >
         <div class="game-card-inner" :class="($player.cardIsSelected(data.id) && $room.status === 'choosing' ? 'selected ' : ' ')">
-            <div class="game-card-front"></div>
+            <div class="game-card-front">
+                <Icon
+                    style="color: var(--color-card-back); width: 100%; height: 100%;"
+                    :path="mdiHamburgerOff"
+                />
+            </div>
             <div
                 class="game-card-back"
                 :style="active ? 'z-index: 0;' : 'z-index: -1;'"
@@ -102,6 +109,6 @@ export default {
 
 <style scoped>
 .selected > * {
-    background-color: #2E3440;
+    background-color: var(--color-card-back);
 }
 </style>

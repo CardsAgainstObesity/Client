@@ -1,0 +1,99 @@
+<template>
+    <svg
+    viewBox="0 0 734.4 734.4"
+    version="1.1"
+    id="svg8"
+    sodipodi:docname="logo.svg"
+    inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg">
+
+    <sodipodi:namedview
+        id="namedview10"
+        pagecolor="#ffffff"
+        bordercolor="#666666"
+        borderopacity="1.0"
+        inkscape:pageshadow="2"
+        inkscape:pageopacity="0.0"
+        inkscape:pagecheckerboard="0"
+        inkscape:document-units="pt"
+        showgrid="false"
+        inkscape:zoom="0.64338233"
+        inkscape:cx="435.97716"
+        inkscape:cy="489.60002"
+        inkscape:window-width="1920"
+        inkscape:window-height="993"
+        inkscape:window-x="0"
+        inkscape:window-y="0"
+        inkscape:window-maximized="1"
+        inkscape:current-layer="svg8" />
+    <defs
+        id="defs2" />
+    <rect
+        id="shape0"
+        fill="#83b4f0"
+        fill-rule="evenodd"
+        stroke-opacity="0"
+        stroke="#000000"
+        stroke-width="0"
+        stroke-linecap="square"
+        stroke-linejoin="bevel"
+        width="360.72"
+        height="533.52002"
+        rx="18"
+        ry="18"
+        x="114.84002"
+        y="28.08" />
+    <rect
+        id="shape1"
+        fill="#2e3440"
+        fill-rule="evenodd"
+        stroke-opacity="0"
+        stroke="#000000"
+        stroke-width="0"
+        stroke-linecap="square"
+        stroke-linejoin="bevel"
+        width="360.72"
+        height="533.52002"
+        rx="18"
+        ry="18"
+        x="186.84001"
+        y="100.07999" />
+    <rect
+        id="shape2"
+        fill="#83b4f0"
+        fill-rule="evenodd"
+        stroke-opacity="0"
+        stroke="#000000"
+        stroke-width="0"
+        stroke-linecap="square"
+        stroke-linejoin="bevel"
+        width="360.72"
+        height="532.79999"
+        rx="18"
+        ry="18"
+        x="258.84003"
+        y="172.08" />
+    <path
+        id="shape01"
+        fill="#2e3440"
+        stroke="#2e3440"
+        stroke-width="14.3658"
+        stroke-linecap="square"
+        stroke-linejoin="bevel"
+        d="m 559.87356,421.60186 c 15.94603,0 28.73158,12.92921 28.73158,28.73159 0,15.80237 -12.78555,28.73159 -28.73158,28.73159 h -25.85843 l -57.46318,-57.46318 h 83.32161 m 6.03363,125.98801 v -0.14365 l -39.64959,-39.6496 h -0.14366 l -28.73159,-28.73158 h 0.14366 l -57.46318,-57.46318 v 0 l -28.73159,-28.73159 v 0 L 306.89192,288.43095 288.5037,306.6755 l 43.24104,43.09739 c -16.08969,21.54869 -16.08969,43.09738 -16.08969,43.09738 h 59.04342 l 28.73159,28.73159 h -73.40921 c -15.80238,0 -28.73159,12.92921 -28.73159,28.73159 0,15.80237 12.92921,28.73159 28.73159,28.73159 h 130.87238 l 28.73159,28.73158 H 315.65505 v 14.3658 c 0,23.84722 19.25017,43.09738 43.09739,43.09738 h 172.38953 c 4.74071,0 9.33776,-1.0056 13.50384,-2.44218 l 27.29501,27.29501 18.24456,-18.24456 -24.27819,-24.2782 m 8.33216,-154.7196 c 0,0 0,-86.19477 -129.29215,-86.19477 -30.45548,0 -53.44075,4.88437 -71.11068,12.21093 l 73.98384,73.98384 z"
+        sodipodi:nodetypes="cccccccccccccccccccccccccccccccccccccccc" />
+    </svg>
+</template>
+
+<style scoped>
+#shape0, #shape2 {
+    fill: var(--color-highlighted-text);
+}
+#shape1, #shape01 {
+    fill: var(--color-card-back);
+    stroke: var(--color-card-back);
+}
+</style>
