@@ -90,6 +90,7 @@ export default {
                     :clickable="true"
                     :active="$room.czar.id !== $player.playerId"
                     :key="card"
+                    :index="[...$player.selected].indexOf(card.id)+1"
                 />
             </div>
         </div>

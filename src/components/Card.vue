@@ -30,6 +30,10 @@ export default {
             type: Boolean,
             required: false,
         },
+        index: {
+            type: Number,
+            required: false,
+        }
     },
 	methods: {
 		assignInput() {
@@ -90,6 +94,7 @@ export default {
 				<component v-if="dark && data.text !== undefined" :is="dynamic_card_text"></component>
 				<span v-if="!dark && data.text !== undefined">{{ data.text[$display.language] }}</span>
 				<span v-else/>
+                <span v-if="0 < index" style="position: absolute; bottom: 0.25rem; right: 0.5rem;">{{ index }}</span>
             </div>
         </div>
     </div>
