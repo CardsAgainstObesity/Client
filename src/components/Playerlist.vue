@@ -43,12 +43,11 @@ ul.playerlist > li {
 }
 
 ul.playerlist > li:hover {
-    background-color: var(--color-tertiary);
     color: var(--color-background-alt);
     transform: scale(1.025);
 }
 
-@keyframes slideInFromLeft {
+@keyframes bounceItem {
     0% {
         transform: scale(1);
     }
@@ -61,13 +60,12 @@ ul.playerlist > li:hover {
 }
 
 ul.playerlist > li:last-child {
-    animation: 1s ease-out 0s 1 slideInFromLeft;
+    animation: 1s ease-out 0s 1 bounceItem;
 }
 
 @media only screen and (max-width: 1000px) {
     ul.playerlist > li {
         max-width: 100% !important;
-        /* margin-right: 2.5%; */
     }
 }
 </style>

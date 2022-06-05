@@ -40,3 +40,9 @@ export default {
         <span v-else style="margin-left: 0;">{{player.name}}</span>
     </div>
 </template>
+
+<style scoped>
+svg, span {
+    color: var(--color-ui-text);
+}
+</style>
