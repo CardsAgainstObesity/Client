@@ -83,8 +83,9 @@ export default {
 div.topnav {
     position: relative;
     overflow: hidden;
-    background-color: var(--color-background-soft);
+    background-color: var(--color-background-alt);
     margin-bottom: 2rem;
+    transition: 0.5s;
 }
 
 nav a.router-link-exact-active {
@@ -120,6 +121,7 @@ div.logo {
 div.logo > span {
     color: var(--color-highlighted-text);
     padding: 1rem 1rem 1rem 0.25rem;
+    transition: 0.5s;
 }
 div.logo > svg {
     height: 2rem;

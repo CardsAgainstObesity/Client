@@ -75,10 +75,15 @@
 </template>
 
 <style scoped>
+rect, path {
+    transition: 0.5s;
+}
+
 #card01,
 #card03 {
     fill: var(--color-highlighted-text);
 }
+
 #card02,
 #hamburger {
     fill: var(--color-card-back);

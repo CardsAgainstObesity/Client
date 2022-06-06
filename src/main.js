@@ -89,6 +89,11 @@ for(let index = 1; index <= 6; index++){
     }
 }
 
+// Init css variables
+for (const css_color of configStore.css_colors){
+    css_color.value = configStore.get_computed_style(css_color.code)
+}
+
 // Mount
 
 app.mount('#app');

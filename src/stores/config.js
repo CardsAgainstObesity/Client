@@ -16,6 +16,16 @@ export const useConfigStore = defineStore({
         language: ls_language === null ? 'en' : ls_language,
         audio_volume: ls_audio_volume === null ? 0.5 : ls_audio_volume,
         audio_array: {},
+        css_root: document.querySelector(":root"),
+        css_variables: {
+            "--color-primary": { label: "settings_color_primary", code: "--color-primary", value: "" },
+            "--color-secondary": { label: "settings_color_secondary", code: "--color-secondary", value: "" },
+            "--color-ui-text": { label: "settings_color_ui_text", code: "--color-ui-text", value: ""},
+            "--color-card-text": { label: "settings_color_card_text", code: "--color-card-text", value: "" },
+            "--color-background": { label: "settings_color_background", code: "--color-background", value: "" },
+            "--color-background-alt": { label: "settings_color_background-alt", code: "--color-background-alt", value: "" },
+            "--background-image": { label: "", code: "", value: "" },
+        },
 	}),
     actions: {
         setLanguage(value) {
@@ -35,6 +45,22 @@ export const useConfigStore = defineStore({
         },
         playAudioClip(audio){
             document.getElementById(`audio_${audio.name}`).play();
-        }
+        },
+        get_computed_style(property){
+            return getComputedStyle(this.css_root).getPropertyValue(property);
+        },
+        set_property(property, value){
+            // console.log("property", property);
+            // console.log("value", value);
+            this.css_variables[property].value = value;
+            // console.log(this.css_variables);
+            // console.log(this.css_variables[property]);
+            this.css_root.style.setProperty(property, value);
+        },
     },
+    getters: {
+        css_colors(){
+            return Object.values(this.css_variables).filter(css_variable => css_variable.code.includes("--color"));
+        }
+    }
 });
