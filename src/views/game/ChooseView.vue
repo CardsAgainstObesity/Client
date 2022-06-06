@@ -56,7 +56,7 @@ export default {
 
 <template>
     <div>
-        <div id="root" class="left_padding">
+        <div id="root" class="padding">
             <h1 class="noselect">
                 <CzarName />
             </h1>

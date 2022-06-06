@@ -68,7 +68,7 @@ export default {
 </script>
 
 <template>
-    <main class="centered_text">
+    <main class="padding">
         <p>{{ $display.text("settings_language") }}</p>
         <ul>
             <!-- TODO: Cambiar este v-for por cartas que tengan el estilo de las banderas del idioma. -->

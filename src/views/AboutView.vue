@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h1 class="left_padding">Web</h1>
+        <h1 class="padding">Web</h1>
         <div id="root">
             <div class="container">
                 <div class="flex-item">
@@ -14,7 +14,7 @@
                     <h3>Socket.io</h3>
                 </div>
             </div>
-            <h1 class="left_padding">Tools</h1>
+            <h1 class="padding">Tools</h1>
             <div class="container">
                 <div class="flex-item">
                     <img class="image" src="https://upload.wikimedia.org/wikipedia/commons/7/73/Calligrakrita-base.svg" />

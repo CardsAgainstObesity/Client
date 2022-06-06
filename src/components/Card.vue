@@ -97,7 +97,7 @@ export default {
             </div>
             <div
                 class="game-card-back"
-                :class="{ active_back: active }"
+                :class="{ active_back: active, flippable_card: $room.status !== 'choosing' }"
             >
 				<component v-if="dark && data.text !== undefined" :is="dynamic_card_text"></component>
 				<span v-if="!dark && data.text !== undefined">{{ $display.other_text(data.text) }}</span>
@@ -113,16 +113,24 @@ export default {
     background-color: var(--color-card-back);
 }
 
-.game-card:not(.dark) > .game-card-inner > .game-card-back {
-    animation: flip_card_index 0.2s linear;
-}
-
-.game-card:not(.dark) > .game-card-inner > .game-card-back.active_back {
+.game-card:not(.dark) > .game-card-inner > .game-card-back.flippable_card {
     animation: flip_card_index 0.2s linear reverse;
 }
 
+.game-card:not(.dark) > .game-card-inner > .game-card-back.active_back.flippable_card {
+    animation: flip_card_index 0.2s linear;
+}
+
+.game-card:not(.dark) > .game-card-inner > .game-card-back:not(.flippable_card){
+    z-index: -1;
+}
+
+.game-card:not(.dark) > .game-card-inner > .game-card-back.active_back:not(.flippable_card){
+    z-index: 0;
+}
+
 @keyframes flip_card_index {
-  from { z-index: -1; }
-  to { z-index: 0; }
+  from { z-index: 0; }
+  to { z-index: -1; }
 }
 </style>

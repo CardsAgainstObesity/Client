@@ -88,11 +88,8 @@ footer {
     background-color: var(--color-background);
 }
 
-.left_padding {
+.padding {
     padding-left: 2.5%;
-}
-
-.right_padding {
     padding-right: 2.5%;
 }
 
