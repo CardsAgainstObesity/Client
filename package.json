@@ -12,6 +12,7 @@
         "pinia": "^2.0.13",
         "socket.io-client": "^4.4.1",
         "vite": "^2.9.5",
+        "vite-plugin-compression": "^0.5.1",
         "vue": "^3.2.31",
         "vue-accessible-color-picker": "^4.0.3",
         "vue-router": "^4.0.12",

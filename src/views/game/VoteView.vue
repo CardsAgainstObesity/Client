@@ -76,7 +76,3 @@ export default {
     background-color: rgba(46, 52, 64, 1);
 }
 </style>
-
-<style>
-@import "@/assets/card.css";
-</style>

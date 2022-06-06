@@ -1,11 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import IndexView from "../views/IndexView.vue";
-import RulesView from "../views/RulesView.vue";
-import LobbyView from "../views/game/LobbyView.vue";
-import ChooseView from "../views/game/ChooseView.vue";
-import VoteView from "../views/game/VoteView.vue";
-import SettingsView from "../views/SettingsView.vue";
-import AboutView from "../views/AboutView.vue";
 import PathNotFound from "../views/PathNotFound.vue";
 
 let router = createRouter({
@@ -17,7 +10,7 @@ let router = createRouter({
             meta: {
                 code: "nav_index",
             },
-            component: IndexView,
+            component: () => import('../views/IndexView.vue'),
             props: true,
         },
         {
@@ -27,7 +20,7 @@ let router = createRouter({
                 code: "nav_game",
                 game_code: "game_state_lobby",
             },
-            component: LobbyView,
+            component: () => import('../views/game/LobbyView.vue'),
         },
         {
             path: "/game/:id",
@@ -36,7 +29,7 @@ let router = createRouter({
                 code: "nav_game",
                 game_code: "game_state_choosing",
             },
-            component: ChooseView,
+            component: () => import('../views/game/ChooseView.vue'),
         },
         {
             path: "/game/:id",
@@ -45,7 +38,7 @@ let router = createRouter({
                 code: "nav_game",
                 game_code: "game_state_voting",
             },
-            component: VoteView,
+            component: () => import('../views/game/VoteView.vue'),
         },
         {
             path: "/rules",
@@ -53,7 +46,7 @@ let router = createRouter({
             meta: {
                 code: "nav_rules",
             },
-            component: RulesView,
+            component: () => import('../views/RulesView.vue'),
         },
         {
             path: "/settings",
@@ -61,7 +54,7 @@ let router = createRouter({
             meta: {
                 code: "nav_settings",
             },
-            component: SettingsView,
+            component: () => import('../views/SettingsView.vue'),
         },
         {
             path: "/about",
@@ -69,7 +62,7 @@ let router = createRouter({
             meta: {
                 code: "nav_about",
             },
-            component: AboutView,
+            component: () => import('../views/AboutView.vue'),
         },
         { // DEBUG
             path: '/test',

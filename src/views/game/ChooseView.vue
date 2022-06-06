@@ -101,10 +101,6 @@ export default {
     </div>
 </template>
 
-<style>
-@import "@/assets/card.css";
-</style>
-
 <style scoped>
 button.btn.active {
     background-color: var(--color-highlighted-text);
