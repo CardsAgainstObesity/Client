@@ -97,7 +97,7 @@ export default {
                     :dark="false"
                     :clickable="true"
                     :active="card_preview.preview_active"
-                    @click="card_preview.preview_active = !card_preview.preview_active"
+                    @click="card_preview.preview_active = !card_preview.preview_active; $config.playRandomAudioClip();"
                 />
         </div>
 

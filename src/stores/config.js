@@ -14,7 +14,7 @@ export const useConfigStore = defineStore({
 	id: 'config',
 	state: () => ({
         language: ls_language === null ? 'en' : ls_language,
-        audio_volume: ls_audio_volume === null ? 0.5 : ls_audio_volume,
+        audio_volume: ls_audio_volume === null ? 0.5 : parseFloat(ls_audio_volume),
         audio_array: {},
         css_root: document.querySelector(":root"),
         css_variables: {
@@ -37,7 +37,6 @@ export const useConfigStore = defineStore({
             for (const element of document.querySelectorAll(".audio_card_flip")){
                 element.volume = this.audio_volume;
             }
-            this.playRandomAudioClip(); // Preview volume
         },
         playRandomAudioClip(){
             const randomAudio = this.audio_array[getRandomIntInclusive(1, Object.keys(this.audio_array).length)];
