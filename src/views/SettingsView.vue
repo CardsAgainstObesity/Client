@@ -36,7 +36,7 @@ export default {
                         { label: "settings_color_primary", code: "--color-primary", value: "#5d88bd" },
                         { label: "settings_color_secondary", code: "--color-secondary", value: "#2e3440" },
                         { label: "settings_color_ui_text", code: "--color-ui-text", value: "#202020"},
-                        { label: "settings_color_card_text", code: "--color-card-text", value: "#202020" },
+                        { label: "settings_color_card_text", code: "--color-card-text", value: "#fefefe" },
                         { label: "settings_color_background", code: "--color-background", value: "#eeeeee" },
                         { label: "settings_color_background-alt", code: "--color-background-alt", value: "#cccccc" },
                     ]

@@ -53,6 +53,7 @@ export const useConfigStore = defineStore({
             // console.log("property", property);
             // console.log("value", value);
             this.css_variables[property].value = value;
+            localStorage.setItem(property, value);
             // console.log(this.css_variables);
             // console.log(this.css_variables[property]);
             this.css_root.style.setProperty(property, value);

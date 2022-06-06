@@ -91,7 +91,8 @@ for(let index = 1; index <= 6; index++){
 
 // Init css variables
 for (const css_color of configStore.css_colors){
-    css_color.value = configStore.get_computed_style(css_color.code)
+    if (localStorage.getItem(css_color.code)) configStore.set_property(css_color.code, localStorage.getItem(css_color.code)) // Recover data from localStorage if it exists.
+    else css_color.value = configStore.get_computed_style(css_color.code); // Otherwise just use the default theme.
 }
 
 // Mount

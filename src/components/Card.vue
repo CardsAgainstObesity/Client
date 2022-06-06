@@ -113,12 +113,12 @@ export default {
     background-color: var(--color-card-back);
 }
 
-.game-card-back {
-    animation: flip_card_index 0.2s linear reverse;
+.game-card:not(.dark) > .game-card-inner > .game-card-back {
+    animation: flip_card_index 0.2s linear;
 }
 
-.game-card-back.active_back {
-    animation: flip_card_index 0.2s linear;
+.game-card:not(.dark) > .game-card-inner > .game-card-back.active_back {
+    animation: flip_card_index 0.2s linear reverse;
 }
 
 @keyframes flip_card_index {
