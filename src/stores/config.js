@@ -11,7 +11,7 @@ const ls_language = localStorage.getItem("language");
 const ls_audio_volume = localStorage.getItem("audio_volume");
 
 export const useConfigStore = defineStore({
-	id: 'audio',
+	id: 'config',
 	state: () => ({
         language: ls_language === null ? 'en' : ls_language,
         audio_volume: ls_audio_volume === null ? 0.5 : ls_audio_volume,

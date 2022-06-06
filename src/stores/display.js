@@ -37,6 +37,12 @@ export const useDisplayStore = defineStore({
 				game_players_lobby: "Jugadores en la partida",
 				game_card_packs: "Mazos de cartas",
 				game_next_round: "Siguiente ronda",
+
+				// VIEW: SETTINGS
+				settings_audio_volume_range: "Volumen",
+				settings_css_presets: "Temas",
+				settings_theme_default: "Predeterminado",
+				settings_theme_white: "Destello",
 			},
 			en: {
 				// GENERAL
@@ -70,6 +76,12 @@ export const useDisplayStore = defineStore({
 				game_players_lobby: "Players in this lobby",
 				game_card_packs: "Card packs",
 				game_next_round: "Next round",
+
+				// VIEW: SETTINGS
+				settings_audio_volume_range: "Volume",
+				settings_css_presets: "Themes",
+				settings_theme_default: "Default",
+				settings_theme_white: "Flashbang",
 			},
 		},
 		error_obj: {
@@ -96,8 +108,17 @@ export const useDisplayStore = defineStore({
 		},
 	}),
 	actions: { // TODO: If no translated text is available for the selected language, default to English.
+		other_text(data){
+			if (data[ConfigStore.instance.language] !== undefined) return data[ConfigStore.instance.language];
+			else {
+				const first_available_language = Object.keys(data)[0];
+				return data[first_available_language];
+			}
+		},
 		text(key) {
-			return this.text_obj[ConfigStore.instance.language][key];
+			const user_language = this.text_obj[ConfigStore.instance.language];
+			if (user_language[key] !== undefined) return user_language[key];
+			return user_language.en;
 		},
 		error(key) {
 			return this.error_obj[ConfigStore.instance.language][key];

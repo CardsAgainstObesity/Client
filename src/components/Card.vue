@@ -58,7 +58,13 @@ export default {
 	computed: {
         dynamic_card_text() {
 			this.card_counter = 0;
-            let text = this.data.text[this.$config.language];
+            let text;
+            if (this.data.text[this.$config.language] !== undefined) text = this.data.text[this.$config.language];
+            else {
+                const first_available_language = Object.keys(this.data.text)[0];
+                text = this.data.text[first_available_language];
+            }
+            
             text = text.replaceAll("\\n", "<br>");
             
             // "___": "Some sample text."
@@ -79,12 +85,8 @@ export default {
 <template>
     <div
         @click="assignInput"
-        :class="
-            'game-card ' +
-            (dark ? 'dark ' : ' ') +
-            (clickable ? 'clickable ' : ' ') +
-            (active ? 'active ' : ' ')
-        "
+        class="game-card"
+        :class="{ dark, clickable, active }"
     >
         <div class="game-card-inner" :class="($player.cardIsSelected(data.id) && $room.status === 'choosing' ? 'selected ' : ' ')">
             <div class="game-card-front">
@@ -95,11 +97,10 @@ export default {
             </div>
             <div
                 class="game-card-back"
-                :style="active ? 'z-index: 0;' : 'z-index: -1;'"
+                :class="{ active_back: active }"
             >
-                <!-- Es necesario modificar el z-index para que html2canvas imprima la imagen correctamente. -->
 				<component v-if="dark && data.text !== undefined" :is="dynamic_card_text"></component>
-				<span v-if="!dark && data.text !== undefined">{{ data.text[$config.language] }}</span>
+				<span v-if="!dark && data.text !== undefined">{{ $display.other_text(data.text) }}</span>
 				<span v-else/>
                 <span v-if="0 < index && 1 < $room.blackCard.slots" style="position: absolute; bottom: 0.25rem; right: 0.5rem;">{{ index }}</span>
             </div>
@@ -110,5 +111,18 @@ export default {
 <style scoped>
 .selected > * {
     background-color: var(--color-card-back);
+}
+
+.game-card-back {
+    animation: flip_card_index 0.2s linear reverse;
+}
+
+.game-card-back.active_back {
+    animation: flip_card_index 0.2s linear;
+}
+
+@keyframes flip_card_index {
+  from { z-index: -1; }
+  to { z-index: 0; }
 }
 </style>
