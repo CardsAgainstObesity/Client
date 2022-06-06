@@ -1,3 +1,31 @@
+<script>
+export default {
+    computed: {
+        primary_color(){
+            this.color_change();
+            return this.$config.css_variables['--color-primary'].value;
+        },
+        secondary_color(){
+            this.color_change();
+            return this.$config.css_variables['--color-secondary'].value;
+        },
+    },
+    methods: {
+        color_change(){
+            const dynamic_svg_logo = document.getElementById("cao_logo");
+            if (dynamic_svg_logo !== null){
+                const logo_serialized = new XMLSerializer().serializeToString(dynamic_svg_logo);
+                const logo_url = `data:image/svg+xml,${encodeURIComponent(logo_serialized)}`;
+                document.getElementById("favicon").setAttribute("href", logo_url);
+            }
+        }
+    },
+    mounted(){
+        this.color_change();
+    }
+}
+</script>
+
 <template>
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -5,6 +33,7 @@
         xmlns:krita="http://krita.org/namespaces/svg/krita"
         xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
         viewBox="0 0 734.4 734.4"
+        id="cao_logo"
     >
         <defs />
         <rect
@@ -18,7 +47,7 @@
         <rect
             id="card01"
             transform="matrix(0.999999933512905 0 0 0.999999933512905 114.480016802618 28.0799981330424)"
-            fill="#5e81ac"
+            :fill="primary_color"
             fill-rule="evenodd"
             stroke-opacity="0"
             stroke="#000000"
@@ -33,7 +62,7 @@
         <rect
             id="card02"
             transform="matrix(0.999999933512905 0 0 0.999999933512905 186.480012015548 100.079993345972)"
-            fill="#2e3440"
+            :fill="secondary_color"
             fill-rule="evenodd"
             stroke-opacity="0"
             stroke="#000000"
@@ -48,7 +77,7 @@
         <rect
             id="card03"
             transform="matrix(0.999999933512905 0 0 0.999999933512905 258.480007228476 172.0799885589)"
-            fill="#5e81ac"
+            :fill="primary_color"
             fill-rule="evenodd"
             stroke-opacity="0"
             stroke="#000000"
@@ -63,7 +92,7 @@
         <path
             id="hamburger"
             transform="matrix(14.3657938141856 0 0 14.3657938141856 316.8 316.8)"
-            fill="#2e3440"
+            :fill="secondary_color"
             stroke="none"
             stroke-width="1"
             stroke-linecap="square"
@@ -81,11 +110,11 @@ rect, path {
 
 #card01,
 #card03 {
-    fill: var(--color-highlighted-text);
+    fill: var(--color-primary);
 }
 
 #card02,
 #hamburger {
-    fill: var(--color-card-back);
+    fill: var(--color-secondary);
 }
 </style>

@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia';
+import html2canvas from "html2canvas";
 
 function getRandomIntInclusive(min, max) {
     min = Math.ceil(min);
@@ -49,12 +50,8 @@ export const useConfigStore = defineStore({
             return getComputedStyle(this.css_root).getPropertyValue(property);
         },
         set_property(property, value){
-            // console.log("property", property);
-            // console.log("value", value);
             this.css_variables[property].value = value;
             localStorage.setItem(property, value);
-            // console.log(this.css_variables);
-            // console.log(this.css_variables[property]);
             this.css_root.style.setProperty(property, value);
         },
     },

@@ -50,8 +50,8 @@ export default {
                 <RouterLink to="/settings"><Icon :path="mdiCog" /> {{$display.text("nav_settings")}}</RouterLink>
                 <RouterLink to="/about"><Icon :path="mdiInformation" /> {{$display.text("nav_about")}}</RouterLink>
             </nav>
-            <div class="right logo">
-                <Logo />
+            <div class="right logo" v-if="$router.currentRoute.value.name !== 'index'">
+                <Logo/>
                 <span>{{$display.text("app_name")}}</span>
             </div>
         </div>
