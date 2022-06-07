@@ -41,8 +41,9 @@ export const useDisplayStore = defineStore({
 				// VIEW: SETTINGS
 				settings_audio_volume_range: "Volumen",
 				settings_css_presets: "Temas",
-				settings_theme_default: "Predeterminado",
-				settings_theme_white: "Destello",
+				settings_theme_dark: "Oscuro",
+				settings_theme_white: "Claro",
+				settings_theme_cardsagainsthumanity: "Cartas Contra la Humanidad",
 			},
 			en: {
 				// GENERAL
@@ -80,8 +81,9 @@ export const useDisplayStore = defineStore({
 				// VIEW: SETTINGS
 				settings_audio_volume_range: "Volume",
 				settings_css_presets: "Themes",
-				settings_theme_default: "Default",
-				settings_theme_white: "Flashbang",
+				settings_theme_dark: "Dark",
+				settings_theme_white: "White",
+				settings_theme_cardsagainsthumanity: "Cards Against Humanity",
 			},
 		},
 		error_obj: {

@@ -83,13 +83,13 @@ export default {
 div.topnav {
     position: relative;
     overflow: hidden;
-    background-color: var(--color-background-alt);
+    background-color: var(--color-secondary);
     margin-bottom: 2rem;
     transition: 0.5s;
 }
 
 nav a.router-link-exact-active {
-    color: var(--color-ui-text);
+    color: var(--color-tertiary);
 }
 
 nav a.router-link-exact-active:hover {
@@ -119,7 +119,7 @@ div.logo {
 }
 
 div.logo > span {
-    color: var(--color-highlighted-text);
+    color: var(--color-primary);
     padding: 1rem 1rem 1rem 0.25rem;
     transition: 0.5s;
 }

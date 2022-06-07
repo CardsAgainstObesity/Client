@@ -91,7 +91,7 @@ export default {
         <div class="game-card-inner" :class="($player.cardIsSelected(data.id) && $room.status === 'choosing' ? 'selected ' : ' ')">
             <div class="game-card-front">
                 <Icon
-                    style="color: var(--color-card-back); width: 100%; height: 100%;"
+                    style="color: var(--color-card-black); width: 100%; height: 100%;"
                     :path="mdiHamburgerOff"
                 />
             </div>
@@ -110,7 +110,8 @@ export default {
 
 <style scoped>
 .selected > * {
-    background-color: var(--color-card-back);
+    color: var(--color-card-black-text);
+    background-color: var(--color-card-black);
 }
 
 .game-card:not(.dark) > .game-card-inner > .game-card-back.flippable_card {

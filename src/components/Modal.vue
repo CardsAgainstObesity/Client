@@ -65,7 +65,7 @@ export default {
 
 .modal-header h3 {
     margin-top: 0;
-    color: var(--color-highlighted-text);
+    color: var(--color-primary);
 }
 
 .modal-body {

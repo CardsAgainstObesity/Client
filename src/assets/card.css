@@ -17,7 +17,8 @@
 
 .dark .game-card-front,
 .dark .game-card-back {
-    background: var(--color-card-back) !important;
+    background: var(--color-card-black) !important;
+    color: var(--color-card-black-text) !important;
 }
 
 .game-card-inner {
@@ -58,7 +59,7 @@
 }
 
 .game-card-front {
-    background-color: var(--color-highlighted-text);
+    background-color: var(--color-card-white);
     background-size: contain;
     background-repeat: no-repeat;
     background-position-y: center;
@@ -71,15 +72,15 @@
 }
 
 .game-card-back {
-    background-color: var(--color-highlighted-text);
+    background-color: var(--color-card-white);
     z-index: 0;
-    color: var(--color-card-text);
+    color: var(--color-card-white-text);
     transform: rotateY(180deg);
     overflow-wrap: break-word;
     overflow-y: auto;
 }
 
 .card_input {
-    color: var(--color-primary);
+    color: var(--color-card-white);
     font-weight: bold;
 }

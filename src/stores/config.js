@@ -21,8 +21,12 @@ export const useConfigStore = defineStore({
         css_variables: {
             "--color-primary": { label: "settings_color_primary", code: "--color-primary", value: "" },
             "--color-secondary": { label: "settings_color_secondary", code: "--color-secondary", value: "" },
+            "--color-tertiary": { label: "settings_color_tertiary", code: "--color-tertiary", value: "" },
+            "--color-card-black": { label: "settings_color_card_black", code: "--color-card-black", value: "" },
+            "--color-card-black-text": { label: "settings_color_card_black_text", code: "--color-card-black-text", value: "" },
+            "--color-card-white": { label: "settings_color_card_white", code: "--color-card-white", value: "" },
+            "--color-card-white-text": { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "" },
             "--color-ui-text": { label: "settings_color_ui_text", code: "--color-ui-text", value: ""},
-            "--color-card-text": { label: "settings_color_card_text", code: "--color-card-text", value: "" },
             "--color-background": { label: "settings_color_background", code: "--color-background", value: "" },
             "--color-background-alt": { label: "settings_color_background-alt", code: "--color-background-alt", value: "" },
             "--background-image": { label: "", code: "", value: "" },

@@ -20,12 +20,16 @@ export default {
             mdiContentCopy,
             color_presets: [
                 {
-                    name: "settings_theme_default",
+                    name: "settings_theme_dark",
                     colors: [
                         { label: "settings_color_primary", code: "--color-primary", value: "#5d88bd" },
-                        { label: "settings_color_secondary", code: "--color-secondary", value: "#2e3440" },
+                        { label: "settings_color_secondary", code: "--color-secondary", value: "#222222" },
+                        { label: "settings_color_tertiary", code: "--color-tertiary", value: "#a2a2a2" },
                         { label: "settings_color_ui_text", code: "--color-ui-text", value: "#a2a2a2"},
-                        { label: "settings_color_card_text", code: "--color-card-text", value: "#fefefe" },
+                        { label: "settings_color_card_black", code: "--color-card-black", value: "#2e3440" },
+                        { label: "settings_color_card_black_text", code: "--color-card-black-text", value: "#fefefe" },
+                        { label: "settings_color_card_white", code: "--color-card-white", value: "#5d88bd" },
+                        { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#fefefe" },
                         { label: "settings_color_background", code: "--color-background", value: "#181818" },
                         { label: "settings_color_background-alt", code: "--color-background-alt", value: "#222222" },
                     ]
@@ -34,11 +38,30 @@ export default {
                     name: "settings_theme_white",
                     colors: [
                         { label: "settings_color_primary", code: "--color-primary", value: "#5d88bd" },
-                        { label: "settings_color_secondary", code: "--color-secondary", value: "#2e3440" },
+                        { label: "settings_color_secondary", code: "--color-secondary", value: "#cccccc" },
+                        { label: "settings_color_tertiary", code: "--color-tertiary", value: "#202020" },
                         { label: "settings_color_ui_text", code: "--color-ui-text", value: "#202020"},
-                        { label: "settings_color_card_text", code: "--color-card-text", value: "#fefefe" },
+                        { label: "settings_color_card_black", code: "--color-card-black", value: "#2e3440" },
+                        { label: "settings_color_card_black_text", code: "--color-card-black-text", value: "#fefefe" },
+                        { label: "settings_color_card_white", code: "--color-card-white", value: "#5d88bd" },
+                        { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#fefefe" },
                         { label: "settings_color_background", code: "--color-background", value: "#eeeeee" },
                         { label: "settings_color_background-alt", code: "--color-background-alt", value: "#cccccc" },
+                    ]
+                },
+                {
+                    name: "settings_theme_cardsagainsthumanity",
+                    colors: [
+                        { label: "settings_color_primary", code: "--color-primary", value: "#fefefe" },
+                        { label: "settings_color_secondary", code: "--color-secondary", value: "#000000" },
+                        { label: "settings_color_tertiary", code: "--color-tertiary", value: "#808080" },
+                        { label: "settings_color_ui_text", code: "--color-ui-text", value: "#fefefe"},
+                        { label: "settings_color_card_black", code: "--color-card-black", value: "#000000" },
+                        { label: "settings_color_card_black_text", code: "--color-card-black-text", value: "#fefefe" },
+                        { label: "settings_color_card_white", code: "--color-card-white", value: "#fefefe" },
+                        { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#000000" },
+                        { label: "settings_color_background", code: "--color-background", value: "#050505" },
+                        { label: "settings_color_background-alt", code: "--color-background-alt", value: "#101010" },
                     ]
                 }
             ],

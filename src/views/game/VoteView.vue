@@ -46,7 +46,7 @@ export default {
             </button>
 
             <div class="player_card_container" :class="$room.isRoundWinner(selection.player_id) ? 'winner':''" v-for="selection in $room.randomVotingFor" :key="selection">
-                <div v-if="$room.roundWinner" :set="player = $room.players.get(selection.player_id)" style="text-align: center;">
+                <div v-if="$room.roundWinner" :set="player = $room.players.get(selection.player_id)" class="player_name">
                     {{ player === undefined ? "player_disconnected" : player.name }}
                 </div>
                 <Card
@@ -66,13 +66,30 @@ export default {
 
 <style scoped>
 .player_card_container {
-    background-color: rgba(46, 52, 64, 0.25);
+    background-color: var(--color-card-black);
     margin: 1rem;
     padding: 0.5rem 1rem 0 1rem;
     border-radius: 1rem;
 }
 
+.player_card_container > .player_name {
+    text-align: center;
+    color: var(--color-card-white);
+    transition: 0.5s;
+}
+
 .player_card_container.winner {
-    background-color: rgba(46, 52, 64, 1);
+    background-color: var(--color-card-white);
+}
+
+.player_card_container.winner > .player_name {
+    color: var(--color-card-black);
+}
+
+</style>
+
+<style>
+.player_card_container.winner .game-card-inner {
+    box-shadow: 0 4px 8px 0 #000;
 }
 </style>

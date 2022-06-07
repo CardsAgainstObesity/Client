@@ -1,13 +1,13 @@
 <script>
 export default {
     computed: {
-        primary_color(){
+        white_color(){
             this.color_change();
-            return this.$config.css_variables['--color-primary'].value;
+            return this.$config.css_variables['--color-card-white'].value;
         },
-        secondary_color(){
+        black_color(){
             this.color_change();
-            return this.$config.css_variables['--color-secondary'].value;
+            return this.$config.css_variables['--color-card-black'].value;
         },
     },
     methods: {
@@ -47,7 +47,7 @@ export default {
         <rect
             id="card01"
             transform="matrix(0.999999933512905 0 0 0.999999933512905 114.480016802618 28.0799981330424)"
-            :fill="primary_color"
+            :fill="white_color"
             fill-rule="evenodd"
             stroke-opacity="0"
             stroke="#000000"
@@ -62,7 +62,7 @@ export default {
         <rect
             id="card02"
             transform="matrix(0.999999933512905 0 0 0.999999933512905 186.480012015548 100.079993345972)"
-            :fill="secondary_color"
+            :fill="black_color"
             fill-rule="evenodd"
             stroke-opacity="0"
             stroke="#000000"
@@ -77,7 +77,7 @@ export default {
         <rect
             id="card03"
             transform="matrix(0.999999933512905 0 0 0.999999933512905 258.480007228476 172.0799885589)"
-            :fill="primary_color"
+            :fill="white_color"
             fill-rule="evenodd"
             stroke-opacity="0"
             stroke="#000000"
@@ -92,7 +92,7 @@ export default {
         <path
             id="hamburger"
             transform="matrix(14.3657938141856 0 0 14.3657938141856 316.8 316.8)"
-            :fill="secondary_color"
+            :fill="black_color"
             stroke="none"
             stroke-width="1"
             stroke-linecap="square"
@@ -110,11 +110,11 @@ rect, path {
 
 #card01,
 #card03 {
-    fill: var(--color-primary);
+    fill: var(--color-card-white);
 }
 
 #card02,
 #hamburger {
-    fill: var(--color-secondary);
+    fill: var(--color-card-black);
 }
 </style>

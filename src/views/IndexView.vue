@@ -88,7 +88,7 @@ main > div.logo > svg {
 main > div.logo > span {
     font-size: 150%;
     white-space: nowrap;
-    color: var(--color-highlighted-text);
+    color: var(--color-primary);
     font-weight: bold;
 }
 
@@ -109,7 +109,7 @@ input[type="text"] {
 
 input[type="text"]:focus,
 button:hover {
-    background-color: var(--color-highlighted-text) !important;
+    background-color: var(--color-primary) !important;
     color: var(--color-background);
 }
 

@@ -26,17 +26,20 @@
     --color-heading: var(--vt-c-text-dark-1);
 
     --color-primary: #5d88bd;
-    --color-secondary: #2e3440;
+    --color-secondary: #222222;
+    --color-tertiary: #a2a2a2;
+
+    --color-card-black: #2e3440;
+    --color-card-black-text: #fefefe;
+    --color-card-white: #5d88bd;
+    --color-card-white-text: #fefefe;
 
     --color-ui-text: #a2a2a2;
-    --color-card-text: #fefefe;
 
     --color-background: #181818;
     --color-background-alt: #222222;
 
     --color-background-soft: var(--color-background-alt);
-    --color-highlighted-text: var(--color-primary);
-    --color-card-back: var(--color-secondary);
 }
 
 *,
@@ -70,13 +73,13 @@ body {
 
 a {
     text-decoration: none;
-    color: var(--color-highlighted-text);
+    color: var(--color-primary);
     transition: 0.5s;
 }
 
 @media (hover: hover) {
     a:hover {
-        background-color: var(--color-background);
+        color: var(--color-tertiary);
     }
 }
 
@@ -125,9 +128,9 @@ input[type="text"]:not(.checkbox),
 input[type="text"].checkbox,
 select,
 button {
-    color: var(--color-highlighted-text);
+    color: var(--color-primary);
     transition: 0.5s;
-    background-color: var(--color-background-soft);
+    background-color: var(--color-secondary);
     border: 0px solid white;
     border-radius: 0.5rem;
     padding: 0.5rem;
@@ -141,14 +144,14 @@ input[type="text"]:focus:not(.checkbox),
 input[type="text"].checkbox.checked,
 select:focus,
 button:hover {
-    background-color: var(--color-highlighted-text);
-    color: var(--color-background-soft);
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
 }
 
 input[type="text"]:hover:not(.checkbox),
 input[type="text"].checkbox,
 select:hover {
-    border: 0.15rem solid var(--color-highlighted-text);
+    border: 0.15rem solid var(--color-primary);
 }
 
 button:hover {
@@ -208,7 +211,7 @@ button:hover {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     padding: 5rem 2rem;
-    background-color: var(--color-background-soft);
+    background-color: var(--color-secondary);
     border-radius: 1rem;
     text-align: center;
     max-width: 50vh;
@@ -227,7 +230,7 @@ button:hover {
 
 body::-webkit-scrollbar {
 	width: 12px;
-    border-left: 2px solid var(--color-background-soft);
+    border-left: 2px solid var(--color-secondary);
 	background-color: var(--color-background);
 }
 
