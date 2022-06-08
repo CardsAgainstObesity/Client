@@ -37,9 +37,10 @@ export default {
             else WSConnection.playerIsNotReady();
         },
 
-        selectCard(card_id) { // TODO: Mover a una store
+        selectCard(card_id) {
             if (this.$player.selected.has(card_id)){
                 this.$player.selected.delete(card_id);
+                WSConnection.playerIsNotReady();
             } else {
                 if (this.$player.selected.size < this.$room.blackCard.slots && !this.$player.isCzar) {
                     this.$player.selected.add(card_id);

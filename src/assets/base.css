@@ -38,8 +38,6 @@
 
     --color-background: #181818;
     --color-background-alt: #222222;
-
-    --color-background-soft: var(--color-background-alt);
 }
 
 *,
@@ -235,7 +233,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-	background-color: var(--color-background-soft);
+	background-color: var(--color-background-alt);
 }
 
 /*******************************************/

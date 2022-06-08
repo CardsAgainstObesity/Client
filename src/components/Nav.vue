@@ -17,7 +17,7 @@ export default {
     },
     methods: {
         screenshot() {
-            html2canvas(document.querySelector("body")).then((canvas) => {
+            html2canvas(document.querySelector("html")).then((canvas) => {
                 var link = document.createElement("a");
                 link.download = `${this.$display
                     .text("app_name")

@@ -61,7 +61,7 @@ export default {
                         { label: "settings_color_card_white", code: "--color-card-white", value: "#fefefe" },
                         { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#000000" },
                         { label: "settings_color_background", code: "--color-background", value: "#050505" },
-                        { label: "settings_color_background-alt", code: "--color-background-alt", value: "#101010" },
+                        { label: "settings_color_background-alt", code: "--color-background-alt", value: "#202020" },
                     ]
                 }
             ],
