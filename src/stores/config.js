@@ -28,7 +28,7 @@ export const useConfigStore = defineStore({
             "--color-card-white-text": { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "" },
             "--color-ui-text": { label: "settings_color_ui_text", code: "--color-ui-text", value: ""},
             "--color-background": { label: "settings_color_background", code: "--color-background", value: "" },
-            "--color-background-alt": { label: "settings_color_background-alt", code: "--color-background-alt", value: "" },
+            "--color-background-alt": { label: "settings_color_background_alt", code: "--color-background-alt", value: "" },
             "--background-image": { label: "", code: "", value: "" },
         },
 	}),

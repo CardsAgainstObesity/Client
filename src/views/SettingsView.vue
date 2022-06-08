@@ -18,6 +18,7 @@ export default {
                 { label: "🇪🇸 Español", code: "es" },
             ],
             mdiContentCopy,
+            property_index: 0,
             color_presets: [
                 {
                     name: "settings_theme_dark",
@@ -31,7 +32,7 @@ export default {
                         { label: "settings_color_card_white", code: "--color-card-white", value: "#5d88bd" },
                         { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#fefefe" },
                         { label: "settings_color_background", code: "--color-background", value: "#181818" },
-                        { label: "settings_color_background-alt", code: "--color-background-alt", value: "#222222" },
+                        { label: "settings_color_background_alt", code: "--color-background-alt", value: "#222222" },
                     ]
                 },
                 {
@@ -46,7 +47,7 @@ export default {
                         { label: "settings_color_card_white", code: "--color-card-white", value: "#5d88bd" },
                         { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#fefefe" },
                         { label: "settings_color_background", code: "--color-background", value: "#eeeeee" },
-                        { label: "settings_color_background-alt", code: "--color-background-alt", value: "#cccccc" },
+                        { label: "settings_color_background_alt", code: "--color-background-alt", value: "#cccccc" },
                     ]
                 },
                 {
@@ -61,7 +62,7 @@ export default {
                         { label: "settings_color_card_white", code: "--color-card-white", value: "#fefefe" },
                         { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#000000" },
                         { label: "settings_color_background", code: "--color-background", value: "#050505" },
-                        { label: "settings_color_background-alt", code: "--color-background-alt", value: "#202020" },
+                        { label: "settings_color_background_alt", code: "--color-background-alt", value: "#202020" },
                     ]
                 }
             ],
@@ -77,7 +78,7 @@ export default {
                     },
                     preview_active: true, 
                 }
-            }
+            },
         };
     },
     methods: {
@@ -87,6 +88,32 @@ export default {
             }
         }
     },
+	computed: {
+        dynamic_color_picker() {
+            const property_index = this.property_index;
+			let text = `
+                <span>{{ $display.text(property_option.label) }}</span>
+                <ColorPicker style="min-width: 50%; background-color: var(--color-background); transition: 0.5s; margin-bottom: 1rem;" default-format="hex" :visible-formats="['hex']" alpha-channel="hide" :color="property_option.value" @color-change="$config.set_property(property_option.code, $event.cssColor)">
+                    <template #copy-button>
+                        <Icon :path="mdiContentCopy" style="color: white; display: inherit;" />
+                    </template>
+                </ColorPicker>
+            `;
+            return { // Returrns a dynamically-generated component.
+                components: {
+                    ColorPicker
+                },
+                data() {
+                    return {
+                        mdiContentCopy,
+                        property_option: this.$config.css_colors[property_index],
+                    }
+                },
+                template: `<div>${text}</div>`
+            }
+
+        }
+    }
 };
 </script>
 
@@ -125,23 +152,34 @@ export default {
         </div>
 
         <p>{{ $display.text("settings_css_presets") }}</p>
-        <div v-for="preset in color_presets" :key="preset">
-            <button @click="apply_preset(preset.colors)">{{ $display.text(preset.name) }}</button>
-        </div>
+        <button style="margin-bottom: 0.5rem;" v-for="preset in color_presets" :key="preset" @click="apply_preset(preset.colors)">{{ $display.text(preset.name) }}</button>
 
-        <p>settings_css_property</p>
-        <div v-for="property_option in $config.css_colors" :key="property_option">
-            <p>{{ property_option.label }}</p>
-            <ColorPicker style="background-color: var(--color-background); transition: 0.5s;" default-format="hex" :visible-formats="['hex']" alpha-channel="hide" :color="property_option.value" @color-change="$config.set_property(property_option.code, $event.cssColor)">
-                <template #copy-button>
-                    <Icon :path="mdiContentCopy" style="color: white; display: inherit;" />
-                </template>
-            </ColorPicker>
+        <div class="color_chooser">
+            <ul style="list-style: none; padding-left: 0; padding-right: 5rem;">
+                <li v-for="(property_option, index) in $config.css_colors" :key="property_option" style="cursor: pointer;" @click="property_index = index">
+                    <div :style="{ border: '2px solid black', borderRadius: '50px', display: 'inline-block', width: '1.5rem', height: '1.5rem', backgroundColor: property_option.value, marginRight: '0.5rem' }" />
+                    <span style="vertical-align: top;">{{ $display.text(property_option.label) }}</span>
+                </li>
+            </ul>
+            <component style="flex-grow: 2;" :is="dynamic_color_picker"></component>
         </div>
     </main>
 </template>
 
+<style>
+.vacp-copy-button {
+    display: none !important;
+}
+</style>
+
 <style scoped>
+.color_chooser {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    margin-top: 1rem;
+}
+
 #color_preview {
     display: flex;
     flex-wrap: wrap;
