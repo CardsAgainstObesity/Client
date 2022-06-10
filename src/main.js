@@ -99,7 +99,6 @@ for (const css_color of configStore.css_colors){
 
 app.mount('#app');
 
-/* // Disable PWA for now.
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', function () {
         navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
@@ -115,7 +114,6 @@ if ('serviceWorker' in navigator) {
 } else {
     console.log('ServiceWorker is not supported');
 }
-*/
 
 window.debug = { // DEBUG
     addCardPack(cardpack_id) {
