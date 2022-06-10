@@ -73,10 +73,12 @@ export default {
 
 <style scoped>
 .player_card_container {
-    background-color: var(--color-card-black);
+    /* background-color: var(--color-card-black); */
+    background-image: radial-gradient(circle, var(--color-card-black), transparent);
     margin: 1rem;
     padding: 0.5rem 1rem 0 1rem;
     border-radius: 1rem;
+    transition: 0.5s;
 }
 
 .player_card_container > .player_name {
@@ -86,12 +88,12 @@ export default {
 }
 
 .player_card_container.winner {
-    background-color: var(--color-card-white);
+    background-image: radial-gradient(circle, var(--color-card-white), var(--color-card-black));
 }
 
-.player_card_container.winner > .player_name {
+/* .player_card_container.winner > .player_name {
     color: var(--color-card-black);
-}
+} */
 
 </style>
 

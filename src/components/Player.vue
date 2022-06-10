@@ -36,7 +36,7 @@ export default {
     <div class="player">
         <Icon :path="mdiCrown" v-if="czar" />
         <Icon :path="mdiAccount" v-else />
-        <input v-if="editable" type="text" style="padding: 0;" v-model="name" @keyup.enter="changeName">
+        <input v-if="editable" type="text" style="padding: 0;" v-model="name" @keyup.enter="changeName" @blur="changeName">
         <span v-else style="margin-left: 0;">{{player.name}}</span>
     </div>
 </template>
