@@ -209,6 +209,22 @@ export default class WSConnection {
                 vueBridge.PlayerStore.instance.appendCardValue(card.text);
             }
         });
+        
+        WSConnection.socket.on("RoomConnectionRequestPrompt", (callback) => {
+            callback(true);
+        });
+
+        WSConnection.socket.on("RoomConnectionDenied", () => {
+            console.log("[WS] Connection denied");
+        });
+
+        WSConnection.socket.on("RoomConnectionSuccess", () => {
+            console.log("[WS] Connection success");
+        });
+
+        WSConnection.socket.on("AvailableCardPacks", (cardpacks) => {
+            console.log(cardpacks);
+        });
     }
 
     static createRoom(roomId) {
