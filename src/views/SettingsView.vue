@@ -1,5 +1,6 @@
 <script>
 import { mdiContentCopy } from '@mdi/js'; 
+import twemoji from "twemoji";
 
 import Logo from "@/components/Logo.vue";
 import Card from "@/components/Card.vue";
@@ -14,9 +15,10 @@ export default {
     data() {
         return {
             languages: [
-                { label: "🇬🇧 English", code: "en" },
-                { label: "🇪🇸 Español", code: "es" },
+                { emoji: "🇬🇧", label: "English", code: "en" },
+                { emoji: "🇪🇸", label: "Español", code: "es" },
             ],
+            twemoji,
             mdiContentCopy,
             property_index: 0,
             color_presets: [
@@ -128,7 +130,8 @@ export default {
                 v-for="lang in languages"
                 :key="lang.code"
             >
-                {{ lang.label }}
+            <div v-html="twemoji.parse(lang.emoji)" />
+            <span>{{ lang.label }}</span>
             </li>
         </ul>
         <p>{{ $display.text("settings_audio_volume_range") }}</p>

@@ -43,7 +43,6 @@ export const useRoomStore = defineStore({
 			const response = await fetch("/api/cardpacks");
 			const json = await response.json();
 			this.cardpacks = json.data;
-			console.log(this.cardpacks);
 		}
 	},
 	getters: {

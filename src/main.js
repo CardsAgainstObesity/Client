@@ -57,6 +57,12 @@ window.$vueRouter = router; // DEBUG
 app.component("Icon", Icon);
 app.component("Checkbox", Checkbox);
 
+app.directive('emoji', {
+    inserted (el) {
+        el.innerHTML = twemoji.parse(el.innerHTML)
+    }
+});
+
 // Vue-Toastification
 
 const filterBeforeCreate = (toast, toasts) => {
