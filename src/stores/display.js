@@ -37,6 +37,7 @@ export const useDisplayStore = defineStore({
 				game_players_lobby: "Jugadores en la partida",
 				game_card_packs: "Mazos de cartas",
 				game_next_round: "Siguiente ronda",
+				game_finish_game: "Finalizar partida",
 
 				// VIEW: SETTINGS
 				settings_audio_volume_range: "Volumen",
@@ -87,6 +88,7 @@ export const useDisplayStore = defineStore({
 				game_players_lobby: "Players in this lobby",
 				game_card_packs: "Card packs",
 				game_next_round: "Next round",
+				game_finish_game: "Finish game",
 
 				// VIEW: SETTINGS
 				settings_audio_volume_range: "Volume",

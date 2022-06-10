@@ -13,6 +13,9 @@ export default {
         nextRound(){
             WSConnection.startChoosing();
         },
+        finishGame(){
+            WSConnection.backToLobby();
+        },
         clickHandler(selection) {
             if (this.$room.roundWinner == undefined) { // If no winner has been already selected
                 // Select winner if all cards are flipped.
@@ -41,8 +44,12 @@ export default {
             />
             <div class="break" />
 
-            <button v-if="$room.roundWinner && $player.isCzar" style="position: absolute; top: 350px;" @click="nextRound">
+            <button v-if="$room.roundWinner && $player.isCzar && !$room.gameFinished" style="position: absolute; top: 350px;" @click="nextRound">
                 {{ $display.text("game_next_round") }}
+            </button>
+
+            <button v-if="$room.roundWinner && $player.isCzar && $room.gameFinished" style="position: absolute; top: 350px;" @click="finishGame">
+                {{ $display.text("game_finish_game") }}
             </button>
 
             <div class="player_card_container" :class="$room.isRoundWinner(selection.player_id) ? 'winner':''" v-for="selection in $room.randomVotingFor" :key="selection">

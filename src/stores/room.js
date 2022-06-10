@@ -11,6 +11,7 @@ export const useRoomStore = defineStore({
 		players: new Map(),
 		votingFor: [],
 		roundWinner: undefined,
+		gameFinished: false,
 	}),
 	actions: {
 		setBlackCard(bCard) {

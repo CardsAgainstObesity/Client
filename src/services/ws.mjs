@@ -109,6 +109,7 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomStart", () => {
             console.log("[WS] Room started!");
+            vueBridge.RoomStore.instance.gameFinished = false;
             vueBridge.RoomStore.instance.changeStatus("choosing");
             if (router.currentRoute.value.name == "lobby") router.replace({
                 name: "choosing",
@@ -196,10 +197,16 @@ export default class WSConnection {
         WSConnection.socket.on("RoomGameFinished", (winner) => {
             console.log("[WS] The game finished and the winner is ", winner);
             vueBridge.RoomStore.instance.roundWinner = winner;
+            vueBridge.RoomStore.instance.gameFinished = true;
         });
 
         WSConnection.socket.on("RoomGoBackToLobby", () => {
             console.log("[WS] After the game ended, the czar has decided to send players back to lobby");
+            vueBridge.RoomStore.instance.changeStatus("lobby");
+            if (router.currentRoute.value.name == "voting") router.replace({
+                name: "lobby",
+                params: { id: vueBridge.RoomStore.instance.roomId },
+            });
         });
 
         WSConnection.socket.on("RoomFlipCard", (player_id) => {
