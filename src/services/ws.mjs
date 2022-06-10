@@ -30,6 +30,11 @@ export default class WSConnection {
             vueBridge.PlayerStore.instance.playerId = WSConnection.socket.id;
         });
 
+        WSConnection.socket.on("disconnect", () => {
+            console.log("[WS] Disconnected from the server");
+            toast.error("DISCONNECTED");
+        });
+
         WSConnection.socket.on("error", (err) => {
             console.error("ERROR:", err);
             toast.error({ component: Toast, props: { displayCode: err, h1Text: false }});
