@@ -24,14 +24,16 @@ export default {
         connect() {
             const roomId = document.getElementById("roomId").value;
             const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
             WSConnection.changeName(username);
-            WSConnection.joinRoom(roomId);
+            WSConnection.joinRoom(roomId, password);
         },
         create() {
             const roomId = document.getElementById("roomId").value;
             const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
             WSConnection.changeName(username);
-            WSConnection.createRoom(roomId);
+            WSConnection.createRoom(roomId, password);
         },
     },
 };
@@ -50,6 +52,12 @@ export default {
                     type="text"
                     id="username"
                     :placeholder="$display.text('index_username')"
+                    maxlength="25"
+                />
+                <input
+                    type="password"
+                    id="password"
+                    :placeholder="$display.text('index_password')"
                     maxlength="25"
                 />
                 <input
@@ -99,8 +107,10 @@ main > div.logo > span {
 }
 
 button,
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
     margin-bottom: 0.5rem;
+    min-width: 200px;
     max-width: 50vw;
     background-color: var(--color-background) !important;
     font-size: 1rem;
@@ -108,12 +118,9 @@ input[type="text"] {
 }
 
 input[type="text"]:focus,
+input[type="password"]:focus,
 button:hover {
     background-color: var(--color-primary) !important;
     color: var(--color-background);
-}
-
-input[type="text"] {
-    min-width: 200px;
 }
 </style>

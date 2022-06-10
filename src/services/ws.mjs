@@ -28,6 +28,7 @@ export default class WSConnection {
         WSConnection.socket.on("connect", () => {
             console.log("[WS] Connected to the server");
             vueBridge.PlayerStore.instance.playerId = WSConnection.socket.id;
+            vueBridge.RoomStore.instance.getCardPacks();
         });
 
         WSConnection.socket.on("disconnect", () => {
@@ -239,12 +240,12 @@ export default class WSConnection {
         });
     }
 
-    static createRoom(roomId) {
-        WSConnection.socket.emit("RoomCreationRequest", roomId);
+    static createRoom(roomId, password) {
+        WSConnection.socket.emit("RoomCreationRequest", roomId, password);
     }
 
-    static joinRoom(roomId) {
-        WSConnection.socket.emit("RoomConnectionRequest", roomId);
+    static joinRoom(roomId, password) {
+        WSConnection.socket.emit("RoomConnectionRequest", roomId, password);
     }
 
     static changeName(newName) {

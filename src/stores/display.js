@@ -23,6 +23,7 @@ export const useDisplayStore = defineStore({
 				// VIEW: INDEX
 				index_username: "Tu nombre",
 				index_roomid: "Código de sala",
+				index_password: "Contraseña (Opcional)",
 				index_join_button: "Unirse",
 				index_create_button: "Crear una nueva sala",
 
@@ -74,6 +75,7 @@ export const useDisplayStore = defineStore({
 				// VIEW: INDEX
 				index_username: "Your name",
 				index_roomid: "Room id",
+				index_password: "Password (Optional)",
 				index_join_button: "Join",
 				index_create_button: "Create new room",
 

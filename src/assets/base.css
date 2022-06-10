@@ -124,6 +124,7 @@ input[type="text"].checkbox {
 
 input[type="text"]:not(.checkbox),
 input[type="text"].checkbox,
+input[type="password"],
 select,
 button {
     color: var(--color-primary);
@@ -140,6 +141,7 @@ button {
 
 input[type="text"]:focus:not(.checkbox),
 input[type="text"].checkbox.checked,
+input[type="password"]:focus,
 select:focus,
 button:hover {
     background-color: var(--color-primary);
@@ -148,6 +150,7 @@ button:hover {
 
 input[type="text"]:hover:not(.checkbox),
 input[type="text"].checkbox,
+input[type="password"]:hover,
 select:hover {
     border: 0.15rem solid var(--color-primary);
 }

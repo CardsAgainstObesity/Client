@@ -4,6 +4,7 @@ import { PlayerStore } from "@/services/vueBridge.mjs";
 export const useRoomStore = defineStore({
 	id: "room",
 	state: () => ({
+		cardpacks: [],
 		roomId: "",
 		czar: undefined,
 		status: "",
@@ -38,6 +39,12 @@ export const useRoomStore = defineStore({
 			if (this.roundWinner === undefined) return false;
 			return this.roundWinner.id === player_id
 		},
+		async getCardPacks(){
+			const response = await fetch("/api/cardpacks");
+			const json = await response.json();
+			this.cardpacks = json.data;
+			console.log(this.cardpacks);
+		}
 	},
 	getters: {
 		flippedCards() {

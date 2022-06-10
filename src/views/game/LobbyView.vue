@@ -49,13 +49,22 @@ export default {
 			<main>
 				<!-- TODO: Meter esto en un componente -->
 				<h1>{{ $display.text("game_card_packs") }}</h1>
-				<ul class="card_pack_container">
+				<!-- <ul class="card_pack_container">
 					<li>
 						<Checkbox
 							id="base_card_pack"
 							@checked="toggleCardPack($event, 'base')"
 						/>
 						<label for="base_card_pack">Base</label>
+					</li>
+				</ul> -->
+				<ul class="card_pack_container">
+					<li v-for="cardpack in $room.cardpacks" :key="cardpack">
+						<Checkbox
+							:id="cardpack.id"
+							@checked="toggleCardPack($event, cardpack.id)"
+						/>
+						<label :for="cardpack.id">{{ $display.other_text(cardpack.name) }}</label>
 					</li>
 				</ul>
 			</main>
