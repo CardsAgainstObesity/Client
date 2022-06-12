@@ -1,5 +1,6 @@
 <template>
     <div>
+        <h3 class="padding">All credit for card content is attributed to Cards Against Humanity LLC and is licensed under CC BY-NC-SA 2.0.</h3>
         <h1 class="padding">Web</h1>
         <div id="root">
             <div class="container">
