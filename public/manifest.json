@@ -9,7 +9,7 @@
 			"type": "image/svg+xml"
 		}
 	],
-	"start_url": "/",
+	"start_url": "/?pwa",
 	"background_color": "#181818",
 	"theme_color": "#222222",
 	"display": "standalone"
