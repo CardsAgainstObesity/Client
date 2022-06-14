@@ -95,7 +95,7 @@ export default {
             const property_index = this.property_index;
 			let text = `
                 <span>{{ $display.text(property_option.label) }}</span>
-                <ColorPicker style="min-width: 50%; background-color: var(--color-background); transition: 0.5s; margin-bottom: 1rem;" default-format="hex" :visible-formats="['hex']" alpha-channel="hide" :color="property_option.value" @color-change="$config.set_property(property_option.code, $event.cssColor)">
+                <ColorPicker style="min-width: 100%; background-color: var(--color-background); transition: 0.5s; margin-bottom: 1rem;" default-format="hex" :visible-formats="['hex']" alpha-channel="hide" :color="property_option.value" @color-change="$config.set_property(property_option.code, $event.cssColor)">
                     <template #copy-button>
                         <Icon :path="mdiContentCopy" style="color: white; display: inherit;" />
                     </template>
@@ -161,10 +161,10 @@ export default {
             <ul style="list-style: none; padding-left: 0; padding-right: 5rem;">
                 <li v-for="(property_option, index) in $config.css_colors" :key="property_option" style="cursor: pointer;" @click="property_index = index">
                     <div :style="{ border: '2px solid black', borderRadius: '50px', display: 'inline-block', width: '1.5rem', height: '1.5rem', backgroundColor: property_option.value, marginRight: '0.5rem' }" />
-                    <span style="vertical-align: top;">{{ $display.text(property_option.label) }}</span>
+                    <span :style="{ fontWeight: index === property_index ? 'bold' : 'normal' }" style="vertical-align: top;">{{ $display.text(property_option.label) }}</span>
                 </li>
             </ul>
-            <component style="flex-grow: 2;" :is="dynamic_color_picker"></component>
+            <component id="dynamic_color_picker" :is="dynamic_color_picker"></component>
         </div>
     </main>
 </template>
@@ -179,21 +179,28 @@ export default {
 .color_chooser {
     display: flex;
     flex-wrap: wrap;
-    justify-content: stretch;
+    justify-content: space-between;
     margin-top: 1rem;
 }
 
 #color_preview {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
 }
 
 #color_preview_logo {
     width: 20vw;
 }
 
+#dynamic_color_picker {
+    width: calc(100% - 300px);
+}
+
 @media only screen and (max-width: 600px){
-    #color_preview_logo {
+    #color_preview_logo,
+    #dynamic_color_picker {
         width: 100%;
     }
 }
