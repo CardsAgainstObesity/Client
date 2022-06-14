@@ -14,8 +14,12 @@ export default {
     },
     data() {
         return {
-            showModal: true
+            showModal: false,
         }
+    },
+    created(){
+        const user_has_been_czar = localStorage.getItem("user_has_been_czar");
+        if (user_has_been_czar !== "true") this.showModal = true;
     },
     methods: {
         toggleReady() {
@@ -40,7 +44,7 @@ export default {
         selectCard(card_id) {
             if (this.$player.selected.has(card_id)){
                 this.$player.selected.delete(card_id);
-                WSConnection.playerIsNotReady();
+                if (this.$player.ready) WSConnection.playerIsNotReady();
             } else {
                 if (this.$player.selected.size < this.$room.blackCard.slots && !this.$player.isCzar) {
                     this.$player.selected.add(card_id);
@@ -51,6 +55,11 @@ export default {
         startVoting(){
             WSConnection.startVoting();
         },
+
+        closeModal(){
+            this.showModal = false;
+            localStorage.setItem("user_has_been_czar", true);
+        }
     },
 };
 </script>
@@ -71,7 +80,7 @@ export default {
                 <div class="newline" v-if="$player.isCzar">
                     <button id="show-modal" @click="showModal = true">Show Modal</button>
                     <Teleport to="body">
-                        <modal :show="showModal" @close="showModal = false">
+                        <modal :show="showModal" @close="closeModal">
                         <template #header>
                             <h3>(LOCALE) Eres el Zar!</h3>
                         </template>

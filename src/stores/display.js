@@ -147,7 +147,7 @@ export const useDisplayStore = defineStore({
 			return user_language.en;
 		},
 		error(key) {
-			return this.error_obj[ConfigStore.instance.language][key];
+			return this.error_obj[ConfigStore.instance.language][key] || `CODE: ${key}`;
 		},
 		console_log(key) {
 			return this.console_log_obj[ConfigStore.instance.language][key];

@@ -21,8 +21,8 @@ export default class WSConnection {
 
     static connect() {
         // Create a connection to the WS server
-        // WSConnection._socket = io(window.location.hostname + ":" + window.location.port);
-        WSConnection._socket = io(window.location.origin);
+        // WSConnection._socket = io(window.location.hostname); // DEV
+        WSConnection._socket = io(window.location.origin); // PROD
 
 
         WSConnection.socket.on("connect", () => {
@@ -46,7 +46,6 @@ export default class WSConnection {
             toast.error({component: Toast, props: { displayCode: "RateLimited", h1Text: true }},
                 {
                     position: "top-center",
-                    timeout: false,
                     pauseOnHover: false,
                     closeButton: false,
                     progressBar: false,
@@ -203,6 +202,8 @@ export default class WSConnection {
 
         WSConnection.socket.on("RoomGoBackToLobby", () => {
             console.log("[WS] After the game ended, the czar has decided to send players back to lobby");
+            vueBridge.PlayerStore.instance.selected.clear();
+            vueBridge.PlayerStore.instance.cards.clear();
             vueBridge.RoomStore.instance.changeStatus("lobby");
             if (router.currentRoute.value.name == "voting") router.replace({
                 name: "lobby",
