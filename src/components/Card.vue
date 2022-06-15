@@ -114,24 +114,20 @@ export default {
     background-color: var(--color-card-black);
 }
 
-.game-card:not(.dark) > .game-card-inner > .game-card-back.flippable_card {
-    animation: flip_card_index 0.2s linear reverse;
-}
-
-.game-card:not(.dark) > .game-card-inner > .game-card-back.active_back.flippable_card {
-    animation: flip_card_index 0.2s linear;
-}
-
-.game-card:not(.dark) > .game-card-inner > .game-card-back:not(.flippable_card){
+.game-card > .game-card-inner > .game-card-back {
     z-index: -1;
 }
 
-.game-card:not(.dark) > .game-card-inner > .game-card-back.active_back:not(.flippable_card){
+.game-card.active > .game-card-inner > .game-card-back {
     z-index: 0;
 }
 
-@keyframes flip_card_index {
-  from { z-index: 0; }
-  to { z-index: -1; }
+.game-card > .game-card-inner > .game-card-front {
+    z-index: -1;
 }
+
+.game-card.active > .game-card-inner > .game-card-front {
+    z-index: 0;
+}
+
 </style>
