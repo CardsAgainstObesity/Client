@@ -95,10 +95,7 @@ export default {
                     :path="mdiHamburgerOff"
                 />
             </div>
-            <div
-                class="game-card-back"
-                :class="{ active_back: active, flippable_card: $room.status !== 'choosing' }"
-            >
+            <div class="game-card-back">
 				<component v-if="dark && data.text !== undefined" :is="dynamic_card_text"></component>
 				<span v-if="!dark && data.text !== undefined">{{ $display.other_text(data.text) }}</span>
 				<span v-else/>

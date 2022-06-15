@@ -1,5 +1,5 @@
 {
-	"short_name": "CAO",
+	"short_name": "Cards Against Obesity",
 	"name": "Cards Against Obesity",
 	"description": "Progressive Web App (Dev)",
 	"icons": [
@@ -9,7 +9,7 @@
 			"type": "image/svg+xml"
 		}
 	],
-	"start_url": "/?pwa",
+	"start_url": "/",
 	"background_color": "#181818",
 	"theme_color": "#222222",
 	"display": "standalone"

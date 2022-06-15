@@ -14,12 +14,13 @@ export default {
     },
     data() {
         return {
-            showModal: false,
+            showCzarModal: false,
+            showPlayerList: false,
         }
     },
     created(){
         const user_has_been_czar = localStorage.getItem("user_has_been_czar");
-        if (user_has_been_czar !== "true") this.showModal = true;
+        if (user_has_been_czar !== "true") this.showCzarModal = true;
     },
     methods: {
         toggleReady() {
@@ -57,7 +58,7 @@ export default {
         },
 
         closeModal(){
-            this.showModal = false;
+            this.showCzarModal = false;
             localStorage.setItem("user_has_been_czar", true);
         }
     },
@@ -77,10 +78,34 @@ export default {
                     :clickable="false"
                     :active="true"
                 />
+                <Card
+                    @click="showPlayerList = true"
+                    style="font-size: 2rem;"
+                    :data="{ text: { en: $room.countReadyPlayers + '/' + $room.allPlayersExceptCzar.length } }"
+                    :dark="false"
+                    :clickable="true"
+                    :active="true"
+                    :index="0"
+                />
+                <Teleport to="body">
+                    <modal :show="showPlayerList" @close="showPlayerList = false">
+                    <template #header>
+                        <h3>game_choosing_players_ready</h3>
+                    </template>
+                    <template #body>
+                        <ul>
+                            <li v-for="player in $room.players.values()" :key="player">
+                                <input type="checkbox" disabled :checked="player.ready" style="margin-right: 0.5rem;" />
+                                <span>{{ player.name }}</span>
+                            </li>
+                        </ul>
+                    </template>
+                    </modal>
+                </Teleport>
                 <div class="newline" v-if="$player.isCzar">
-                    <button id="show-modal" @click="showModal = true">Show Modal</button>
+                    <button class="btn" @click="showCzarModal = true">Show Modal</button>
                     <Teleport to="body">
-                        <modal :show="showModal" @close="closeModal">
+                        <modal :show="showCzarModal" @close="closeModal">
                         <template #header>
                             <h3>(LOCALE) Eres el Zar!</h3>
                         </template>

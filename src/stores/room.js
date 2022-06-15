@@ -39,8 +39,14 @@ export const useRoomStore = defineStore({
 			if (this.roundWinner === undefined) return false;
 			return this.roundWinner.id === player_id
 		},
+		setReady(player){
+			const selected_player = this.players.get(player.id);
+			if (selected_player){ // If player exists
+				selected_player.ready = player.ready;
+			}
+		},
 		async getCardPacks(){
-			const response = await fetch("/api/cardpacks");
+			const response = await fetch(`https://${window.location.hostname}/api/cardpacks`);
 			const json = await response.json();
 			this.cardpacks = json.data;
 		}
@@ -56,6 +62,19 @@ export const useRoomStore = defineStore({
 		randomVotingFor(){
 			let votingFor = Object.assign(this.votingFor);
 			return votingFor.sort((a, b) => 0.5 - Math.random());
+		},
+		playerArray(){
+			return [...this.players.values()];
+		},
+		allPlayersExceptCzar(){
+			return this.playerArray.filter(player => player.id !== this.czar.id);
+		},
+		countReadyPlayers(){
+			let count = 0;
+			this.players.forEach((player) => {
+				if (player.ready) count++;
+			});
+			return count;
 		}
 	},
 });

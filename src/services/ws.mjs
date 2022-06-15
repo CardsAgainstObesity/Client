@@ -21,9 +21,8 @@ export default class WSConnection {
 
     static connect() {
         // Create a connection to the WS server
-        // WSConnection._socket = io(window.location.hostname); // DEV
-        WSConnection._socket = io(window.location.origin); // PROD
-
+        if (window.location.port === "3000") WSConnection._socket = io(window.location.hostname); // DEV
+        else WSConnection._socket = io(window.location.origin); // PROD
 
         WSConnection.socket.on("connect", () => {
             console.log("[WS] Connected to the server");
@@ -149,11 +148,13 @@ export default class WSConnection {
         WSConnection.socket.on("AnnouncePlayerIsNotReady", (player) => {
             console.log("[WS] A player is not ready ", player);
             if (player.id == vueBridge.PlayerStore.instance.playerId) vueBridge.PlayerStore.instance.setReady(player.ready);
+            vueBridge.RoomStore.instance.setReady(player);
         });
 
         WSConnection.socket.on("AnnouncePlayerIsReady", (player) => {
             console.log("[WS] A player is ready ", player);
             if (player.id == vueBridge.PlayerStore.instance.playerId) vueBridge.PlayerStore.instance.setReady(player.ready);
+            vueBridge.RoomStore.instance.setReady(player);
         });
 
         WSConnection.socket.on("RoomStartVoting", (cards) => {
