@@ -139,12 +139,24 @@ button {
     border: 0.15rem solid transparent;
 }
 
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
+    color: var(--color-primary);
+    transition: 0.5s;
+    opacity: 0.5;
+}
+
 input[type="text"]:focus:not(.checkbox),
 input[type="text"].checkbox.checked,
 input[type="password"]:focus,
 select:focus,
 button:hover {
     background-color: var(--color-primary);
+    color: var(--color-secondary);
+}
+
+input[type="text"]:focus::placeholder,
+input[type="password"]:focus::placeholder {
     color: var(--color-secondary);
 }
 
