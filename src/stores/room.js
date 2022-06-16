@@ -49,7 +49,14 @@ export const useRoomStore = defineStore({
 			const response = await fetch(`https://${window.location.hostname}/api/cardpacks`);
 			const json = await response.json();
 			this.cardpacks = json.data;
-		}
+		},
+		setPlayerObesity(player){
+			const selected_player = this.players.get(player.id);
+			if (selected_player) { // If player exists
+				selected_player.obesity = player.obesity;
+			}
+		},
+		// TODO: Abstraer setReady y setPlayerObesity en una sola función
 	},
 	getters: {
 		flippedCards() {

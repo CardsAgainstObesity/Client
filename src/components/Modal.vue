@@ -25,7 +25,7 @@ export default {
                                 class="modal-default-button"
                                 @click="$emit('close')"
                             >
-                                OK pesao
+                                ui_modal_ok
                             </button>
                         </slot>
                     </div>
@@ -54,13 +54,19 @@ export default {
 }
 
 .modal-container {
-    width: 300px;
+    width: 600px;
     margin: 0px auto;
     padding: 20px 30px;
     background-color: var(--color-background);
     border-radius: 2px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
     transition: all 0.3s ease;
+}
+
+@media only screen and (max-width: 600px) {
+    .modal-container {
+        width: 100%;
+    }
 }
 
 .modal-header h3 {

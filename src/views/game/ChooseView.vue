@@ -2,6 +2,7 @@
 import Card from "@/components/Card.vue";
 import Modal from "@/components/Modal.vue";
 import CzarName from "@/components/CzarName.vue";
+import Playerlist from "@/components/Playerlist.vue";
 
 import WSConnection from "@/services/ws.mjs";
 
@@ -11,6 +12,7 @@ export default {
         Card,
         Modal,
         CzarName,
+        Playerlist,
     },
     data() {
         return {
@@ -80,40 +82,36 @@ export default {
                 />
                 <Card
                     @click="showPlayerList = true"
-                    style="font-size: 2rem;"
+                    style="font-size: 2rem; cursor: pointer;"
                     :data="{ text: { en: $room.countReadyPlayers + '/' + $room.allPlayersExceptCzar.length } }"
                     :dark="false"
-                    :clickable="true"
+                    :clickable="false"
                     :active="true"
                     :index="0"
                 />
                 <Teleport to="body">
-                    <modal :show="showPlayerList" @close="showPlayerList = false">
-                    <template #header>
-                        <h3>game_choosing_players_ready</h3>
-                    </template>
-                    <template #body>
-                        <ul>
-                            <li v-for="player in $room.players.values()" :key="player">
-                                <input type="checkbox" disabled :checked="player.ready" style="margin-right: 0.5rem;" />
-                                <span>{{ player.name }}</span>
-                            </li>
-                        </ul>
-                    </template>
-                    </modal>
+                    <Modal :show="showPlayerList" @close="showPlayerList = false">
+                        <template #header>
+                            <h3>game_choosing_players_ready</h3>
+                        </template>
+                        <template #body>
+                            <Playerlist :list="[$room.czar]" :lobby="false" style="margin-bottom: 2rem;" />
+                            <Playerlist :list="$room.allPlayersExceptCzar" :lobby="false" />
+                        </template>
+                    </Modal>
                 </Teleport>
                 <div class="newline" v-if="$player.isCzar">
                     <button class="btn" @click="showCzarModal = true">Show Modal</button>
                     <Teleport to="body">
-                        <modal :show="showCzarModal" @close="closeModal">
-                        <template #header>
-                            <h3>(LOCALE) Eres el Zar!</h3>
-                        </template>
-                        <template #body>
-                            <p>(LOCALE) Eso quiere decir que esta ronda no podrás elegir carta.</p>
-                            <p>Cuando los demás jugadores acaben de elegir sus cartas, deberás elegir la carta ganadora.</p>
-                        </template>
-                        </modal>
+                        <Modal :show="showCzarModal" @close="closeModal">
+                            <template #header>
+                                <h3>(LOCALE) Eres el Zar!</h3>
+                            </template>
+                            <template #body>
+                                <p>(LOCALE) Eso quiere decir que esta ronda no podrás elegir carta.</p>
+                                <p>Cuando los demás jugadores acaben de elegir sus cartas, deberás elegir la carta ganadora.</p>
+                            </template>
+                        </Modal>
                     </Teleport>
                 </div>
                 <div class="newline" v-else>

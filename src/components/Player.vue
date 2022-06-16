@@ -1,6 +1,6 @@
 <script>
-import { mdiAccount, mdiCrown } from '@mdi/js';
-import { PlayerStore, RoomStore } from '@/services/vueBridge.mjs';
+import { mdiAccount, mdiCrown } from "@mdi/js";
+import { PlayerStore, RoomStore } from "@/services/vueBridge.mjs";
 import WSConnection from "@/services/ws.mjs";
 
 export default {
@@ -9,40 +9,53 @@ export default {
             type: Object,
             required: true,
         },
-	},
-    data(){
+    },
+    data() {
         return {
-            WSConnection, mdiAccount, mdiCrown, PlayerStore, RoomStore,
+            WSConnection,
+            mdiAccount,
+            mdiCrown,
+            PlayerStore,
+            RoomStore,
             name: this.player.name,
-        }
+        };
     },
     methods: {
-        changeName(){
+        changeName() {
             WSConnection.changeName(this.name);
-        }
+        },
     },
     computed: {
-        czar(){
+        czar() {
             return this.player.id === RoomStore.instance.czar.id;
         },
-        editable(){
+        editable() {
             return this.player.id === PlayerStore.instance.playerId;
-        }
+        },
     },
-}
+};
 </script>
 
 <template>
     <div class="player">
         <Icon :path="mdiCrown" v-if="czar" />
         <Icon :path="mdiAccount" v-else />
-        <input v-if="editable" type="text" style="padding: 0;" v-model="name" @keyup.enter="changeName" @blur="changeName">
-        <span v-else style="margin-left: 0;">{{player.name}}</span>
+        <input
+            v-if="editable && $room.status === 'lobby'"
+            type="text"
+            style="padding: 0"
+            v-model="name"
+            @keyup.enter="changeName"
+            @blur="changeName"
+        />
+        <span v-if="!editable && $room.status === 'lobby'" style="margin-left: 0;">{{ player.name }}</span>
+        <span v-if="$room.status !== 'lobby'" style="margin-left: 0;">{{ player.name }} ({{ player.obesity }})</span>
     </div>
 </template>
 
 <style scoped>
-svg, span {
+svg,
+span {
     color: var(--color-ui-text);
 }
 </style>

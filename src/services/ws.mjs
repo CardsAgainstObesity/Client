@@ -187,6 +187,7 @@ export default class WSConnection {
         WSConnection.socket.on("AnnounceRoomSelectWinner", (winner) => {
             console.log("[WS] The czar selected a winner ", winner);
             vueBridge.RoomStore.instance.roundWinner = winner;
+            vueBridge.RoomStore.instance.setPlayerObesity(winner);
             
             const selected_player = vueBridge.RoomStore.instance.votingFor.filter(selection => selection.player_id === winner.id);
             vueBridge.PlayerStore.instance.clearCardValues();
