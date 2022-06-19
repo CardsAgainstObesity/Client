@@ -40,13 +40,13 @@ export default {
                 {
                     name: "settings_theme_white",
                     colors: [
-                        { label: "settings_color_primary", code: "--color-primary", value: "#5d88bd" },
+                        { label: "settings_color_primary", code: "--color-primary", value: "#418eed" },
                         { label: "settings_color_secondary", code: "--color-secondary", value: "#cccccc" },
                         { label: "settings_color_tertiary", code: "--color-tertiary", value: "#202020" },
                         { label: "settings_color_ui_text", code: "--color-ui-text", value: "#202020"},
-                        { label: "settings_color_card_black", code: "--color-card-black", value: "#2e3440" },
+                        { label: "settings_color_card_black", code: "--color-card-black", value: "#465471" },
                         { label: "settings_color_card_black_text", code: "--color-card-black-text", value: "#fefefe" },
-                        { label: "settings_color_card_white", code: "--color-card-white", value: "#5d88bd" },
+                        { label: "settings_color_card_white", code: "--color-card-white", value: "#418eed" },
                         { label: "settings_color_card_white_text", code: "--color-card-white-text", value: "#fefefe" },
                         { label: "settings_color_background", code: "--color-background", value: "#eeeeee" },
                         { label: "settings_color_background_alt", code: "--color-background-alt", value: "#cccccc" },

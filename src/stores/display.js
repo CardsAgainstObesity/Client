@@ -19,6 +19,7 @@ export const useDisplayStore = defineStore({
 				nav_rules: "Reglas",
 				nav_settings: "Configuración",
 				nav_about: "Acerca de",
+				nav_secret: "Secreto",
 
 				// VIEW: INDEX
 				index_username: "Tu nombre",
@@ -37,8 +38,12 @@ export const useDisplayStore = defineStore({
 				game_current_czar_other: "es el Zar de las Cartas.",
 				game_players_lobby: "Jugadores en la partida",
 				game_card_packs: "Mazos de cartas",
+				game_player_list: "Lista de jugadores",
 				game_next_round: "Siguiente ronda",
 				game_finish_game: "Finalizar partida",
+
+				game_choosing_modal_czar_header: "¡Eres el Zar!",
+				game_choosing_modal_czar_body: "Esta ronda no podrás elegir carta. Cuando los demás jugadores acaben de elegir sus cartas, deberás elegir la carta ganadora.",
 
 				// VIEW: SETTINGS
 				settings_audio_volume_range: "Volumen",
@@ -71,6 +76,7 @@ export const useDisplayStore = defineStore({
 				nav_rules: "Rules",
 				nav_settings: "Settings",
 				nav_about: "About",
+				nav_secret: "Secret",
 
 				// VIEW: INDEX
 				index_username: "Your name",
@@ -89,8 +95,12 @@ export const useDisplayStore = defineStore({
 				game_current_czar_other: "is the Card Czar.",
 				game_players_lobby: "Players in this lobby",
 				game_card_packs: "Card packs",
+				game_player_list: "Player list",
 				game_next_round: "Next round",
 				game_finish_game: "Finish game",
+
+				game_choosing_modal_czar_header: "You are the Czar!",
+				game_choosing_modal_czar_body: "You won't be able to pick a card this round. When everyone else picks their card, you'll have to choose which is the winning card.",
 
 				// VIEW: SETTINGS
 				settings_audio_volume_range: "Volume",
@@ -143,8 +153,7 @@ export const useDisplayStore = defineStore({
 		},
 		text(key) {
 			const user_language = this.text_obj[ConfigStore.instance.language];
-			if (user_language[key] !== undefined) return user_language[key];
-			return user_language.en;
+			return user_language[key] || this.text_obj.en[key] || key;
 		},
 		error(key) {
 			return this.error_obj[ConfigStore.instance.language][key] || `CODE: ${key}`;

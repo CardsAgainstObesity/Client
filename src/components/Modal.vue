@@ -25,7 +25,7 @@ export default {
                                 class="modal-default-button"
                                 @click="$emit('close')"
                             >
-                                ui_modal_ok
+                                OK
                             </button>
                         </slot>
                     </div>

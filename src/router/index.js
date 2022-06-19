@@ -71,6 +71,14 @@ let router = createRouter({
             },
             component: AboutView,
         },
+        {
+            path: "/secret",
+            name: "Rickroll",
+            meta: {
+                code: "nav_secret",
+            },
+            component: () => import("../views/RickView.vue"),
+        },
         { // DEBUG
             path: '/test',
             name: 'test',

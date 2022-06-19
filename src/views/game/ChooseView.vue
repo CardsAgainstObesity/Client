@@ -83,7 +83,7 @@ export default {
                 <Card
                     @click="showPlayerList = true"
                     style="font-size: 2rem; cursor: pointer;"
-                    :data="{ text: { en: $room.countReadyPlayers + '/' + $room.allPlayersExceptCzar.length } }"
+                    :data="{ text: { en: `${$room.countReadyPlayers}/${$room.allPlayersExceptCzar.length}` } }"
                     :dark="false"
                     :clickable="false"
                     :active="true"
@@ -92,7 +92,7 @@ export default {
                 <Teleport to="body">
                     <Modal :show="showPlayerList" @close="showPlayerList = false">
                         <template #header>
-                            <h3>game_choosing_players_ready</h3>
+                            <h3>{{ $display.text("game_player_list") }}</h3>
                         </template>
                         <template #body>
                             <Playerlist :list="[$room.czar]" :lobby="false" style="margin-bottom: 2rem;" />
@@ -105,11 +105,10 @@ export default {
                     <Teleport to="body">
                         <Modal :show="showCzarModal" @close="closeModal">
                             <template #header>
-                                <h3>(LOCALE) Eres el Zar!</h3>
+                                <h3>{{ $display.text("game_choosing_modal_czar_header") }}</h3>
                             </template>
                             <template #body>
-                                <p>(LOCALE) Eso quiere decir que esta ronda no podrás elegir carta.</p>
-                                <p>Cuando los demás jugadores acaben de elegir sus cartas, deberás elegir la carta ganadora.</p>
+                                <p>{{ $display.text("game_choosing_modal_czar_body") }}</p>
                             </template>
                         </Modal>
                     </Teleport>

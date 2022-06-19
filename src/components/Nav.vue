@@ -51,8 +51,10 @@ export default {
                 <RouterLink to="/about"><Icon :path="mdiInformation" /> {{$display.text("nav_about")}}</RouterLink>
             </nav>
             <div class="right logo" v-if="$router.currentRoute.value.name !== 'index'">
-                <Logo/>
-                <span>{{$display.text("app_name")}}</span>
+                <RouterLink to="/secret">
+                    <Logo/>
+                    <span>{{$display.text("app_name")}}</span>
+                </RouterLink>
             </div>
         </div>
     </header>
@@ -60,22 +62,19 @@ export default {
 
 <style scoped>
 @media only screen and (min-height: 601px) {
-	/* div.hide > div.logo {
-		background-image: none;
-	} */
-    div.hide > div.logo {
+    div.hide div.logo {
         display: none;
     }
 }
 
 @media screen and (max-width: 1000px) {
-    div > div.logo {
+    div div.logo {
         display: none;
     }
 }
 
 @media screen and (max-width: 600px) {
-    nav.center > a {
+    nav.center a {
         font-size: 0;
     }
 }
@@ -108,17 +107,17 @@ div.right {
     right: 0;
 }
 
-div.logo {
+div.logo a {
     display: flex;
     align-items: center;
 }
 
-div.logo > span {
+div.logo span {
     color: var(--color-primary);
     padding: 1rem 1rem 1rem 0.25rem;
     transition: 0.5s;
 }
-div.logo > svg {
+div.logo svg {
     height: 2rem;
 }
 </style>

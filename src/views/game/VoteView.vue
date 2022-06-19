@@ -79,6 +79,7 @@ export default {
     padding: 0.5rem 1rem 0 1rem;
     border-radius: 1rem;
     transition: 0.5s;
+    z-index: 0;
 }
 
 .player_card_container > .player_name {
