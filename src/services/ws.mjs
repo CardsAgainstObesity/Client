@@ -106,8 +106,11 @@ export default class WSConnection {
             vueBridge.RoomStore.instance.setCzar(newCzar);
         });
 
-        WSConnection.socket.on("RoomStart", () => {
-            console.log("[WS] Room started!");
+        WSConnection.socket.on("RoomStart", (roomJSON) => {
+            console.log("[WS] Room started!", roomJSON);
+            roomJSON.players.forEach(player => {
+                vueBridge.RoomStore.instance.players.set(player.id,player);    
+            });
             vueBridge.RoomStore.instance.gameFinished = false;
             vueBridge.RoomStore.instance.changeStatus("choosing");
             if (router.currentRoute.value.name == "lobby") router.replace({
